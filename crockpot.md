@@ -95,4 +95,114 @@
 - **Meat**: 2 lb stew beef  
 - **Produce**: 3‑4 potatoes, 3‑4 carrots, 2‑3 celery stalks, 1 large onion, garlic  
 - **Broth & Cans**: 1 carton beef broth (32 oz), 1 small can tomato paste  
-- **Spices/Herbs**: Thyme, bay leaf, salt, pepper  
+- **Spices/Herbs**: Thyme, bay leaf, salt, pepper
+
+## 🍄 Crock Pot Beef Stroganoff
+
+**Servings:** 4–6 | **Prep:** 10 min | **Cook:** 8 hr on LOW (4 hr on HIGH)
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Protein** | Stew beef | 2 lb |
+| **Vegetables** | Mushrooms, sliced | 2 cups |
+| | Onion, diced | 1 medium |
+| **Liquid** | Beef broth | 2 cups |
+| | Worcestershire sauce | 2 Tbsp |
+| **Finish** | Sour cream | ¾ cup |
+| | Cornstarch + water | 2 Tbsp each (optional for thickening) |
+
+### Method
+1. Add beef, onion, mushrooms, broth, and Worcestershire to the crock pot.
+2. Cook on LOW for 8 hr or HIGH for 4 hr.
+3. Stir in sour cream at the end.
+4. Optional: thicken with cornstarch slurry before serving.
+
+### Grocery List
+- 2 lb stew beef  
+- Mushrooms  
+- 1 onion  
+- Beef broth  
+- Worcestershire sauce  
+- Sour cream  
+- Optional: Cornstarch  
+
+## 🌭 Crock Pot Sausage & Peppers
+
+**Servings:** 4–6 | **Prep:** 10 min | **Cook:** 6 hr on LOW (3 hr on HIGH)
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Protein** | Italian sausage links | 1.5 lb |
+| **Vegetables** | Bell peppers, sliced | 3 (assorted colors) |
+| | Onion, sliced | 1 large |
+| **Sauce** | Marinara sauce | 2 cups |
+
+### Method
+1. Layer sausage, peppers, and onions in crock pot.
+2. Pour marinara sauce over everything.
+3. Cook on LOW for 6 hr or HIGH for 3 hr.
+4. Serve with hoagie rolls or over pasta.
+
+### Grocery List
+- 1.5 lb Italian sausage  
+- 3 bell peppers  
+- 1 onion  
+- 1 jar marinara sauce  
+
+## 🍯 Crock Pot Honey Garlic Chicken
+
+**Servings:** 4–6 | **Prep:** 5 min | **Cook:** 4–5 hr on LOW (2–3 hr on HIGH)
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Protein** | Boneless chicken thighs or breasts | 2 lb |
+| **Sauce** | Honey | ½ cup |
+| | Soy sauce | ½ cup |
+| | Garlic, minced | 3 cloves |
+| | Ketchup | ¼ cup |
+| **Optional** | Cornstarch + water (for thickening) | 1 Tbsp each |
+
+### Method
+1. Place chicken in crock pot.
+2. In a bowl, mix honey, soy sauce, garlic, and ketchup.
+3. Pour over chicken.
+4. Cook on LOW for 4–5 hr or HIGH for 2–3 hr.
+5. Optional: thicken sauce with cornstarch slurry at end.
+
+### Grocery List
+- 2 lb boneless chicken  
+- Honey  
+- Soy sauce  
+- Garlic  
+- Ketchup  
+- Optional: Cornstarch  
+
+## 🥩 Crock Pot Mississippi Pot Roast
+
+**Servings:** 6–8 | **Prep:** 5 min | **Cook:** 8 hr on LOW (5 hr on HIGH)
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Protein** | Beef chuck roast | 3–4 lb |
+| **Seasonings** | Ranch seasoning mix | 1 packet |
+| | Au jus gravy mix | 1 packet |
+| | Pepperoncini peppers | 6–8 whole |
+| | Butter | 4 Tbsp (½ stick) |
+
+### Method
+1. Place the chuck roast in the crock pot.
+2. Sprinkle ranch and au jus mix over the top.
+3. Add pepperoncini peppers and place the butter on top.
+4. Cover and cook on LOW for 8 hr or HIGH for 5 hr.
+5. Shred and serve over mashed potatoes, rice, or rolls.
+
+### Grocery List
+- 3–4 lb chuck roast  
+- 1 ranch seasoning packet  
+- 1 au jus gravy mix packet  
+- 1 jar pepperoncini peppers  
+- 1 stick butter  
