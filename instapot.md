@@ -184,4 +184,110 @@
 - Heavy cream  
 - Butter  
 - Garlic  
-- Garam masala, cumin, ginger, paprika  
+- Garam masala, cumin, ginger, paprika
+---
+
+## 🍝 Ground Beef Stroganoff
+
+**Servings:** 4–6 | **Prep:** 0 min | **Cook:** 6 min HP + sauté + ~10 min to pressure
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Oil** | Olive oil | 1 Tbsp |
+| **Vegetables** | Yellow onion, diced | 1 medium |
+|  | Garlic, minced | 2 cloves |
+|  | Cremini mushrooms, sliced | 8 oz |
+| **Protein** | Ground beef (93% lean) | 1 lb |
+| **Flavor** | Kosher salt | to taste |
+|  | Black pepper | to taste |
+|  | Tomato paste | 1 Tbsp |
+|  | Dijon mustard | 1 Tbsp |
+|  | Worcestershire sauce | 1 Tbsp |
+|  | Dried thyme | 1/2 tsp |
+| **Liquid** | Beef broth | 1.5 cups |
+| **Pasta** | Wide egg noodles | 12 oz |
+| **Finish** | Sour cream (optional) | 1 cup |
+|  | Fresh flat-leaf parsley, chopped | 2 Tbsp |
+
+### Method
+1. **Sauté aromatics & beef** – Select **Sauté (High)** and heat oil 1 minute. Add onion, garlic, mushrooms, and 1/2 tsp salt; sauté about 5 minutes until onion softens. Add ground beef and cook ~4 minutes, breaking it up; some pink is okay. Stir in tomato paste, mustard, Worcestershire, thyme, pepper, broth, and noodles, nudging most noodles under the liquid.
+2. **Pressure cook** – Lock lid and set **Sealing**. Cancel to reset, then **Pressure Cook/Manual** **6 minutes** on **High**. (Pot takes ~10 minutes to pressurize.)
+3. **Release & finish** – **Natural release 5 minutes**, then **Vent** remaining steam. Stir in sour cream (if using). Taste and adjust salt.
+4. **Serve** – Ladle into bowls and top with parsley.
+
+### Grocery List
+- **Protein**: 1 lb 93% lean ground beef  
+- **Vegetables**: 1 onion, 8 oz cremini mushrooms, garlic, parsley  
+- **Pantry/Flavor**: Tomato paste, Dijon, Worcestershire, dried thyme, salt, pepper, olive oil  
+- **Liquid**: Beef broth (1.5 cups)  
+- **Pasta/Dairy**: 12 oz wide egg noodles; sour cream (optional)
+
+---
+
+## 🌶️🐔 Shredded Buffalo Chicken
+
+**Servings:** 6 | **Prep:** 5 min | **Cook:** 15 min HP + sauté + ~10 min to pressure
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Liquid** | Water | 1 cup |
+| **Seasoning** | Kosher salt | 1 tsp |
+| **Protein** | Boneless, skinless chicken breasts | about 2.5 lb |
+| **Thicken** | Cornstarch | 1 Tbsp |
+| **Sauce** | Hot sauce (Frank’s RedHot preferred) | 1/2 cup, plus more to taste |
+|  | Honey | 2 Tbsp |
+|  | Worcestershire sauce | 2 tsp |
+| **Finish** | Unsalted butter | 4 Tbsp, divided |
+|  | Garlic, minced | 4 cloves |
+| **Serving** | Slider buns or sandwich rolls | as needed |
+
+### Method
+1. **Load pot** – Add water, salt, and chicken breasts in a single layer.
+2. **Pressure cook** – Seal lid (**Sealing**). **Pressure Cook/Manual** **15 minutes** on **High**. (About 10 minutes to come to pressure.)
+3. **Prep sauce** – In a small bowl, stir 1 Tbsp water with cornstarch. In another bowl, combine hot sauce, honey, and Worcestershire.
+4. **Release & shred** – **Quick release**. Transfer chicken to a board. Carefully discard cooking liquid (or save). Return inner pot to housing and shred chicken with two forks.
+5. **Sauté & thicken** – Cancel, then **Sauté**. Melt **1 Tbsp** butter; sauté garlic ~2 minutes (not brown). Stir hot-sauce mixture; pour in and cook ~1 minute until slightly thick. Cancel. Stir in remaining **3 Tbsp** butter until melted. Add shredded chicken and toss to coat. Adjust with more hot sauce and salt if needed.
+6. **Serve** – Pile onto buns.
+
+### Grocery List
+- **Protein**: ~2.5 lb chicken breasts  
+- **Sauce**: Hot sauce, honey, Worcestershire, garlic, butter  
+- **Other**: Cornstarch, kosher salt, slider buns
+
+---
+
+## 🥪 Sriracha Sloppy Joes
+
+**Servings:** 4 | **Prep:** 0 min | **Cook:** 20 min HP + sauté + ~10 min to pressure
+
+### Ingredients
+| Group | Item | Amount |
+|-------|------|--------|
+| **Oil** | Neutral vegetable oil or ghee | 2 Tbsp |
+| **Protein** | Lean ground beef (90% lean) | 1 lb |
+| **Vegetables** | Yellow onion, diced | 1 medium |
+|  | Carrots, diced | 2 large |
+|  | Green bell pepper, seeded & diced | 1 large |
+|  | Garlic, chopped | 2 cloves |
+| **Sauce** | Tomato sauce | 1 cup |
+|  | Sriracha | 2 Tbsp |
+|  | Low-sodium soy sauce | 2 Tbsp |
+|  | Rice vinegar | 2 Tbsp |
+|  | Brown sugar, firmly packed | 1/4 cup |
+| **Serving** | Hamburger buns, split & toasted | 4 |
+|  | Thinly sliced red onion | as desired |
+|  | Sandwich pickles | as desired |
+
+### Method
+1. **Brown beef & veg** – **Sauté** with oil; cook beef ~8 minutes, breaking it up, until no pink remains. Add onion, carrots, bell pepper, and garlic; sauté ~5 minutes until softened. Stir in tomato sauce, Sriracha, soy sauce, vinegar, and brown sugar.
+2. **Pressure cook** – Seal (**Sealing**). Cancel to reset, then **Pressure Cook/Manual** **20 minutes** on **High**. (About 10 minutes to come to pressure.)
+3. **Release** – When done, either **Quick Release** or allow **up to 10 minutes natural**; Keep Warm up to 1 hour if needed.
+4. **Serve** – Stir, then ladle onto buns. Top with red onion and pickles.
+
+### Grocery List
+- **Protein**: 1 lb lean ground beef  
+- **Vegetables**: 1 onion, 2 carrots, 1 green bell pepper, garlic, red onion (topping)  
+- **Sauce/Pantry**: Tomato sauce, Sriracha, soy sauce, rice vinegar, brown sugar, neutral oil  
+- **Bread & Pickles**: 4 hamburger buns; sandwich pickles
