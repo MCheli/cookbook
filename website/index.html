@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookbook - Meal Planner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Cookbook</h1>
+    <p>Select recipes to generate your grocery list</p>
+  </header>
+
+  <main>
+    <section id="recipes-section">
+      <div class="section-header">
+        <h2>Recipes</h2>
+        <div class="actions">
+          <button id="clear-selection" class="btn btn-secondary">Clear Selection</button>
+          <button id="generate-list" class="btn btn-primary">Generate Grocery List (<span id="selected-count">0</span>)</button>
+        </div>
+      </div>
+
+      <div id="recipe-filters">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="Instant Pot">Instant Pot</button>
+        <button class="filter-btn" data-category="Crockpot">Crockpot</button>
+        <button class="filter-btn" data-category="Stovetop & Oven">Stovetop & Oven</button>
+      </div>
+
+      <div id="recipe-grid"></div>
+    </section>
+
+    <section id="grocery-section" class="hidden">
+      <div class="section-header">
+        <h2>Grocery List</h2>
+        <div class="actions">
+          <button id="back-to-recipes" class="btn btn-secondary">Back to Recipes</button>
+        </div>
+      </div>
+
+      <div id="selected-recipes">
+        <h3>Selected Recipes:</h3>
+        <ul id="selected-recipes-list"></ul>
+      </div>
+
+      <div id="grocery-list"></div>
+    </section>
+  </main>
+
+  <div id="recipe-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
