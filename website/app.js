@@ -2,6 +2,16 @@
 let selectedRecipes = new Set();
 let currentFilter = 'all';
 
+// Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 // Helper: Convert markdown bold (**text**) to HTML
 function formatText(text) {
   return text.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
@@ -54,7 +64,9 @@ function renderRecipes() {
     ? RECIPES
     : RECIPES.filter(r => r.category === currentFilter);
 
-  recipeGrid.innerHTML = filteredRecipes.map(recipe => `
+  const shuffledRecipes = shuffleArray(filteredRecipes);
+
+  recipeGrid.innerHTML = shuffledRecipes.map(recipe => `
     <div class="recipe-card ${selectedRecipes.has(recipe.id) ? 'selected' : ''}"
          data-id="${recipe.id}">
       <div class="checkbox"></div>
