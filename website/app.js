@@ -25,6 +25,7 @@ const selectedCount = document.getElementById('selected-count');
 const generateListBtn = document.getElementById('generate-list');
 const clearSelectionBtn = document.getElementById('clear-selection');
 const backToRecipesBtn = document.getElementById('back-to-recipes');
+const printInstructionsBtn = document.getElementById('print-instructions');
 const filterButtons = document.querySelectorAll('.filter-btn');
 const modal = document.getElementById('recipe-modal');
 const modalBody = document.getElementById('modal-body');
@@ -40,6 +41,7 @@ function setupEventListeners() {
   generateListBtn.addEventListener('click', generateGroceryList);
   clearSelectionBtn.addEventListener('click', clearSelection);
   backToRecipesBtn.addEventListener('click', showRecipes);
+  printInstructionsBtn.addEventListener('click', printCookingInstructions);
   modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
@@ -325,4 +327,130 @@ function generateAmazonUrl(itemName) {
 function showRecipes() {
   grocerySection.classList.add('hidden');
   recipesSection.classList.remove('hidden');
+}
+
+function printCookingInstructions() {
+  const recipes = RECIPES.filter(r => selectedRecipes.has(r.id));
+
+  if (recipes.length === 0) {
+    alert('No recipes selected');
+    return;
+  }
+
+  const printContent = recipes.map((recipe, index) => `
+    <div class="recipe-page${index < recipes.length - 1 ? ' page-break' : ''}">
+      <h1>${recipe.title}</h1>
+      <div class="meta">
+        <strong>${recipe.category}</strong>
+        ${recipe.servings ? ` | ${recipe.servings} servings` : ''}
+        ${recipe.prepTime ? ` | Prep: ${recipe.prepTime}` : ''}
+        ${recipe.cookTime ? ` | Cook: ${recipe.cookTime}` : ''}
+      </div>
+
+      <h2>Ingredients</h2>
+      <table class="ingredients-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Item</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${recipe.ingredients.map(ing => `
+            <tr>
+              <td>${ing.group || ''}</td>
+              <td>${ing.item}</td>
+              <td>${ing.amount}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+
+      <h2>Instructions</h2>
+      <ol class="method-steps">
+        ${recipe.method.map(step => `<li>${formatText(step)}</li>`).join('')}
+      </ol>
+    </div>
+  `).join('');
+
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Cooking Instructions</title>
+      <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+        body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.6;
+          padding: 2rem;
+          color: #333;
+        }
+        .recipe-page {
+          max-width: 800px;
+          margin: 0 auto;
+        }
+        .page-break {
+          page-break-after: always;
+        }
+        h1 {
+          font-size: 1.75rem;
+          margin-bottom: 0.5rem;
+          color: #2d5a27;
+        }
+        h2 {
+          font-size: 1.25rem;
+          margin: 1.5rem 0 1rem;
+          color: #2d5a27;
+        }
+        .meta {
+          color: #666;
+          margin-bottom: 1rem;
+          font-size: 0.9rem;
+        }
+        .ingredients-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-bottom: 1rem;
+        }
+        .ingredients-table th,
+        .ingredients-table td {
+          padding: 0.5rem;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+        .ingredients-table th {
+          background: #f5f5f5;
+          font-weight: 600;
+        }
+        .method-steps {
+          padding-left: 1.5rem;
+        }
+        .method-steps li {
+          margin-bottom: 0.75rem;
+        }
+        @media print {
+          body {
+            padding: 0;
+          }
+          .page-break {
+            page-break-after: always;
+          }
+        }
+      </style>
+    </head>
+    <body>
+      ${printContent}
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
 }
