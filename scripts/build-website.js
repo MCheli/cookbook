@@ -6,7 +6,8 @@ const path = require('path');
 const RECIPE_DIRS = [
   { folder: 'instapot', category: 'Instant Pot' },
   { folder: 'crockpot', category: 'Crockpot' },
-  { folder: 'stovetop-oven', category: 'Stovetop & Oven' }
+  { folder: 'stovetop-oven', category: 'Stovetop & Oven' },
+  { folder: 'campfire', category: 'Campfire' }
 ];
 
 function parseIngredients(tableContent) {

@@ -279,79 +279,6 @@ const RECIPES = [
     ]
   },
   {
-    "id": "instant-pot-cheesy-taco-pasta",
-    "title": "Instant Pot Cheesy Taco Pasta",
-    "category": "Instant Pot",
-    "servings": "6",
-    "prepTime": "5 min",
-    "cookTime": "15 min + pressure time",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Ground beef",
-        "amount": "1.5 lb"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed nacho cheese soup",
-        "amount": "1 can (10.75 oz)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Beef broth",
-        "amount": "3 cups"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Salsa",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Pasta",
-        "item": "Rotini or elbow macaroni",
-        "amount": "12 oz"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, diced",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Garlic, minced",
-        "amount": "2 cloves"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Black beans, drained",
-        "amount": "1 can (15 oz)"
-      },
-      {
-        "group": "Dairy",
-        "item": "Cheddar or Mexican blend, shredded",
-        "amount": "1.5 cups"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Taco seasoning",
-        "amount": "1 packet"
-      },
-      {
-        "group": "Toppings",
-        "item": "Sour cream, cilantro, jalapeño",
-        "amount": "to taste"
-      }
-    ],
-    "method": [
-      "**Brown** – Set the Instant Pot to sauté. Cook the ground beef with the onion until no pink remains, 6–8 min. Drain the excess fat.",
-      "**Season** – Stir in the garlic and taco seasoning and cook 1 min.",
-      "**Load** – Cancel sauté. Add the pasta, broth, salsa, and black beans. Stir so the pasta is submerged, then spoon the nacho cheese soup over the top without stirring.",
-      "**Pressure Cook** – Lock the lid and cook on HIGH pressure for 4 minutes.",
-      "**Release** – Quick release, venting in short bursts to avoid spitting. Stir well.",
-      "**Cheese** – Stir in the shredded cheese until melted. It thickens as it sits. Serve with sour cream, cilantro, and jalapeño."
-    ]
-  },
-  {
     "id": "instant-pot-chicken-rice",
     "title": "Instant Pot Chicken & Rice",
     "category": "Instant Pot",
@@ -467,84 +394,6 @@ const RECIPES = [
       "Sauté onion and spices, add chicken and tomato sauce.",
       "Cook HIGH pressure 10 min. Quick release.",
       "Stir in cream and butter. Serve over rice or with naan."
-    ]
-  },
-  {
-    "id": "instant-pot-corn-bacon-chowder",
-    "title": "Instant Pot Corn & Bacon Chowder",
-    "category": "Instant Pot",
-    "servings": "6",
-    "prepTime": "10 min",
-    "cookTime": "10 min + pressure time",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Bacon, chopped",
-        "amount": "6 slices"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed cream of potato soup",
-        "amount": "2 cans (10.5 oz each)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Chicken broth",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Frozen corn",
-        "amount": "4 cups"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Yukon gold potatoes, diced",
-        "amount": "1 lb"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, diced",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Celery, diced",
-        "amount": "2 stalks"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Garlic, minced",
-        "amount": "2 cloves"
-      },
-      {
-        "group": "Dairy",
-        "item": "Half & half or heavy cream",
-        "amount": "¾ cup"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Smoked paprika",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Thyme, dried",
-        "amount": "½ tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      }
-    ],
-    "method": [
-      "**Bacon** – Set the Instant Pot to sauté and cook the bacon until crisp, 6–8 min. Remove with a slotted spoon, leaving the fat behind.",
-      "**Aromatics** – Cook the onion, celery, and garlic in the bacon fat 3 min, scraping the bottom clean so nothing sticks.",
-      "**Load** – Cancel sauté. Add the potatoes, corn, broth, paprika, thyme, salt, and pepper. Spoon the cream of potato soup over the top without stirring.",
-      "**Pressure Cook** – Lock the lid and cook on HIGH pressure for 8 minutes.",
-      "**Release** – Quick release, then stir well to bring the soup base into the broth.",
-      "**Finish** – Stir in the cream off heat. Mash a few potatoes against the side for body. Top with the reserved bacon."
     ]
   },
   {
@@ -1065,79 +914,6 @@ const RECIPES = [
     ]
   },
   {
-    "id": "crock-pot-cheesy-chicken-spaghetti",
-    "title": "Crock Pot Cheesy Chicken Spaghetti",
-    "category": "Crockpot",
-    "servings": "6",
-    "prepTime": "10 min",
-    "cookTime": "5 hr on LOW (2.5 hr on HIGH)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Boneless chicken breasts",
-        "amount": "2 lb"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed cheddar cheese soup",
-        "amount": "2 cans (10.75 oz each)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Diced tomatoes with green chiles",
-        "amount": "1 can (10 oz)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Chicken broth",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Pasta",
-        "item": "Spaghetti, broken in half",
-        "amount": "12 oz"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, diced",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Bell pepper, diced",
-        "amount": "1"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Garlic, minced",
-        "amount": "2 cloves"
-      },
-      {
-        "group": "Dairy",
-        "item": "Velveeta or shredded cheddar",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Chili powder",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      }
-    ],
-    "method": [
-      "**Load** – Place the chicken, onion, bell pepper, and garlic in the crock pot. Season with chili powder, salt, and pepper.",
-      "**Soup Base** – Pour the cheddar cheese soup, tomatoes with chiles, and broth over the top.",
-      "**Cook** – Cover and cook on LOW 5 hr or HIGH 2.5 hr.",
-      "**Shred** – Pull the chicken out, shred it with two forks, and return it to the pot.",
-      "**Pasta** – Cook the spaghetti separately to al dente and drain. Stir it into the crock pot with the cheese until everything is coated and melted.",
-      "**Serve** – Let it sit 10 minutes on warm to thicken."
-    ]
-  },
-  {
     "id": "crock-pot-chicken-stuffing",
     "title": "Crock Pot Chicken & Stuffing",
     "category": "Crockpot",
@@ -1282,74 +1058,6 @@ const RECIPES = [
       "Add pepperoncini peppers and place the butter on top.",
       "Cover and cook on LOW for 8 hr or HIGH for 5 hr.",
       "Shred and serve over mashed potatoes, rice, or rolls."
-    ]
-  },
-  {
-    "id": "crock-pot-porcupine-meatballs",
-    "title": "Crock Pot Porcupine Meatballs",
-    "category": "Crockpot",
-    "servings": "4–6",
-    "prepTime": "20 min",
-    "cookTime": "6 hr on LOW (3 hr on HIGH)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Ground beef (80/20)",
-        "amount": "1.5 lb"
-      },
-      {
-        "group": "Grains",
-        "item": "White rice, uncooked",
-        "amount": "½ cup"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed tomato soup",
-        "amount": "2 cans (10.75 oz each)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Water",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, finely diced",
-        "amount": "1 small"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Garlic, minced",
-        "amount": "2 cloves"
-      },
-      {
-        "group": "Binder",
-        "item": "Egg",
-        "amount": "1"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Worcestershire sauce",
-        "amount": "1 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Italian seasoning",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      }
-    ],
-    "method": [
-      "**Mix** – Combine the ground beef, uncooked rice, onion, garlic, egg, salt, pepper, and half the Italian seasoning. Don't overwork it.",
-      "**Roll** – Form into about 20 meatballs, roughly 1.5 inches each.",
-      "**Sauce** – Whisk the tomato soup, water, Worcestershire, and remaining Italian seasoning in the crock pot.",
-      "**Cook** – Settle the meatballs into the sauce in a single layer. Cover and cook on LOW 6 hr or HIGH 3 hr.",
-      "**Check** – The rice should be tender and the grains poking out — that's the \"porcupine.\"",
-      "**Serve** – Spoon over mashed potatoes or eat as-is with bread."
     ]
   },
   {
@@ -1723,74 +1431,6 @@ const RECIPES = [
     ]
   },
   {
-    "id": "french-onion-chicken-skillet",
-    "title": "French Onion Chicken Skillet",
-    "category": "Stovetop & Oven",
-    "servings": "4",
-    "prepTime": "10 min",
-    "cookTime": "30 min (stovetop + broiler)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Boneless chicken breasts or thighs",
-        "amount": "4 (about 2 lb)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed French onion soup",
-        "amount": "1 can (10.5 oz)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Beef broth",
-        "amount": "½ cup"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, thinly sliced",
-        "amount": "2 large"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Garlic, minced",
-        "amount": "3 cloves"
-      },
-      {
-        "group": "Dairy",
-        "item": "Gruyère or Swiss cheese, shredded",
-        "amount": "1.5 cups"
-      },
-      {
-        "group": "Dairy",
-        "item": "Butter",
-        "amount": "2 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Fresh thyme (or ½ tsp dried)",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Flour",
-        "amount": "2 Tbsp"
-      }
-    ],
-    "method": [
-      "**Sear** – Season the chicken with salt and pepper. Brown 4 min per side in an oven-safe skillet over medium-high heat. Set aside.",
-      "**Caramelize** – Melt the butter, add the sliced onions and a pinch of salt. Cook 12–15 min, stirring, until deep golden.",
-      "**Sauce** – Stir in the garlic and thyme for 1 min, then the flour for another minute. Add the French onion soup and broth, scraping the pan. Simmer 5 min until thickened.",
-      "**Return Chicken** – Nestle the chicken back into the sauce along with any juices.",
-      "**Melt** – Blanket with the shredded cheese and broil 3–4 min until bubbly and browned.",
-      "**Serve** – Spoon the onions over the top. Good with crusty bread or mashed potatoes."
-    ]
-  },
-  {
     "id": "garlic-butter-noodles",
     "title": "Garlic Butter Noodles",
     "category": "Stovetop & Oven",
@@ -1973,74 +1613,6 @@ const RECIPES = [
       "**Make Sandwiches** – Butter one side of each bread slice. Place cheese between two slices (butter sides out).",
       "**Grill** – Cook sandwiches in a skillet over medium heat, 3–4 min per side until golden and cheese melts.",
       "**Serve** – Cut sandwiches diagonally. Serve with a bowl of soup for dipping."
-    ]
-  },
-  {
-    "id": "ham-scalloped-potato-bake",
-    "title": "Ham & Scalloped Potato Bake",
-    "category": "Stovetop & Oven",
-    "servings": "6",
-    "prepTime": "20 min",
-    "cookTime": "1 hr 15 min (oven 375°F)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Cooked ham, diced",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Condensed cream of celery soup",
-        "amount": "2 cans (10.5 oz each)"
-      },
-      {
-        "group": "Soup Base",
-        "item": "Milk",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Russet potatoes, thinly sliced",
-        "amount": "2.5 lb"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, thinly sliced",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Dairy",
-        "item": "Sharp cheddar, shredded",
-        "amount": "1.5 cups"
-      },
-      {
-        "group": "Dairy",
-        "item": "Butter",
-        "amount": "2 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Dijon mustard",
-        "amount": "1 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Black pepper",
-        "amount": "½ tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Paprika",
-        "amount": "½ tsp"
-      }
-    ],
-    "method": [
-      "**Prep** – Heat the oven to 375°F and butter a 9x13 dish. Slice the potatoes about ⅛ inch thick — a mandoline helps.",
-      "**Sauce** – Whisk the cream of celery soup, milk, Dijon, and pepper together until smooth.",
-      "**Layer** – Shingle a third of the potatoes in the dish, then a third of the onion, ham, sauce, and cheese. Repeat twice, finishing with cheese and a dusting of paprika.",
-      "**Bake Covered** – Cover tightly with foil and bake 45 min.",
-      "**Bake Uncovered** – Uncover and bake 25–30 min more until the potatoes are tender to a knife and the top is browned.",
-      "**Rest** – Let it stand 10 minutes so the sauce sets before serving."
     ]
   },
   {
@@ -2326,6 +1898,358 @@ const RECIPES = [
       "**Glaze** – Pour half the teriyaki sauce over the salmon in the pan, tossing gently to coat.",
       "**Assemble Bowls** – Divide rice into bowls. Top with glazed salmon, edamame, carrots, and cucumber.",
       "**Finish** – Drizzle remaining sauce over bowls. Top with green onions and sesame seeds."
+    ]
+  },
+  {
+    "id": "banana-boats",
+    "title": "Banana Boats",
+    "category": "Campfire",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "10 min (coals or grill)",
+    "ingredients": [
+      {
+        "group": "Base",
+        "item": "Bananas, unpeeled",
+        "amount": "4"
+      },
+      {
+        "group": "Filling",
+        "item": "Mini marshmallows",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Filling",
+        "item": "Chocolate chips",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Optional",
+        "item": "Peanut butter chips or crushed graham crackers",
+        "amount": "¼ cup"
+      },
+      {
+        "group": "Supplies",
+        "item": "Heavy-duty foil",
+        "amount": "4 sheets"
+      }
+    ],
+    "method": [
+      "**Split** – Leave the banana in its peel. Slice lengthwise through the top peel and most of the way into the fruit, making a pocket. Don't cut through the bottom.",
+      "**Stuff** – Wedge marshmallows and chocolate chips down into the split, plus anything else you're adding.",
+      "**Wrap** – Wrap each banana in foil.",
+      "**Cook** – Set on coals or a grill grate, split side up, for 8–10 min until everything has melted.",
+      "**Eat** – Peel the foil back and eat it out of the skin with a spoon. Nothing to wash."
+    ]
+  },
+  {
+    "id": "campfire-breakfast-burritos",
+    "title": "Campfire Breakfast Burritos",
+    "category": "Campfire",
+    "servings": "6",
+    "prepTime": "15 min (at home)",
+    "cookTime": "10 min (coals or grill)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Breakfast sausage or bacon, cooked & crumbled",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Protein",
+        "item": "Eggs, scrambled",
+        "amount": "10"
+      },
+      {
+        "group": "Base",
+        "item": "Large flour tortillas",
+        "amount": "6"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Frozen diced hash browns",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Bell pepper & onion, diced",
+        "amount": "1 each"
+      },
+      {
+        "group": "Dairy",
+        "item": "Cheddar, shredded",
+        "amount": "1.5 cups"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Hot sauce",
+        "amount": "to taste"
+      },
+      {
+        "group": "Supplies",
+        "item": "Heavy-duty foil",
+        "amount": "6 sheets"
+      }
+    ],
+    "method": [
+      "**Cook at Home** – Brown the sausage, then the hash browns, pepper, and onion in the same pan. Scramble the eggs. Season everything.",
+      "**Roll** – Fill each tortilla with the mixture and cheese, fold in the sides, and roll tight.",
+      "**Wrap** – Wrap each burrito in foil. Refrigerate or freeze — they keep 3 days cold, a month frozen.",
+      "**Reheat at Camp** – Set the foil packets on warm coals or a grill grate for 8–10 min, turning once. Frozen takes about 15.",
+      "**Eat** – Unwrap the top and eat from the foil. No pans, no plates, no dishes at camp."
+    ]
+  },
+  {
+    "id": "campfire-nachos",
+    "title": "Campfire Nachos",
+    "category": "Campfire",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "10 min (foil pan on coals or grill)",
+    "ingredients": [
+      {
+        "group": "Base",
+        "item": "Tortilla chips",
+        "amount": "1 large bag"
+      },
+      {
+        "group": "Protein",
+        "item": "Canned black beans, drained",
+        "amount": "1 can (15 oz)"
+      },
+      {
+        "group": "Protein",
+        "item": "Cooked chicken or leftover taco meat (optional)",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Dairy",
+        "item": "Cheddar or Mexican blend, shredded",
+        "amount": "2.5 cups"
+      },
+      {
+        "group": "Toppings",
+        "item": "Jalapeños, sliced",
+        "amount": "to taste"
+      },
+      {
+        "group": "Toppings",
+        "item": "Salsa & sour cream",
+        "amount": "to taste"
+      },
+      {
+        "group": "Toppings",
+        "item": "Green onion, sliced",
+        "amount": "2"
+      },
+      {
+        "group": "Supplies",
+        "item": "Disposable foil pan",
+        "amount": "1 (9x13)"
+      },
+      {
+        "group": "Supplies",
+        "item": "Foil, for covering",
+        "amount": "1 sheet"
+      }
+    ],
+    "method": [
+      "**Layer** – Spread half the chips in the foil pan. Scatter half the beans, meat, and cheese over them. Repeat with the rest.",
+      "**Cover** – Tent a sheet of foil loosely over the pan so the cheese melts without the chips scorching.",
+      "**Heat** – Set on the grill grate or the edge of the coals for 8–10 min. Rotate once. You want melted cheese, not a burnt bottom — keep it off direct flame.",
+      "**Top** – Uncover and add jalapeños, salsa, sour cream, and green onion.",
+      "**Eat** – Everyone eats from the pan. Throw the pan away and you're done."
+    ]
+  },
+  {
+    "id": "foil-packet-sausage-potatoes",
+    "title": "Foil Packet Sausage & Potatoes",
+    "category": "Campfire",
+    "servings": "4",
+    "prepTime": "10 min",
+    "cookTime": "25 min (campfire coals, grill, or 400°F oven)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Smoked sausage or kielbasa, sliced",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Baby potatoes, halved",
+        "amount": "1.5 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Bell pepper, chunked",
+        "amount": "1"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, chunked",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Olive oil",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Paprika",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Supplies",
+        "item": "Heavy-duty foil",
+        "amount": "4 large sheets"
+      }
+    ],
+    "method": [
+      "**Toss** – Dump everything except the foil into a bag or bowl and shake until coated.",
+      "**Build Packets** – Pile a quarter of the mix onto each foil sheet. Fold the long edges together and crimp, then crimp the ends, leaving a little air inside.",
+      "**Cook** – Set on coals or a grill grate for 25 min, flipping once halfway. In an oven, 400°F for 30 min, no flipping.",
+      "**Check** – Open one carefully — steam escapes fast. Potatoes should slide off a fork.",
+      "**Eat** – Peel the foil back and eat straight out of the packet. Crumple and toss when done."
+    ]
+  },
+  {
+    "id": "one-pot-campfire-chili-mac",
+    "title": "One-Pot Campfire Chili Mac",
+    "category": "Campfire",
+    "servings": "4–6",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one pot)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground beef",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Pasta",
+        "item": "Elbow macaroni, uncooked",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Canned",
+        "item": "Diced tomatoes",
+        "amount": "1 can (14.5 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Kidney or chili beans, undrained",
+        "amount": "1 can (15 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Water or beef broth",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Chili powder",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Cumin",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Dairy",
+        "item": "Cheddar, shredded",
+        "amount": "1 cup"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the beef and onion in a large pot over the fire until no pink remains, 8 min.",
+      "**Dump** – Add the tomatoes, beans with their liquid, water, macaroni, chili powder, and cumin. Stir once.",
+      "**Simmer** – Cover and cook 12–15 min, stirring every few minutes so the pasta doesn't stick. Add a splash of water if it tightens up.",
+      "**Cheese** – Kill the heat, scatter the cheddar on top, and put the lid back on for 2 min to melt.",
+      "**Serve** – Eat out of bowls or straight from the pot. One pot, one spoon."
+    ]
+  },
+  {
+    "id": "walking-tacos",
+    "title": "Walking Tacos",
+    "category": "Campfire",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "10 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground beef",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Base",
+        "item": "Single-serving corn chip bags (Fritos or Doritos)",
+        "amount": "4"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Taco seasoning",
+        "amount": "1 packet"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Water",
+        "amount": "⅓ cup"
+      },
+      {
+        "group": "Toppings",
+        "item": "Cheddar, shredded",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Toppings",
+        "item": "Lettuce, shredded",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Toppings",
+        "item": "Tomato, diced",
+        "amount": "1"
+      },
+      {
+        "group": "Toppings",
+        "item": "Sour cream & salsa",
+        "amount": "to taste"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the ground beef in a skillet over the fire or camp stove until no pink remains, 8 min. Drain if you like.",
+      "**Season** – Stir in the taco seasoning and water. Simmer 2 min until it clings.",
+      "**Open Bags** – Crush the chips lightly in the bag, then cut or tear the bag open along one long side.",
+      "**Fill** – Spoon the beef right into the bag, then pile on cheese and toppings.",
+      "**Eat** – Eat it out of the bag with a fork. One skillet is the entire cleanup."
     ]
   }
 ];

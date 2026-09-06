@@ -36,7 +36,7 @@ clean:
 	@echo "Cleaning generated files..."
 	@rm -f website/recipes.js
 	@rm -f pdf/*.pdf
-	@rm -rf pdf/instapot pdf/crockpot pdf/stovetop-oven
+	@rm -rf pdf/instapot pdf/crockpot pdf/stovetop-oven pdf/campfire
 	@echo "Done"
 
 # Show help
@@ -59,3 +59,4 @@ help:
 	@echo "  recipes/instapot/      - Instant Pot recipes"
 	@echo "  recipes/crockpot/      - Crockpot recipes"
 	@echo "  recipes/stovetop-oven/ - Stovetop & oven recipes"
+	@echo "  recipes/campfire/      - Campfire & foil packet recipes"
