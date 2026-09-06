@@ -206,6 +206,79 @@ const RECIPES = [
     ]
   },
   {
+    "id": "instant-pot-cheesy-chicken-broccoli-rice",
+    "title": "Instant Pot Cheesy Chicken, Broccoli & Rice",
+    "category": "Instant Pot",
+    "servings": "4–6",
+    "prepTime": "10 min",
+    "cookTime": "10 min + pressure time",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless chicken breasts, cubed",
+        "amount": "1.5 lb"
+      },
+      {
+        "group": "Soup Base",
+        "item": "Cream of chicken soup",
+        "amount": "1 can (10.5 oz)"
+      },
+      {
+        "group": "Soup Base",
+        "item": "Chicken broth",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Grains",
+        "item": "White rice (long grain), rinsed",
+        "amount": "1.5 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, minced",
+        "amount": "2 cloves"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Frozen broccoli florets",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Dairy",
+        "item": "Sharp cheddar, shredded",
+        "amount": "1.5 cups"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Paprika",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Butter",
+        "amount": "1 Tbsp"
+      }
+    ],
+    "method": [
+      "**Sauté** – Set the Instant Pot to sauté. Melt the butter, then cook the onion and garlic 2–3 min.",
+      "**Add Chicken** – Stir in the chicken, salt, pepper, and paprika. Cook 2 min.",
+      "**Layer** – Cancel sauté. Add the rice and broth and stir. Spoon the cream of chicken soup over the top without stirring.",
+      "**Pressure Cook** – Lock the lid and cook on HIGH pressure for 8 minutes.",
+      "**Release & Steam** – Quick release. Stir in the frozen broccoli, replace the lid (heat off), and let it steam 5 minutes.",
+      "**Cheese** – Stir in the shredded cheddar until melted and creamy. Serve hot."
+    ]
+  },
+  {
     "id": "instant-pot-chicken-rice",
     "title": "Instant Pot Chicken & Rice",
     "category": "Instant Pot",
@@ -841,6 +914,64 @@ const RECIPES = [
     ]
   },
   {
+    "id": "crock-pot-chicken-stuffing",
+    "title": "Crock Pot Chicken & Stuffing",
+    "category": "Crockpot",
+    "servings": "6",
+    "prepTime": "10 min",
+    "cookTime": "6 hr on LOW (3 hr on HIGH)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless chicken breasts or thighs",
+        "amount": "2 lb"
+      },
+      {
+        "group": "Soup Base",
+        "item": "Cream of chicken soup",
+        "amount": "2 cans (10.5 oz each)"
+      },
+      {
+        "group": "Soup Base",
+        "item": "Chicken broth",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Pantry",
+        "item": "Stuffing mix (chicken flavor)",
+        "amount": "1 box (6 oz)"
+      },
+      {
+        "group": "Dairy",
+        "item": "Sour cream",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Frozen green beans",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Black pepper",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "1 tsp"
+      }
+    ],
+    "method": [
+      "**Layer** – Place chicken in the bottom of the crock pot. Season with pepper and garlic powder.",
+      "**Mix Soup Base** – Whisk together the cream of chicken soup, broth, and sour cream. Pour over the chicken.",
+      "**Add Stuffing** – Sprinkle the dry stuffing mix evenly over the top. Do not stir.",
+      "**Cook** – Cover and cook on LOW 6 hr or HIGH 3 hr.",
+      "**Add Veggies** – Stir in the frozen green beans during the last 30 minutes.",
+      "**Serve** – Shred the chicken into the sauce and serve."
+    ]
+  },
+  {
     "id": "crock-pot-honey-garlic-chicken",
     "title": "Crock Pot Honey Garlic Chicken",
     "category": "Crockpot",
@@ -1231,6 +1362,137 @@ const RECIPES = [
     ]
   },
   {
+    "id": "egg-fried-rice",
+    "title": "Egg Fried Rice",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "15 min (stovetop)",
+    "ingredients": [
+      {
+        "group": "Base",
+        "item": "Cooked rice (day-old preferred)",
+        "amount": "4 cups"
+      },
+      {
+        "group": "Protein",
+        "item": "Eggs",
+        "amount": "3 large"
+      },
+      {
+        "group": "Aromatics",
+        "item": "Garlic, minced",
+        "amount": "3 cloves"
+      },
+      {
+        "group": "Aromatics",
+        "item": "Green onions, sliced",
+        "amount": "4"
+      },
+      {
+        "group": "Sauce",
+        "item": "Soy sauce",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Sesame oil",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Oyster sauce (optional)",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Frozen peas & carrots",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Cooking",
+        "item": "Vegetable oil",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & white pepper",
+        "amount": "to taste"
+      }
+    ],
+    "method": [
+      "**Prep** – Have all ingredients ready before you start — this cooks fast. Day-old cold rice works best; fresh rice can be used but will be stickier.",
+      "**Scramble Eggs** – Heat 1 Tbsp oil in a wok or large skillet over high heat. Add beaten eggs, scramble until just set, then push to the side.",
+      "**Cook Aromatics** – Add remaining oil to the pan. Cook garlic and white parts of green onion 30 sec.",
+      "**Add Veggies** – Toss in frozen peas and carrots, stir-fry 2 min until heated through.",
+      "**Fry Rice** – Add rice and press into the pan. Let it sit undisturbed 1–2 min to get a little crispy, then toss everything together.",
+      "**Season** – Drizzle soy sauce, sesame oil, and oyster sauce over the rice. Toss to coat evenly.",
+      "**Serve** – Top with green parts of green onion."
+    ]
+  },
+  {
+    "id": "garlic-butter-noodles",
+    "title": "Garlic Butter Noodles",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "15 min (stovetop)",
+    "ingredients": [
+      {
+        "group": "Pasta",
+        "item": "Spaghetti or linguine",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Sauce",
+        "item": "Butter",
+        "amount": "4 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Garlic, minced",
+        "amount": "5 cloves"
+      },
+      {
+        "group": "Sauce",
+        "item": "Parmesan cheese, grated",
+        "amount": "¾ cup"
+      },
+      {
+        "group": "Sauce",
+        "item": "Olive oil",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & black pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Red pepper flakes",
+        "amount": "¼ tsp (optional)"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Fresh parsley, chopped",
+        "amount": "2 Tbsp (optional)"
+      },
+      {
+        "group": "Pasta Water",
+        "item": "Reserved",
+        "amount": "½ cup"
+      }
+    ],
+    "method": [
+      "**Cook Pasta** – Boil pasta in well-salted water until al dente. Reserve ½ cup pasta water before draining.",
+      "**Toast Garlic** – While pasta cooks, melt butter with olive oil in a large skillet over medium-low heat. Add garlic and cook 2–3 min until fragrant and just golden. Don't let it burn.",
+      "**Combine** – Add drained pasta to the skillet and toss to coat. Add pasta water a splash at a time until the sauce is silky.",
+      "**Finish** – Remove from heat, stir in parmesan until melted. Add red pepper flakes if using.",
+      "**Serve** – Top with parsley and extra parmesan."
+    ]
+  },
+  {
     "id": "garlic-butter-shrimp",
     "title": "Garlic Butter Shrimp",
     "category": "Stovetop & Oven",
@@ -1416,8 +1678,75 @@ const RECIPES = [
     ]
   },
   {
-    "id": "pasta-carbonara",
-    "title": "Pasta Carbonara",
+    "id": "one-pot-chili-mac",
+    "title": "One-Pot Chili Mac",
+    "category": "Stovetop & Oven",
+    "servings": "4–6",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one pot)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground beef",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Pasta",
+        "item": "Elbow macaroni, uncooked",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Canned",
+        "item": "Diced tomatoes",
+        "amount": "1 can (14.5 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Kidney or chili beans, undrained",
+        "amount": "1 can (15 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Beef broth or water",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Chili powder",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Cumin",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Dairy",
+        "item": "Cheddar, shredded",
+        "amount": "1 cup"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the beef and onion in a large pot over medium-high heat until no pink remains, about 8 min. Drain the fat if you want.",
+      "**Dump** – Add the tomatoes, beans with their liquid, broth, macaroni, chili powder, and cumin. Stir once.",
+      "**Simmer** – Cover and cook 12–15 min, stirring every few minutes so the pasta doesn't stick. Splash in more liquid if it tightens up.",
+      "**Cheese** – Kill the heat, scatter the cheddar over the top, and put the lid back on for 2 min to melt.",
+      "**Serve** – Straight from the pot. The pasta cooks in the sauce, so there's nothing to drain."
+    ]
+  },
+  {
+    "id": "pasta-with-sausage-cream-sauce",
+    "title": "Pasta with Sausage Cream Sauce",
     "category": "Stovetop & Oven",
     "servings": "4",
     "prepTime": "10 min",
@@ -1425,37 +1754,47 @@ const RECIPES = [
     "ingredients": [
       {
         "group": "Pasta",
-        "item": "Spaghetti or linguine",
+        "item": "Penne or rigatoni",
         "amount": "1 lb"
       },
       {
         "group": "Protein",
-        "item": "Bacon or pancetta, diced",
-        "amount": "8 oz"
+        "item": "Italian sausage links, sliced into coins",
+        "amount": "12 oz"
       },
       {
         "group": "Sauce",
-        "item": "Eggs",
-        "amount": "3 large"
-      },
-      {
-        "group": "Sauce",
-        "item": "Parmesan cheese, grated",
+        "item": "Heavy cream",
         "amount": "1 cup"
       },
       {
         "group": "Sauce",
+        "item": "Parmesan cheese, grated",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Sauce",
         "item": "Garlic, minced",
-        "amount": "2 cloves"
+        "amount": "3 cloves"
+      },
+      {
+        "group": "Sauce",
+        "item": "Crushed tomatoes",
+        "amount": "½ cup"
       },
       {
         "group": "Seasoning",
-        "item": "Black pepper",
-        "amount": "1 tsp (generous)"
+        "item": "Italian seasoning",
+        "amount": "1 tsp"
       },
       {
         "group": "Seasoning",
-        "item": "Salt",
+        "item": "Red pepper flakes",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & black pepper",
         "amount": "to taste"
       },
       {
@@ -1466,82 +1805,11 @@ const RECIPES = [
     ],
     "method": [
       "**Cook Pasta** – Boil pasta in salted water until al dente. Reserve ½ cup pasta water before draining.",
-      "**Cook Bacon** – While pasta cooks, fry bacon in a large skillet until crispy. Add garlic, cook 30 sec.",
-      "**Make Sauce** – Whisk eggs and parmesan together in a bowl.",
-      "**Combine** – Remove skillet from heat. Add hot pasta to bacon. Quickly toss in egg mixture, stirring constantly (the residual heat cooks the eggs). Add pasta water as needed for creaminess.",
-      "**Season & Serve** – Add plenty of black pepper, toss, and serve immediately."
-    ]
-  },
-  {
-    "id": "sheet-pan-chicken-fajitas",
-    "title": "Sheet Pan Chicken Fajitas",
-    "category": "Stovetop & Oven",
-    "servings": "4–6",
-    "prepTime": "10 min",
-    "cookTime": "25 min (oven at 400°F)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Boneless chicken breasts, sliced",
-        "amount": "1.5 lb"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Bell peppers (assorted colors), sliced",
-        "amount": "3"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, sliced",
-        "amount": "1 large"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Chili powder",
-        "amount": "2 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Cumin",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Garlic powder",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Paprika",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      },
-      {
-        "group": "Oil",
-        "item": "Olive oil",
-        "amount": "2 Tbsp"
-      },
-      {
-        "group": "Serving",
-        "item": "Flour tortillas",
-        "amount": "8"
-      },
-      {
-        "group": "Serving",
-        "item": "Lime wedges",
-        "amount": "1 lime"
-      }
-    ],
-    "method": [
-      "**Preheat** – Heat oven to 400°F. Line a sheet pan with foil or parchment.",
-      "**Season** – Toss chicken, peppers, and onion with olive oil and all seasonings.",
-      "**Spread** – Arrange in a single layer on the sheet pan.",
-      "**Bake** – Roast 20–25 min, stirring halfway, until chicken is cooked through.",
-      "**Serve** – Squeeze lime over top and serve in warm tortillas."
+      "**Brown Sausage** – While pasta cooks, heat a large skillet over medium-high. Brown sliced sausage 3–4 min per side until cooked through. Set aside, leaving drippings in pan.",
+      "**Build Sauce** – Reduce heat to medium. Add garlic to the skillet, cook 30 sec. Stir in crushed tomatoes and cook 2 min. Pour in cream and bring to a gentle simmer.",
+      "**Finish** – Add parmesan, Italian seasoning, and red pepper flakes. Stir until smooth. Return sausage to the pan.",
+      "**Combine** – Toss in drained pasta, adding pasta water as needed to loosen the sauce.",
+      "**Season & Serve** – Taste, adjust salt and pepper, and serve immediately with extra parmesan."
     ]
   },
   {
@@ -1604,6 +1872,162 @@ const RECIPES = [
       "**Optional Glaze** – Mix honey and Dijon, brush over fillets instead of dry seasonings.",
       "**Bake** – Roast 12–15 min until salmon flakes easily with a fork.",
       "**Serve** – Garnish with fresh herbs if desired."
+    ]
+  },
+  {
+    "id": "skillet-chicken-parmesan",
+    "title": "Skillet Chicken Parmesan",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "10 min",
+    "cookTime": "25 min (one oven-safe skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless chicken breasts, halved lengthwise",
+        "amount": "4 (about 2 lb)"
+      },
+      {
+        "group": "Coating",
+        "item": "Italian breadcrumbs",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Coating",
+        "item": "Parmesan, grated",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Sauce",
+        "item": "Jarred marinara",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Dairy",
+        "item": "Mozzarella, shredded",
+        "amount": "1.5 cups"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Olive oil",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Finish",
+        "item": "Fresh basil",
+        "amount": "handful"
+      }
+    ],
+    "method": [
+      "**Coat** – Mix the breadcrumbs, Parmesan, and garlic powder on a plate. Season the chicken, then press each piece into the crumbs on both sides. No egg wash, no dredging station.",
+      "**Sear** – Heat the oil in an oven-safe skillet over medium-high. Cook the cutlets 3–4 min per side until golden. They finish in the oven, so don't chase doneness here.",
+      "**Sauce** – Pour the marinara around the chicken, not over it, so the crust stays crisp on top.",
+      "**Cheese** – Scatter the mozzarella over the cutlets.",
+      "**Bake** – Slide into a 425°F oven for 10–12 min until the cheese is bubbling and the chicken hits 165°F.",
+      "**Serve** – Basil on top, straight from the skillet. Good over pasta or with bread."
+    ]
+  },
+  {
+    "id": "teriyaki-salmon-bowls",
+    "title": "Teriyaki Salmon Bowls",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "10 min",
+    "cookTime": "20 min (stovetop)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Salmon fillets, skin removed",
+        "amount": "4 (6 oz each)"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Soy sauce",
+        "amount": "¼ cup"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Honey",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Rice vinegar",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Sesame oil",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Garlic, minced",
+        "amount": "2 cloves"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Fresh ginger, grated",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Cornstarch",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Teriyaki Sauce",
+        "item": "Water",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Bowl Base",
+        "item": "White or brown rice",
+        "amount": "2 cups dry"
+      },
+      {
+        "group": "Toppings",
+        "item": "Edamame, shelled",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Toppings",
+        "item": "Shredded carrots",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Toppings",
+        "item": "Cucumber, sliced",
+        "amount": "1"
+      },
+      {
+        "group": "Toppings",
+        "item": "Green onions, sliced",
+        "amount": "3"
+      },
+      {
+        "group": "Toppings",
+        "item": "Sesame seeds",
+        "amount": "1 Tbsp"
+      }
+    ],
+    "method": [
+      "**Cook Rice** – Prepare rice according to package directions.",
+      "**Make Sauce** – Whisk together soy sauce, honey, rice vinegar, sesame oil, garlic, and ginger in a small saucepan over medium heat. Stir together cornstarch and water, then add to the sauce. Simmer 2–3 min until slightly thickened. Set aside.",
+      "**Cook Salmon** – Heat a non-stick skillet over medium-high. Add a splash of oil. Cook salmon fillets 3–4 min per side until cooked through and lightly browned. Break into large chunks.",
+      "**Glaze** – Pour half the teriyaki sauce over the salmon in the pan, tossing gently to coat.",
+      "**Assemble Bowls** – Divide rice into bowls. Top with glazed salmon, edamame, carrots, and cucumber.",
+      "**Finish** – Drizzle remaining sauce over bowls. Top with green onions and sesame seeds."
     ]
   }
 ];
