@@ -4,7 +4,7 @@ A personal cookbook with recipes organized by cooking method. Includes a website
 
 ## Features
 
-- **35 recipes** organized by cooking method (Instant Pot, Crockpot, Stovetop & Oven)
+- **30 recipes** organized by cooking method (Instant Pot, Crockpot, Stovetop & Oven)
 - **Website** for browsing recipes and generating grocery lists
 - **Amazon Whole Foods links** for easy shopping
 - **PDF generation** for printable versions
