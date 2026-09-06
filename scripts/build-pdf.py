@@ -24,7 +24,6 @@ RECIPE_DIRS = [
     ('instapot', 'Instant Pot Recipes'),
     ('crockpot', 'Crockpot Recipes'),
     ('stovetop-oven', 'Stovetop & Oven Recipes'),
-    ('campfire', 'Campfire Recipes'),
 ]
 
 CSS_STYLES = """

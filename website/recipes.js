@@ -1235,6 +1235,63 @@ const RECIPES = [
     ]
   },
   {
+    "id": "baked-feta-pasta",
+    "title": "Baked Feta Pasta",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "40 min (oven 400°F)",
+    "ingredients": [
+      {
+        "group": "Dairy",
+        "item": "Block feta",
+        "amount": "8 oz"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Cherry tomatoes",
+        "amount": "2 pints"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, whole cloves, peeled",
+        "amount": "5"
+      },
+      {
+        "group": "Pasta",
+        "item": "Short pasta (penne, shells, rigatoni)",
+        "amount": "12 oz"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Olive oil",
+        "amount": "⅓ cup"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Red pepper flakes",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Finish",
+        "item": "Fresh basil",
+        "amount": "handful"
+      }
+    ],
+    "method": [
+      "**Assemble** – Heat the oven to 400°F. Dump the tomatoes and garlic into a baking dish, set the whole block of feta in the middle, pour the olive oil over everything, and season.",
+      "**Bake** – Bake 35–40 min until the tomatoes have burst and the feta is soft and browned at the edges.",
+      "**Boil** – Meanwhile cook the pasta to al dente. Reserve a cup of the pasta water before draining.",
+      "**Smash** – Pull the dish out and mash the feta, tomatoes, and garlic together with a fork. It turns into sauce on its own.",
+      "**Combine** – Stir the drained pasta right into the baking dish, loosening with pasta water until it coats. Tear basil over the top."
+    ]
+  },
+  {
     "id": "chicken-quesadillas",
     "title": "Chicken Quesadillas",
     "category": "Stovetop & Oven",
@@ -1428,6 +1485,73 @@ const RECIPES = [
       "**Fry Rice** – Add rice and press into the pan. Let it sit undisturbed 1–2 min to get a little crispy, then toss everything together.",
       "**Season** – Drizzle soy sauce, sesame oil, and oyster sauce over the rice. Toss to coat evenly.",
       "**Serve** – Top with green parts of green onion."
+    ]
+  },
+  {
+    "id": "egg-roll-in-a-bowl",
+    "title": "Egg Roll in a Bowl",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "15 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground pork or turkey",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Coleslaw mix (bagged)",
+        "amount": "1 bag (14 oz)"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, minced",
+        "amount": "3 cloves"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Fresh ginger, grated",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Green onions, sliced",
+        "amount": "4"
+      },
+      {
+        "group": "Sauce",
+        "item": "Soy sauce",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Sesame oil",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Rice vinegar",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Sriracha",
+        "amount": "1 tsp (optional)"
+      },
+      {
+        "group": "Finish",
+        "item": "Sesame seeds",
+        "amount": "1 Tbsp"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the ground pork in a large skillet over medium-high heat, breaking it up, until no pink remains, 6–7 min. Drain if there's a lot of fat.",
+      "**Aromatics** – Stir in the garlic and ginger and cook 1 min until fragrant.",
+      "**Slaw** – Dump in the whole bag of coleslaw mix. It looks like too much; it cooks down in about 4 min.",
+      "**Sauce** – Add the soy sauce, sesame oil, rice vinegar, and sriracha. Toss 2 min more until the cabbage is tender-crisp.",
+      "**Serve** – Top with green onions and sesame seeds. Eat as-is, or over rice if you want it to stretch further."
     ]
   },
   {
@@ -1678,6 +1802,217 @@ const RECIPES = [
     ]
   },
   {
+    "id": "one-pan-sausage-gnocchi",
+    "title": "One-Pan Sausage & Gnocchi",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Italian sausage, casings removed",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Pasta",
+        "item": "Shelf-stable potato gnocchi",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Baby spinach",
+        "amount": "5 oz"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Cherry tomatoes, halved",
+        "amount": "1 pint"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, minced",
+        "amount": "3 cloves"
+      },
+      {
+        "group": "Dairy",
+        "item": "Heavy cream",
+        "amount": "¾ cup"
+      },
+      {
+        "group": "Dairy",
+        "item": "Parmesan, grated",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Italian seasoning",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Red pepper flakes",
+        "amount": "¼ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the sausage in a large skillet over medium-high heat, breaking it up, 6–7 min. Leave the fat in the pan.",
+      "**Gnocchi** – Add the gnocchi straight from the package — no boiling. Cook 4–5 min, stirring occasionally, until they're browned and crisp at the edges.",
+      "**Vegetables** – Stir in the garlic, tomatoes, and red pepper flakes. Cook 2 min until the tomatoes start to slump.",
+      "**Sauce** – Pour in the cream and Parmesan. Simmer 2–3 min until it coats everything.",
+      "**Wilt** – Add the spinach in handfuls, stirring until it collapses. Season and serve from the pan."
+    ]
+  },
+  {
+    "id": "one-pot-chili-mac",
+    "title": "One-Pot Chili Mac",
+    "category": "Stovetop & Oven",
+    "servings": "4–6",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one pot)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground beef",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Pasta",
+        "item": "Elbow macaroni, uncooked",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Canned",
+        "item": "Diced tomatoes",
+        "amount": "1 can (14.5 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Kidney or chili beans, undrained",
+        "amount": "1 can (15 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Beef broth or water",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Chili powder",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Cumin",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Dairy",
+        "item": "Cheddar, shredded",
+        "amount": "1 cup"
+      }
+    ],
+    "method": [
+      "**Brown** – Cook the beef and onion in a large pot over medium-high heat until no pink remains, about 8 min. Drain the fat if you want.",
+      "**Dump** – Add the tomatoes, beans with their liquid, broth, macaroni, chili powder, and cumin. Stir once.",
+      "**Simmer** – Cover and cook 12–15 min, stirring every few minutes so the pasta doesn't stick. Splash in more liquid if it tightens up.",
+      "**Cheese** – Kill the heat, scatter the cheddar over the top, and put the lid back on for 2 min to melt.",
+      "**Serve** – Straight from the pot. The pasta cooks in the sauce, so there's nothing to drain."
+    ]
+  },
+  {
+    "id": "one-pot-creamy-tomato-pasta",
+    "title": "One-Pot Creamy Tomato Pasta",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one pot)",
+    "ingredients": [
+      {
+        "group": "Pasta",
+        "item": "Penne or rigatoni, uncooked",
+        "amount": "12 oz"
+      },
+      {
+        "group": "Canned",
+        "item": "Crushed tomatoes",
+        "amount": "1 can (28 oz)"
+      },
+      {
+        "group": "Canned",
+        "item": "Chicken or vegetable broth",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, minced",
+        "amount": "4 cloves"
+      },
+      {
+        "group": "Dairy",
+        "item": "Heavy cream",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Dairy",
+        "item": "Parmesan, grated",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Dairy",
+        "item": "Butter",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Italian seasoning",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Red pepper flakes",
+        "amount": "¼ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Finish",
+        "item": "Fresh basil",
+        "amount": "handful"
+      }
+    ],
+    "method": [
+      "**Sauté** – Melt the butter in a large pot over medium heat. Cook the onion 3 min, then the garlic and red pepper flakes 1 min more.",
+      "**Dump** – Add the tomatoes, broth, dry pasta, Italian seasoning, salt, and pepper. Stir so the pasta is submerged.",
+      "**Simmer** – Bring to a boil, then reduce to a strong simmer. Cook uncovered 12–14 min, stirring often, until the pasta is al dente and the sauce has thickened around it.",
+      "**Finish** – Off heat, stir in the cream and Parmesan until glossy.",
+      "**Serve** – Tear basil over the top. Nothing to drain, nothing to strain."
+    ]
+  },
+  {
     "id": "pasta-with-sausage-cream-sauce",
     "title": "Pasta with Sausage Cream Sauce",
     "category": "Stovetop & Oven",
@@ -1746,6 +2081,68 @@ const RECIPES = [
     ]
   },
   {
+    "id": "sheet-pan-chicken-fajitas",
+    "title": "Sheet Pan Chicken Fajitas",
+    "category": "Stovetop & Oven",
+    "servings": "4–6",
+    "prepTime": "10 min",
+    "cookTime": "20 min (oven 425°F)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless chicken breasts or thighs, sliced",
+        "amount": "2 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Bell peppers, sliced",
+        "amount": "3 (mixed colors)"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, sliced",
+        "amount": "1 large"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Taco or fajita seasoning",
+        "amount": "1 packet"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Olive oil",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Lime, juiced",
+        "amount": "1"
+      },
+      {
+        "group": "Serve With",
+        "item": "Flour tortillas",
+        "amount": "8–10"
+      },
+      {
+        "group": "Serve With",
+        "item": "Sour cream, salsa, cilantro",
+        "amount": "to taste"
+      },
+      {
+        "group": "Supplies",
+        "item": "Foil or parchment",
+        "amount": "1 sheet"
+      }
+    ],
+    "method": [
+      "**Prep** – Heat the oven to 425°F. Line a sheet pan with foil or parchment — this is the whole cleanup strategy.",
+      "**Toss** – Pile the chicken, peppers, and onion on the pan. Drizzle with oil, sprinkle the seasoning over everything, and toss right on the pan with your hands.",
+      "**Spread** – Push everything into a single layer. Crowding steams it instead of roasting it, so use two pans if it's piled up.",
+      "**Roast** – Bake 18–20 min, tossing once halfway, until the chicken is cooked through and the pepper edges char.",
+      "**Finish** – Squeeze the lime over the top. Serve with warmed tortillas and toppings, then throw the foil away."
+    ]
+  },
+  {
     "id": "simple-baked-salmon",
     "title": "Simple Baked Salmon",
     "category": "Stovetop & Oven",
@@ -1805,6 +2202,69 @@ const RECIPES = [
       "**Optional Glaze** – Mix honey and Dijon, brush over fillets instead of dry seasonings.",
       "**Bake** – Roast 12–15 min until salmon flakes easily with a fork.",
       "**Serve** – Garnish with fresh herbs if desired."
+    ]
+  },
+  {
+    "id": "skillet-chicken-parmesan",
+    "title": "Skillet Chicken Parmesan",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "10 min",
+    "cookTime": "25 min (one oven-safe skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless chicken breasts, halved lengthwise",
+        "amount": "4 (about 2 lb)"
+      },
+      {
+        "group": "Coating",
+        "item": "Italian breadcrumbs",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Coating",
+        "item": "Parmesan, grated",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Sauce",
+        "item": "Jarred marinara",
+        "amount": "2 cups"
+      },
+      {
+        "group": "Dairy",
+        "item": "Mozzarella, shredded",
+        "amount": "1.5 cups"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Olive oil",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Finish",
+        "item": "Fresh basil",
+        "amount": "handful"
+      }
+    ],
+    "method": [
+      "**Coat** – Mix the breadcrumbs, Parmesan, and garlic powder on a plate. Season the chicken, then press each piece into the crumbs on both sides. No egg wash, no dredging station.",
+      "**Sear** – Heat the oil in an oven-safe skillet over medium-high. Cook the cutlets 3–4 min per side until golden. They finish in the oven, so don't chase doneness here.",
+      "**Sauce** – Pour the marinara around the chicken, not over it, so the crust stays crisp on top.",
+      "**Cheese** – Scatter the mozzarella over the cutlets.",
+      "**Bake** – Slide into a 425°F oven for 10–12 min until the cheese is bubbling and the chicken hits 165°F.",
+      "**Serve** – Basil on top, straight from the skillet. Good over pasta or with bread."
     ]
   },
   {
@@ -1898,358 +2358,6 @@ const RECIPES = [
       "**Glaze** – Pour half the teriyaki sauce over the salmon in the pan, tossing gently to coat.",
       "**Assemble Bowls** – Divide rice into bowls. Top with glazed salmon, edamame, carrots, and cucumber.",
       "**Finish** – Drizzle remaining sauce over bowls. Top with green onions and sesame seeds."
-    ]
-  },
-  {
-    "id": "banana-boats",
-    "title": "Banana Boats",
-    "category": "Campfire",
-    "servings": "4",
-    "prepTime": "5 min",
-    "cookTime": "10 min (coals or grill)",
-    "ingredients": [
-      {
-        "group": "Base",
-        "item": "Bananas, unpeeled",
-        "amount": "4"
-      },
-      {
-        "group": "Filling",
-        "item": "Mini marshmallows",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Filling",
-        "item": "Chocolate chips",
-        "amount": "½ cup"
-      },
-      {
-        "group": "Optional",
-        "item": "Peanut butter chips or crushed graham crackers",
-        "amount": "¼ cup"
-      },
-      {
-        "group": "Supplies",
-        "item": "Heavy-duty foil",
-        "amount": "4 sheets"
-      }
-    ],
-    "method": [
-      "**Split** – Leave the banana in its peel. Slice lengthwise through the top peel and most of the way into the fruit, making a pocket. Don't cut through the bottom.",
-      "**Stuff** – Wedge marshmallows and chocolate chips down into the split, plus anything else you're adding.",
-      "**Wrap** – Wrap each banana in foil.",
-      "**Cook** – Set on coals or a grill grate, split side up, for 8–10 min until everything has melted.",
-      "**Eat** – Peel the foil back and eat it out of the skin with a spoon. Nothing to wash."
-    ]
-  },
-  {
-    "id": "campfire-breakfast-burritos",
-    "title": "Campfire Breakfast Burritos",
-    "category": "Campfire",
-    "servings": "6",
-    "prepTime": "15 min (at home)",
-    "cookTime": "10 min (coals or grill)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Breakfast sausage or bacon, cooked & crumbled",
-        "amount": "1 lb"
-      },
-      {
-        "group": "Protein",
-        "item": "Eggs, scrambled",
-        "amount": "10"
-      },
-      {
-        "group": "Base",
-        "item": "Large flour tortillas",
-        "amount": "6"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Frozen diced hash browns",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Bell pepper & onion, diced",
-        "amount": "1 each"
-      },
-      {
-        "group": "Dairy",
-        "item": "Cheddar, shredded",
-        "amount": "1.5 cups"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Hot sauce",
-        "amount": "to taste"
-      },
-      {
-        "group": "Supplies",
-        "item": "Heavy-duty foil",
-        "amount": "6 sheets"
-      }
-    ],
-    "method": [
-      "**Cook at Home** – Brown the sausage, then the hash browns, pepper, and onion in the same pan. Scramble the eggs. Season everything.",
-      "**Roll** – Fill each tortilla with the mixture and cheese, fold in the sides, and roll tight.",
-      "**Wrap** – Wrap each burrito in foil. Refrigerate or freeze — they keep 3 days cold, a month frozen.",
-      "**Reheat at Camp** – Set the foil packets on warm coals or a grill grate for 8–10 min, turning once. Frozen takes about 15.",
-      "**Eat** – Unwrap the top and eat from the foil. No pans, no plates, no dishes at camp."
-    ]
-  },
-  {
-    "id": "campfire-nachos",
-    "title": "Campfire Nachos",
-    "category": "Campfire",
-    "servings": "4",
-    "prepTime": "5 min",
-    "cookTime": "10 min (foil pan on coals or grill)",
-    "ingredients": [
-      {
-        "group": "Base",
-        "item": "Tortilla chips",
-        "amount": "1 large bag"
-      },
-      {
-        "group": "Protein",
-        "item": "Canned black beans, drained",
-        "amount": "1 can (15 oz)"
-      },
-      {
-        "group": "Protein",
-        "item": "Cooked chicken or leftover taco meat (optional)",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Dairy",
-        "item": "Cheddar or Mexican blend, shredded",
-        "amount": "2.5 cups"
-      },
-      {
-        "group": "Toppings",
-        "item": "Jalapeños, sliced",
-        "amount": "to taste"
-      },
-      {
-        "group": "Toppings",
-        "item": "Salsa & sour cream",
-        "amount": "to taste"
-      },
-      {
-        "group": "Toppings",
-        "item": "Green onion, sliced",
-        "amount": "2"
-      },
-      {
-        "group": "Supplies",
-        "item": "Disposable foil pan",
-        "amount": "1 (9x13)"
-      },
-      {
-        "group": "Supplies",
-        "item": "Foil, for covering",
-        "amount": "1 sheet"
-      }
-    ],
-    "method": [
-      "**Layer** – Spread half the chips in the foil pan. Scatter half the beans, meat, and cheese over them. Repeat with the rest.",
-      "**Cover** – Tent a sheet of foil loosely over the pan so the cheese melts without the chips scorching.",
-      "**Heat** – Set on the grill grate or the edge of the coals for 8–10 min. Rotate once. You want melted cheese, not a burnt bottom — keep it off direct flame.",
-      "**Top** – Uncover and add jalapeños, salsa, sour cream, and green onion.",
-      "**Eat** – Everyone eats from the pan. Throw the pan away and you're done."
-    ]
-  },
-  {
-    "id": "foil-packet-sausage-potatoes",
-    "title": "Foil Packet Sausage & Potatoes",
-    "category": "Campfire",
-    "servings": "4",
-    "prepTime": "10 min",
-    "cookTime": "25 min (campfire coals, grill, or 400°F oven)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Smoked sausage or kielbasa, sliced",
-        "amount": "1 lb"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Baby potatoes, halved",
-        "amount": "1.5 lb"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Bell pepper, chunked",
-        "amount": "1"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, chunked",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Olive oil",
-        "amount": "3 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Garlic powder",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Paprika",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      },
-      {
-        "group": "Supplies",
-        "item": "Heavy-duty foil",
-        "amount": "4 large sheets"
-      }
-    ],
-    "method": [
-      "**Toss** – Dump everything except the foil into a bag or bowl and shake until coated.",
-      "**Build Packets** – Pile a quarter of the mix onto each foil sheet. Fold the long edges together and crimp, then crimp the ends, leaving a little air inside.",
-      "**Cook** – Set on coals or a grill grate for 25 min, flipping once halfway. In an oven, 400°F for 30 min, no flipping.",
-      "**Check** – Open one carefully — steam escapes fast. Potatoes should slide off a fork.",
-      "**Eat** – Peel the foil back and eat straight out of the packet. Crumple and toss when done."
-    ]
-  },
-  {
-    "id": "one-pot-campfire-chili-mac",
-    "title": "One-Pot Campfire Chili Mac",
-    "category": "Campfire",
-    "servings": "4–6",
-    "prepTime": "5 min",
-    "cookTime": "20 min (one pot)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Ground beef",
-        "amount": "1 lb"
-      },
-      {
-        "group": "Pasta",
-        "item": "Elbow macaroni, uncooked",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Canned",
-        "item": "Diced tomatoes",
-        "amount": "1 can (14.5 oz)"
-      },
-      {
-        "group": "Canned",
-        "item": "Kidney or chili beans, undrained",
-        "amount": "1 can (15 oz)"
-      },
-      {
-        "group": "Canned",
-        "item": "Water or beef broth",
-        "amount": "2 cups"
-      },
-      {
-        "group": "Vegetables",
-        "item": "Onion, diced",
-        "amount": "1 medium"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Chili powder",
-        "amount": "2 Tbsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Cumin",
-        "amount": "1 tsp"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Salt & pepper",
-        "amount": "to taste"
-      },
-      {
-        "group": "Dairy",
-        "item": "Cheddar, shredded",
-        "amount": "1 cup"
-      }
-    ],
-    "method": [
-      "**Brown** – Cook the beef and onion in a large pot over the fire until no pink remains, 8 min.",
-      "**Dump** – Add the tomatoes, beans with their liquid, water, macaroni, chili powder, and cumin. Stir once.",
-      "**Simmer** – Cover and cook 12–15 min, stirring every few minutes so the pasta doesn't stick. Add a splash of water if it tightens up.",
-      "**Cheese** – Kill the heat, scatter the cheddar on top, and put the lid back on for 2 min to melt.",
-      "**Serve** – Eat out of bowls or straight from the pot. One pot, one spoon."
-    ]
-  },
-  {
-    "id": "walking-tacos",
-    "title": "Walking Tacos",
-    "category": "Campfire",
-    "servings": "4",
-    "prepTime": "5 min",
-    "cookTime": "10 min (one skillet)",
-    "ingredients": [
-      {
-        "group": "Protein",
-        "item": "Ground beef",
-        "amount": "1 lb"
-      },
-      {
-        "group": "Base",
-        "item": "Single-serving corn chip bags (Fritos or Doritos)",
-        "amount": "4"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Taco seasoning",
-        "amount": "1 packet"
-      },
-      {
-        "group": "Seasoning",
-        "item": "Water",
-        "amount": "⅓ cup"
-      },
-      {
-        "group": "Toppings",
-        "item": "Cheddar, shredded",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Toppings",
-        "item": "Lettuce, shredded",
-        "amount": "1 cup"
-      },
-      {
-        "group": "Toppings",
-        "item": "Tomato, diced",
-        "amount": "1"
-      },
-      {
-        "group": "Toppings",
-        "item": "Sour cream & salsa",
-        "amount": "to taste"
-      }
-    ],
-    "method": [
-      "**Brown** – Cook the ground beef in a skillet over the fire or camp stove until no pink remains, 8 min. Drain if you like.",
-      "**Season** – Stir in the taco seasoning and water. Simmer 2 min until it clings.",
-      "**Open Bags** – Crush the chips lightly in the bag, then cut or tear the bag open along one long side.",
-      "**Fill** – Spoon the beef right into the bag, then pile on cheese and toppings.",
-      "**Eat** – Eat it out of the bag with a fork. One skillet is the entire cleanup."
     ]
   }
 ];

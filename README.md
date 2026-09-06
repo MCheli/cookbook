@@ -4,7 +4,7 @@ A personal cookbook with recipes organized by cooking method. Includes a website
 
 ## Features
 
-- **36 recipes** organized by cooking method (Instant Pot, Crockpot, Stovetop & Oven, Campfire)
+- **37 recipes** organized by cooking method (Instant Pot, Crockpot, Stovetop & Oven)
 - **Website** for browsing recipes and generating grocery lists
 - **Amazon Whole Foods links** for easy shopping
 - **PDF generation** for printable versions
@@ -26,8 +26,7 @@ cookbook/
 ├── recipes/                    # Recipe markdown files
 │   ├── instapot/              # Instant Pot recipes
 │   ├── crockpot/              # Crockpot recipes
-│   ├── stovetop-oven/         # Stovetop & oven recipes
-│   └── campfire/              # Campfire & foil packet recipes
+│   └── stovetop-oven/         # Stovetop & oven recipes
 ├── website/                    # Generated website files
 │   ├── index.html
 │   ├── styles.css
@@ -60,7 +59,6 @@ cookbook/
    - `recipes/instapot/` - Instant Pot recipes
    - `recipes/crockpot/` - Crockpot recipes
    - `recipes/stovetop-oven/` - Stovetop & oven recipes
-   - `recipes/campfire/` - Campfire & foil packet recipes
 
 2. Use this template:
 
