@@ -1,6 +1,6 @@
 # Multi-stage build for cookbook static website
 # Stage 1: Build the site (generate recipes.js from markdown)
-FROM node:20-alpine AS builder
+FROM node:24.22.2-alpine3.24 AS builder
 
 WORKDIR /build
 
@@ -13,7 +13,7 @@ COPY website/ ./website/
 RUN node scripts/build-website.js
 
 # Stage 2: Serve with nginx
-FROM nginx:alpine
+FROM nginx:1.30.6-alpine3.24
 
 # Copy the built static files
 COPY --from=builder /build/website/ /usr/share/nginx/html/
