@@ -13,7 +13,7 @@ COPY website/ ./website/
 RUN node scripts/build-website.js
 
 # Stage 2: Serve with nginx
-FROM nginx:1.30.6-alpine3.24
+FROM nginx:1.31.8-alpine3.24
 
 # Take Alpine security fixes newer than the base tag (the weekly CI rebuild runs this fresh).
 RUN apk upgrade --no-cache
