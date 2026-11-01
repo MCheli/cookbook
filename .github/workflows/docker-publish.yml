@@ -3,6 +3,13 @@ name: Build and Publish Docker Image
 on:
   push:
     branches: [main]
+  # PRs build and smoke-test the image but never log in or push.
+  pull_request:
+    branches: [main]
+  # Weekly rebuild on a freshly pulled base so OS security fixes land without a code change.
+  # Friday 08:00 UTC, so Saturday's security sweep sees the result.
+  schedule:
+    - cron: '0 8 * * 5'
   workflow_dispatch:  # Allow manual trigger
 
 env:
@@ -11,6 +18,8 @@ env:
 
 jobs:
   build-and-push:
+    # Watchtower deploys :latest, so only main ever publishes (manual runs on other branches skip).
+    if: github.event_name == 'pull_request' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,6 +30,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Log in to Container Registry
+        if: github.event_name != 'pull_request'
         uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3.7.0
         with:
           registry: ${{ env.REGISTRY }}
@@ -36,10 +46,32 @@ jobs:
             type=raw,value=latest
             type=sha,prefix=
 
-      - name: Build and push Docker image
+      - name: Build Docker image
         uses: docker/build-push-action@ca052bb54ab0790a636c9b5f226502c73d547a25 # v5.4.0
         with:
           context: .
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          load: true
+          push: false
+          pull: ${{ github.event_name == 'schedule' }}
+          no-cache: ${{ github.event_name == 'schedule' }}
+          tags: |
+            ${{ steps.meta.outputs.tags }}
+            cookbook:smoke
           labels: ${{ steps.meta.outputs.labels }}
+
+      # Publish only an image that serves the site: a bad base or a failed recipe build stops here.
+      - name: Smoke test the image
+        run: |
+          docker run -d --name smoke -p 8080:80 cookbook:smoke
+          for _ in $(seq 1 20); do curl -fsS http://localhost:8080/health >/dev/null && break; sleep 1; done
+          curl -fsS http://localhost:8080/health | grep -q healthy
+          curl -fsS http://localhost:8080/ | grep -q '<html'
+          curl -fsS http://localhost:8080/recipes.js | grep -q .
+          docker rm -f smoke
+
+      - name: Push Docker image
+        if: github.event_name != 'pull_request'
+        env:
+          TAGS: ${{ steps.meta.outputs.tags }}
+        run: |
+          for tag in $TAGS; do docker push "$tag"; done
