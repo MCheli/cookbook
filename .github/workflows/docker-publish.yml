@@ -67,6 +67,11 @@ jobs:
           curl -fsS http://localhost:8080/health | grep -q healthy
           curl -fsS http://localhost:8080/ | grep -q '<html'
           curl -fsS http://localhost:8080/recipes.js | grep -q .
+          # The homelab healthcheck runs busybox wget inside the container, and curl must be gone.
+          docker exec smoke wget -q --spider http://127.0.0.1/health
+          docker exec smoke sh -c '! command -v curl'
+          docker image inspect -f 'image size: {{.Size}} bytes' cookbook:smoke
+          docker exec smoke sh -c 'echo "apk packages: $(apk info | wc -l)"'
           docker rm -f smoke
 
       - name: Push Docker image

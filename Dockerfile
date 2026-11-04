@@ -16,7 +16,10 @@ RUN node scripts/build-website.js
 FROM nginx:1.30.6-alpine3.24
 
 # Take Alpine security fixes newer than the base tag (the weekly CI rebuild runs this fresh).
-RUN apk upgrade --no-cache
+# The nginx base ships curl, which nothing here uses: the homelab healthcheck is busybox wget.
+RUN apk upgrade --no-cache \
+ && apk del --no-cache curl \
+ && ! command -v curl
 
 # Copy the built static files
 COPY --from=builder /build/website/ /usr/share/nginx/html/
