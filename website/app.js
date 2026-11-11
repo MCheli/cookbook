@@ -374,83 +374,15 @@ function printCookingInstructions() {
     </div>
   `).join('');
 
-  const printWindow = window.open('', '_blank');
-  printWindow.document.write(`
-    <!DOCTYPE html>
-    <html>
-    <head>
-      <title>Cooking Instructions</title>
-      <style>
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-        }
-        body {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          line-height: 1.6;
-          padding: 2rem;
-          color: #333;
-        }
-        .recipe-page {
-          max-width: 800px;
-          margin: 0 auto;
-        }
-        .page-break {
-          page-break-after: always;
-        }
-        h1 {
-          font-size: 1.75rem;
-          margin-bottom: 0.5rem;
-          color: #2d5a27;
-        }
-        h2 {
-          font-size: 1.25rem;
-          margin: 1.5rem 0 1rem;
-          color: #2d5a27;
-        }
-        .meta {
-          color: #666;
-          margin-bottom: 1rem;
-          font-size: 0.9rem;
-        }
-        .ingredients-table {
-          width: 100%;
-          border-collapse: collapse;
-          margin-bottom: 1rem;
-        }
-        .ingredients-table th,
-        .ingredients-table td {
-          padding: 0.5rem;
-          text-align: left;
-          border-bottom: 1px solid #ddd;
-        }
-        .ingredients-table th {
-          background: #f5f5f5;
-          font-weight: 600;
-        }
-        .method-steps {
-          padding-left: 1.5rem;
-        }
-        .method-steps li {
-          margin-bottom: 0.75rem;
-        }
-        @media print {
-          body {
-            padding: 0;
-          }
-          .page-break {
-            page-break-after: always;
-          }
-        }
-      </style>
-    </head>
-    <body>
-      ${printContent}
-    </body>
-    </html>
-  `);
-  printWindow.document.close();
-  printWindow.focus();
-  printWindow.print();
+  // Print from this page, not a pop-up. An iPhone Home Screen web app has no pop-up windows, so
+  // window.open() + print() never reached the printer there. styles.css prints only #print-area
+  // while it has content; it is emptied once the print dialog closes.
+  const printArea = document.getElementById('print-area');
+  printArea.innerHTML = printContent;
+  const clearPrintArea = () => {
+    printArea.innerHTML = '';
+    window.removeEventListener('afterprint', clearPrintArea);
+  };
+  window.addEventListener('afterprint', clearPrintArea);
+  window.print();
 }
