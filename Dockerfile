@@ -36,6 +36,10 @@ RUN echo 'server { \
         expires 1d; \
         add_header Cache-Control "public, immutable"; \
     } \
+    location = /manifest.webmanifest { \
+        types { } \
+        default_type application/manifest+json; \
+    } \
     location / { \
         try_files $uri $uri/ /index.html; \
     } \

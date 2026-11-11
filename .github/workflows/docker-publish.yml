@@ -67,6 +67,11 @@ jobs:
           curl -fsS http://localhost:8080/health | grep -q healthy
           curl -fsS http://localhost:8080/ | grep -q '<html'
           curl -fsS http://localhost:8080/recipes.js | grep -q .
+          # Home Screen web app: the manifest (with its JSON type) and every icon it names.
+          curl -fsS -o /dev/null -w '%{content_type}' http://localhost:8080/manifest.webmanifest | grep -q '^application/manifest+json'
+          for icon in apple-touch-icon.png icon-192.png icon-512.png icon-maskable-512.png; do
+            curl -fsS -o /dev/null -w '%{content_type}' "http://localhost:8080/$icon" | grep -q '^image/png'
+          done
           # The homelab healthcheck runs busybox wget inside the container, and curl must be gone.
           docker exec smoke wget -q --spider http://127.0.0.1/health
           docker exec smoke sh -c '! command -v curl'
