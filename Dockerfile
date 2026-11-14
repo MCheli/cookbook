@@ -1,6 +1,6 @@
 # Multi-stage build for cookbook static website
 # Stage 1: Build the site (generate recipes.js from markdown)
-FROM node:24.22.2-alpine3.24 AS builder
+FROM node:24.22.3-alpine3.24 AS builder
 
 WORKDIR /build
 
