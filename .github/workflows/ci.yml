@@ -105,6 +105,8 @@ jobs:
           [ "$(docker inspect -f '{{.State.Health.Status}}' app)" = healthy ]
           # The site, the bundled recipes, a recipe page with its schema.org data, a PDF, the Home Screen app files.
           curl -fsS http://localhost:8000/ | grep -q '<div id="app">'
+          [ "$(curl -s -o /dev/null -w '%{http_code}' -I http://localhost:8000/)" = 200 ]
+          [ "$(curl -s -o /dev/null -w '%{http_code}' -I http://localhost:8000/r/garlic-butter-shrimp)" = 200 ]
           [ "$(curl -fsS http://localhost:8000/api/recipes | python3 -c 'import json,sys; print(len(json.load(sys.stdin)))')" = 38 ]
           curl -fsS http://localhost:8000/r/garlic-butter-shrimp | grep -q 'application/ld+json'
           curl -fsS -o /tmp/r.pdf http://localhost:8000/api/recipes/garlic-butter-shrimp/pdf && head -c 4 /tmp/r.pdf | grep -q '%PDF'

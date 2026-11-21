@@ -165,7 +165,8 @@ if STATIC_DIR.exists() and (STATIC_DIR / "index.html").exists():
     if (STATIC_DIR / "assets").exists():
         app.mount("/assets", StaticFiles(directory=STATIC_DIR / "assets"), name="assets")
 
-    @app.get("/{full_path:path}", include_in_schema=False)
+    # HEAD too, so uptime monitors and `curl -I` get 200 instead of 405.
+    @app.api_route("/{full_path:path}", methods=["GET", "HEAD"], include_in_schema=False)
     async def spa_fallback(full_path: str):
         if full_path.startswith("api/"):
             return JSONResponse(status_code=404, content={"detail": "Not found"})
