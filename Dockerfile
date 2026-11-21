@@ -4,13 +4,15 @@ FROM node:24.22.3-alpine3.24 AS builder
 
 WORKDIR /build
 
-# Copy recipe source files and build script
+# Copy recipe source files and build scripts
 COPY recipes/ ./recipes/
-COPY scripts/build-website.js ./scripts/
+COPY scripts/build-website.js scripts/stamp-assets.js ./scripts/
 COPY website/ ./website/
 
-# Run the build script to generate recipes.js
-RUN node scripts/build-website.js
+# Generate recipes.js, then version the asset URLs in index.html by content hash
+# so a deploy isn't hidden behind the day-long immutable cache below.
+RUN node scripts/build-website.js \
+ && node scripts/stamp-assets.js
 
 # Stage 2: Serve with nginx
 FROM nginx:1.31.9-alpine3.24
@@ -35,6 +37,9 @@ RUN echo 'server { \
     location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ { \
         expires 1d; \
         add_header Cache-Control "public, immutable"; \
+    } \
+    location = /index.html { \
+        add_header Cache-Control "no-cache"; \
     } \
     location = /manifest.webmanifest { \
         types { } \
