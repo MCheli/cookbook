@@ -87,6 +87,22 @@ app.add_middleware(NoIndexMiddleware)
 app.add_middleware(SecurityHeadersMiddleware)
 
 
+@app.middleware("http")
+async def cache_headers(request: Request, call_next):
+    """Vite's /assets files have content hashes in their names, so they're cached for good;
+    index.html is revalidated on every load so a deploy shows up at once (browser, Cloudflare
+    and the Home Screen app alike)."""
+    response = await call_next(request)
+    path = request.url.path
+    if path.startswith("/assets/") and response.status_code == 200:
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    elif not path.startswith("/api/") and response.headers.get("content-type", "").startswith(
+        "text/html"
+    ):
+        response.headers["Cache-Control"] = "no-cache"
+    return response
+
+
 @app.exception_handler(Exception)
 async def _unhandled(_request: Request, exc: Exception):
     logger.exception("Unhandled error: %s", exc)
