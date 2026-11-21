@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f5f5f5] text-[#333] antialiased;
+    line-height: 1.6;
+  }
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply outline-none ring-2 ring-herb-600 ring-offset-2 ring-offset-white;
+  }
+  button,
+  [role='button'],
+  input[type='checkbox'] {
+    touch-action: manipulation;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-md px-4 py-2 text-[0.95rem] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-herb-600 text-white hover:bg-herb-700;
+  }
+  .btn-secondary {
+    @apply btn bg-[#e0e0e0] text-[#333] hover:bg-[#d0d0d0];
+  }
+  .btn-ghost {
+    @apply btn text-herb-600 hover:bg-herb-50;
+  }
+  .btn-amazon {
+    @apply btn bg-amazon-500 text-white hover:bg-amazon-600;
+  }
+  .btn-sm {
+    @apply px-2.5 py-1 text-sm;
+  }
+  .card {
+    @apply rounded-xl bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.1)];
+  }
+  .chip {
+    @apply inline-block rounded-full bg-herb-100 px-3 py-0.5 text-xs font-medium text-herb-600;
+  }
+  .filter-btn {
+    @apply rounded-full border-2 border-herb-600 bg-white px-4 py-1 text-sm text-herb-600 transition-colors hover:bg-herb-600 hover:text-white;
+  }
+  .filter-btn.active {
+    @apply bg-herb-600 text-white;
+  }
+  .input {
+    @apply w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-[0.95rem] focus:border-herb-600;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-gray-700;
+  }
+  .ai-badge {
+    @apply inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-xs font-medium text-violet-700;
+  }
+  /* v-demo-lock: a control that would change data, in the public demo. */
+  .demo-locked {
+    @apply cursor-not-allowed opacity-40;
+  }
+}
+
+/* The recipe itself: the same table and steps as the original site's recipe modal. */
+.recipe-body h3 {
+  font-size: 1.1rem;
+  color: #2d5a27;
+  margin: 1.5rem 0 0.75rem;
+  font-weight: 600;
+}
+.ingredients-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.ingredients-table th,
+.ingredients-table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  vertical-align: top;
+}
+.ingredients-table th {
+  background: #f5f5f5;
+  font-weight: 500;
+}
+.method-steps {
+  list-style: decimal outside;
+  padding-left: 1.5rem;
+}
+.method-steps li {
+  margin-bottom: 0.75rem;
+}
+.diff-added {
+  background: #e8f5e9;
+}
+.diff-changed {
+  background: #fff8e1;
+}
+
+/* Printing: while #print-area has content, print only it, one recipe per page
+   (the original site's printCookingInstructions layout). */
+#print-area {
+  display: none;
+}
+#print-area .recipe-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+#print-area h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+  color: #2d5a27;
+  font-weight: 700;
+}
+#print-area h2 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 1rem;
+  color: #2d5a27;
+  font-weight: 600;
+}
+#print-area .meta {
+  color: #666;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+#print-area .ingredients-table th,
+#print-area .ingredients-table td {
+  border-bottom: 1px solid #ddd;
+}
+@media print {
+  body:has(#print-area:not(:empty)) {
+    background: white;
+    color: #333;
+  }
+  body:has(#print-area:not(:empty)) #app {
+    display: none !important;
+  }
+  #print-area:not(:empty) {
+    display: block;
+  }
+  #print-area .page-break {
+    break-after: page;
+    page-break-after: always;
+  }
+}
+
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

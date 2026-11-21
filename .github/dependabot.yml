@@ -22,3 +22,13 @@ updates:
     groups:
       actions:
         patterns: ["*"]
+
+  # requirements.txt is the pinned lockfile compiled from requirements.in; app libraries move only here.
+  - package-ecosystem: pip
+    directories:
+      - "/backend"
+    schedule:
+      interval: weekly
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
