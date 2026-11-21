@@ -27,6 +27,58 @@ header p {
   opacity: 0.9;
 }
 
+/* Recipe count and a reload button: a Home Screen app has no browser reload. */
+header .app-status {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.refresh-btn {
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: transparent;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.refresh-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Shown by app.js when a newer deploy is live than the one this page loaded. */
+.update-banner {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.6rem 0.6rem 0.6rem 1rem;
+  border-radius: 999px;
+  background: #1e3d1a;
+  color: white;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.update-reload {
+  padding: 0.4rem 0.9rem;
+  border: none;
+  border-radius: 999px;
+  background: white;
+  color: #1e3d1a;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 main {
   max-width: 1200px;
   margin: 0 auto;

@@ -16,7 +16,16 @@
   <header>
     <h1>Cookbook</h1>
     <p>Select recipes to generate your grocery list</p>
+    <p class="app-status">
+      <span id="recipe-count"></span>
+      <button type="button" id="refresh-app" class="refresh-btn" aria-label="Reload the cookbook">&#x21bb; Refresh</button>
+    </p>
   </header>
+
+  <div id="update-banner" class="update-banner hidden" role="status">
+    <span>New recipes are available.</span>
+    <button type="button" id="update-reload" class="update-reload">Refresh</button>
+  </div>
 
   <main>
     <section id="recipes-section">

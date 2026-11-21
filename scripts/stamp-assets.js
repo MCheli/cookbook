@@ -27,7 +27,7 @@ for (const asset of ASSETS) {
     .digest('hex')
     .slice(0, 10);
 
-  const escaped = asset.replace(/\./g, '\\.');
+  const escaped = asset.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   const ref = new RegExp(`((?:src|href)=")(/?)${escaped}(?:\\?v=[0-9a-f]+)?"`, 'g');
   const matches = html.match(ref);
   if (!matches) {

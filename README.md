@@ -36,6 +36,7 @@ cookbook/
 ├── scripts/                    # Build scripts
 │   ├── build-website.js       # Generates recipes.js
 │   ├── build-pdf.py           # Generates PDFs
+│   ├── stamp-assets.js        # Content-hashes asset URLs (Docker build)
 │   └── split-recipes.js       # Utility to split recipe files
 └── Makefile                    # Build automation
 ```
@@ -126,6 +127,12 @@ Install WeasyPrint:
 ```bash
 pip install weasyprint markdown
 ```
+
+## Deploys and Caching
+
+The Docker build runs `scripts/stamp-assets.js`, which adds a content hash to the `styles.css`, `recipes.js` and `app.js` URLs in `index.html` (`recipes.js?v=1a2b3c4d5e`). Those files are cached for a day as immutable, so a new hash is what makes a deploy show up; `index.html` itself is served `no-cache`. The committed `index.html` stays unstamped.
+
+The page shows the recipe count and a **Refresh** button in the header, since a Home Screen app has no browser reload. When the app comes back to the foreground it checks for a newer deploy and shows a "New recipes are available" banner.
 
 ## Using the Website
 

@@ -31,11 +31,61 @@ const modal = document.getElementById('recipe-modal');
 const modalBody = document.getElementById('modal-body');
 const modalClose = document.querySelector('.modal-close');
 
+const recipeCount = document.getElementById('recipe-count');
+const refreshAppBtn = document.getElementById('refresh-app');
+const updateBanner = document.getElementById('update-banner');
+const updateReloadBtn = document.getElementById('update-reload');
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
   renderRecipes();
   setupEventListeners();
+  setupUpdateCheck();
 });
+
+// Updates. Each deploy gives recipes.js, app.js and styles.css new ?v= hashes in index.html
+// (scripts/stamp-assets.js). A Home Screen app resumes where it left off instead of reloading,
+// so whenever it comes back to the foreground, fetch index.html and compare those URLs with
+// the ones this page loaded. If they differ, offer a refresh rather than reloading on our own,
+// which would drop the current selection.
+function assetVersions(doc) {
+  return [...doc.querySelectorAll('script[src], link[rel="stylesheet"]')]
+    .map(el => el.getAttribute('src') || el.getAttribute('href'))
+    .filter(url => /\?v=[0-9a-f]+$/.test(url))
+    .sort()
+    .join(' ');
+}
+
+const loadedVersions = assetVersions(document);
+let lastUpdateCheck = 0;
+
+async function checkForUpdate() {
+  // Unstamped (make serve) has nothing to compare; also skip if we checked in the last minute.
+  if (!loadedVersions || Date.now() - lastUpdateCheck < 60 * 1000) return;
+  lastUpdateCheck = Date.now();
+  try {
+    const res = await fetch('/', { cache: 'no-store' });
+    if (!res.ok) return;
+    const latest = assetVersions(new DOMParser().parseFromString(await res.text(), 'text/html'));
+    if (latest && latest !== loadedVersions) updateBanner.classList.remove('hidden');
+  } catch (err) {
+    // Offline or a failed request: try again the next time the app is opened.
+  }
+}
+
+function setupUpdateCheck() {
+  recipeCount.textContent = `${RECIPES.length} recipes`;
+  refreshAppBtn.addEventListener('click', () => location.reload());
+  updateReloadBtn.addEventListener('click', () => location.reload());
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') checkForUpdate();
+  });
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) checkForUpdate();
+  });
+  checkForUpdate();
+}
 
 function setupEventListeners() {
   generateListBtn.addEventListener('click', generateGroceryList);
