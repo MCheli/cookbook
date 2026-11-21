@@ -9,6 +9,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy import or_, select
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.db.session import get_db
 from app.dependencies import get_current_user, get_optional_user
 from app.models import (
@@ -88,6 +89,8 @@ async def get_current_list(
     db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)
 ):
     lst = await lists_svc.current_list(db, user)
+    if not settings.DEMO_MODE:  # the demo's sessions are read-only
+        await lists_svc.fill_matches(db, lst, user)
     return await lists_svc.serialize(db, lst, user)
 
 
