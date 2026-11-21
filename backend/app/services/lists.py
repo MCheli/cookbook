@@ -79,14 +79,27 @@ async def rebuild(db: AsyncSession, lst: ShoppingList, user: User) -> None:
                 product_id=product.id if product else None,
             )
             lst.items.append(item)
-        elif item.source != "recipe":
-            item.source = "recipe"  # a manual line the recipes now also need
+        elif item.product_id is None and line.key in matches:
+            item.product_id = matches[line.key].id  # a product learned since the line was made
         item.name, item.aisle, item.amount_text = line.name, line.aisle, line.amount_text
         item.recipe_titles, item.position = line.recipe_titles, n
         item.source = "recipe"
     for item in list(lst.items):
         if item.source == "recipe" and item.key not in wanted:
             lst.items.remove(item)
+    await db.flush()
+
+
+async def fill_matches(db: AsyncSession, lst: ShoppingList, user: User) -> None:
+    """Give unmatched lines a product if the catalog has learned one (e.g. after a history import)."""
+    missing = [i for i in lst.items if i.product_id is None and not i.have]
+    if not missing:
+        return
+    matches = await products_by_key(db, user)
+    for item in missing:
+        key = item.key.removeprefix("manual:")
+        if key in matches:
+            item.product_id = matches[key].id
     await db.flush()
 
 

@@ -246,3 +246,26 @@ async def test_startup_seed_is_safe_with_several_workers():
     await asyncio.gather(run_startup_seed(), run_startup_seed(), run_startup_seed())
     async with AsyncSessionLocal() as db:
         assert await db.scalar(select(func.count()).select_from(Recipe)) == 38
+
+
+async def test_lines_pick_up_products_learned_later():
+    user = await make_user("late@test.local")
+    async with client_for(user) as c:
+        pasta = (await c.get("/api/recipes/pasta-with-sausage-cream-sauce")).json()
+        await c.post("/api/lists/current/recipes", json={"recipe_id": pasta["id"]})
+        await c.post(
+            "/api/products/purchases",
+            json={
+                "purchases": [
+                    {
+                        "asin": "B0BKM1W82J",
+                        "title": "365 Organic Heavy Cream, 1 PT",
+                        "ordered_on": "2026-11-14",
+                        "match_keys": ["heavy cream"],
+                    }
+                ]
+            },
+        )
+        lst = (await c.get("/api/lists/current")).json()
+        cream = next(i for a in lst["aisles"] for i in a["items"] if i["key"] == "heavy cream")
+        assert cream["product"]["asin"] == "B0BKM1W82J"
