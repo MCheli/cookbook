@@ -27,9 +27,26 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 
-_META_RE = re.compile(
-    r"^\*\*Servings:\*\*\s*(?P<servings>[^|]*?)\s*\|\s*\*\*Prep:\*\*\s*(?P<prep>[^|]*?)\s*\|\s*\*\*Cook:\*\*\s*(?P<cook>.*?)\s*$"
-)
+_META_LABELS = ("**Servings:**", "**Prep:**", "**Cook:**")
+
+
+def _parse_meta(line: str) -> tuple[str, str, str] | None:
+    """'**Servings:** 4 | **Prep:** 10 min | **Cook:** 20 min' → its three values.
+
+    Split on '|' rather than one regex: the regex's runs of optional whitespace backtracked
+    cubically on long lines (CodeQL py/polynomial-redos), and this is linear."""
+    parts = line.split("|", 2)
+    if len(parts) != 3:
+        return None
+    values = []
+    for label, part in zip(_META_LABELS, parts, strict=True):
+        part = part.strip()
+        if not part.startswith(label):
+            return None
+        values.append(part[len(label) :].strip())
+    return values[0], values[1], values[2]
+
+
 _STEP_RE = re.compile(r"^\d+\.\s+(.*)$")
 
 
@@ -109,11 +126,9 @@ def parse_markdown(text: str) -> RecipeDoc:
     doc = RecipeDoc(title=title, emoji=emoji)
 
     for ln in sections["_head"]:
-        m = _META_RE.match(ln.strip())
-        if m:
-            doc.servings_text = m["servings"].strip() or None
-            doc.prep_text = m["prep"].strip() or None
-            doc.cook_text = m["cook"].strip() or None
+        meta = _parse_meta(ln.strip())
+        if meta:
+            doc.servings_text, doc.prep_text, doc.cook_text = (v or None for v in meta)
 
     group: str | None = None
     rows = [ln for ln in sections.get("ingredients", []) if ln.strip().startswith("|")]

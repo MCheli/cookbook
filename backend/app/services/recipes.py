@@ -53,7 +53,8 @@ def _first_number(text: str | None) -> float | None:
 def _minutes(text: str | None) -> int | None:
     if not text:
         return None
-    t = text.replace(" ", " ").lower()
+    # Times are short ("1 hr 10 min"); the cap keeps the digit-run search cheap (py/polynomial-redos).
+    t = text[:160].replace(" ", " ").lower()
     m = re.search(r"(\d+(?:\.\d+)?)\s*(?:[–-]\s*\d+(?:\.\d+)?\s*)?(hr|hour|h\b|min)", t)
     if not m:
         return None
