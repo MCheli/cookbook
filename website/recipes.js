@@ -1616,6 +1616,310 @@ const RECIPES = [
     ]
   },
   {
+    "id": "harissa-shakshuka",
+    "title": "Harissa Shakshuka",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "25 min (one skillet with lid)",
+    "ingredients": [
+      {
+        "group": "Vegetables",
+        "item": "Onion, diced",
+        "amount": "1 medium"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Red bell pepper, diced",
+        "amount": "1"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Garlic, minced",
+        "amount": "3 cloves"
+      },
+      {
+        "group": "Sauce",
+        "item": "Crushed tomatoes",
+        "amount": "1 can (28 oz)"
+      },
+      {
+        "group": "Sauce",
+        "item": "Harissa paste",
+        "amount": "1–2 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Cumin",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Smoked paprika",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Salt",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Olive oil",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Protein",
+        "item": "Eggs (2 per person)",
+        "amount": "8 large"
+      },
+      {
+        "group": "Finish",
+        "item": "Feta, crumbled",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Finish",
+        "item": "Fresh parsley or cilantro, chopped",
+        "amount": "handful"
+      },
+      {
+        "group": "Serving",
+        "item": "Crusty bread or warm pita",
+        "amount": "for dipping"
+      }
+    ],
+    "method": [
+      "**Soften** – Heat the oil in a large skillet over medium. Cook the onion and pepper 6–8 min until soft. Add the garlic, cumin, paprika, and harissa, and cook 1 min.",
+      "**Simmer** – Stir in the tomatoes and salt. Simmer 8–10 min, stirring now and then, until thick enough that a spoon leaves a trail. Taste and add more harissa if you want more heat.",
+      "**Eggs** – Make 8 wells in the sauce with a spoon and crack an egg into each. Cover and cook on medium-low 5–8 min until the whites are set and the yolks are still runny.",
+      "**Finish** – Scatter the feta and herbs over the top.",
+      "**Serve** – Straight from the skillet with bread for scooping up the sauce."
+    ]
+  },
+  {
+    "id": "hot-honey-pork-chops-green-beans",
+    "title": "Hot Honey Pork Chops & Green Beans",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless pork chops, about 1 inch thick",
+        "amount": "4 (about 1.5–2 lb)"
+      },
+      {
+        "group": "Rub",
+        "item": "Smoked paprika",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Rub",
+        "item": "Garlic powder",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Rub",
+        "item": "Salt",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Rub",
+        "item": "Black pepper",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Glaze",
+        "item": "Hot honey (e.g. Mike's)",
+        "amount": "¼ cup"
+      },
+      {
+        "group": "Glaze",
+        "item": "Butter",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Glaze",
+        "item": "Apple cider vinegar",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Glaze",
+        "item": "*Optional* – Red pepper flakes",
+        "amount": "pinch"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Green beans, trimmed",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Water",
+        "amount": "¼ cup"
+      },
+      {
+        "group": "Cooking",
+        "item": "Vegetable oil",
+        "amount": "1 Tbsp"
+      }
+    ],
+    "method": [
+      "**Season** – Pat the chops dry. Mix the paprika, garlic powder, salt, and pepper, and rub it over both sides.",
+      "**Sear** – Heat the oil in a large skillet over medium-high until shimmering. Cook the chops 4–5 min per side until browned and 145°F in the center. Move to a plate to rest.",
+      "**Green Beans** – Turn the heat to medium. Add the green beans and water to the same pan, scraping up the browned bits. Cover and steam 4–5 min until bright green and crisp-tender. Uncover, let any water cook off, salt lightly, and move to plates.",
+      "**Glaze** – Add the butter, hot honey, and vinegar to the pan. Bubble 1 min until slightly thickened; stay with it, since honey scorches fast. Return the chops and their juices and turn to coat.",
+      "**Serve** – Chops next to the green beans, with the leftover glaze spooned over both."
+    ]
+  },
+  {
+    "id": "kielbasa-pierogi-skillet",
+    "title": "Kielbasa & Pierogi Skillet",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "20 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Smoked kielbasa rope (fully cooked), sliced into coins",
+        "amount": "1 rope (12–14 oz)"
+      },
+      {
+        "group": "Pierogies",
+        "item": "Frozen potato & cheese pierogies",
+        "amount": "1 package (about 16 oz)"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, sliced",
+        "amount": "1 large"
+      },
+      {
+        "group": "Cooking",
+        "item": "Butter",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Cooking",
+        "item": "Water",
+        "amount": "¼ cup"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Smoked paprika",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Serving",
+        "item": "Sour cream",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Serving",
+        "item": "Spicy brown or grainy mustard",
+        "amount": "for dipping"
+      }
+    ],
+    "method": [
+      "**Brown Kielbasa** – Cook the kielbasa coins in a large skillet over medium-high 4–5 min until browned on both sides. Move to a plate, leaving the drippings.",
+      "**Onions** – Add 1 Tbsp butter and the onion. Cook 5–6 min until soft and starting to brown. Add to the plate with the kielbasa.",
+      "**Pierogies** – Melt the remaining 2 Tbsp butter and add the pierogies straight from frozen in a single layer. Pour in the water, cover, and steam 4–5 min. Uncover and cook 2–3 min per side until golden and the water is gone. If they don't all fit, do two batches.",
+      "**Combine** – Return the kielbasa and onions to the pan. Sprinkle with smoked paprika, garlic powder, salt, and pepper, and toss 1–2 min to heat through.",
+      "**Serve** – Straight from the skillet with sour cream and mustard for dipping."
+    ]
+  },
+  {
+    "id": "korean-gochujang-beef-bowls",
+    "title": "Korean Gochujang Beef Bowls",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "15 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Ground beef (85–90% lean)",
+        "amount": "1 lb"
+      },
+      {
+        "group": "Sauce",
+        "item": "Soy sauce",
+        "amount": "3 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Brown sugar",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Gochujang (Korean chili paste)",
+        "amount": "1–2 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Sesame oil",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Aromatics",
+        "item": "Garlic, minced",
+        "amount": "4 cloves"
+      },
+      {
+        "group": "Aromatics",
+        "item": "Fresh ginger, grated",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Aromatics",
+        "item": "Green onions, sliced (whites and greens split)",
+        "amount": "4"
+      },
+      {
+        "group": "Base",
+        "item": "Microwave jasmine rice pouches",
+        "amount": "2 (about 8.5 oz each)"
+      },
+      {
+        "group": "Toppings",
+        "item": "Sesame seeds",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Toppings",
+        "item": "Cucumber, sliced",
+        "amount": "1"
+      },
+      {
+        "group": "Toppings",
+        "item": "*Optional* – Kimchi, fried egg",
+        "amount": "to taste"
+      }
+    ],
+    "method": [
+      "**Mix Sauce** – Stir together the soy sauce, brown sugar, gochujang, and sesame oil. Start with 1 Tbsp gochujang if you're unsure; the heat builds as it cooks down.",
+      "**Brown** – Cook the beef in a large skillet over medium-high 6–8 min, breaking it up, until browned with some crispy bits. Drain off most of the fat, leaving about 1 Tbsp.",
+      "**Aromatics** – Push the beef to the side. Add the garlic, ginger, and green onion whites to the clearing and cook 30 sec until fragrant, then stir everything together.",
+      "**Glaze** – Pour in the sauce and simmer 2–3 min, stirring, until it cooks down and turns sticky on the beef.",
+      "**Rice** – Microwave the rice pouches per the package while the sauce reduces.",
+      "**Serve** – Beef over rice, topped with green onion greens and sesame seeds. Cucumber and kimchi on the side cool it down."
+    ]
+  },
+  {
     "id": "one-pan-lemon-herb-chicken-potatoes",
     "title": "One-Pan Lemon Herb Chicken & Potatoes",
     "category": "Stovetop & Oven",
@@ -1810,6 +2114,156 @@ const RECIPES = [
       "**Finish** – Add parmesan, Italian seasoning, and red pepper flakes. Stir until smooth. Return sausage to the pan.",
       "**Combine** – Toss in drained pasta, adding pasta water as needed to loosen the sauce.",
       "**Season & Serve** – Taste, adjust salt and pepper, and serve immediately with extra parmesan."
+    ]
+  },
+  {
+    "id": "philly-cheesesteak-skillet",
+    "title": "Philly Cheesesteak Skillet",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "10 min",
+    "cookTime": "15 min (one skillet)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Shaved steak (thin-sliced ribeye or sirloin)",
+        "amount": "1.5 lb"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Onion, thinly sliced",
+        "amount": "1 large"
+      },
+      {
+        "group": "Vegetables",
+        "item": "Green bell pepper, sliced",
+        "amount": "1"
+      },
+      {
+        "group": "Vegetables",
+        "item": "*Optional* – Mushrooms, sliced",
+        "amount": "8 oz"
+      },
+      {
+        "group": "Cheese",
+        "item": "Provolone, sliced (or white American)",
+        "amount": "8 slices"
+      },
+      {
+        "group": "Bread",
+        "item": "Hoagie rolls, split",
+        "amount": "4"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Vegetable oil",
+        "amount": "2 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Worcestershire sauce",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Garlic powder",
+        "amount": "½ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt & pepper",
+        "amount": "to taste"
+      },
+      {
+        "group": "Serving",
+        "item": "*Optional* – Hot cherry peppers or pickled jalapeños",
+        "amount": "to taste"
+      }
+    ],
+    "method": [
+      "**Toast Rolls** – Toast the rolls cut-side down in the dry skillet over medium 1–2 min. Set aside.",
+      "**Veggies** – Add 1 Tbsp oil and turn the heat to medium-high. Cook the onion, pepper, and mushrooms 6–8 min until soft and browned at the edges. Season with salt and move to a plate.",
+      "**Steak** – Add the remaining oil and turn the heat to high. Spread out the steak, season with salt, pepper, and garlic powder, and cook 3–4 min, chopping it up with the spatula, until no pink remains. Splash in the Worcestershire.",
+      "**Combine** – Stir the veggies back in, then push the mixture into 4 roll-sized piles.",
+      "**Cheese** – Lay 2 slices of provolone over each pile. Cover 1–2 min until melted.",
+      "**Serve** – Slide a spatula under each pile and flip it into a roll. Top with hot peppers if you want the kick."
+    ]
+  },
+  {
+    "id": "salsa-verde-chicken-skillet",
+    "title": "Salsa Verde Chicken Skillet",
+    "category": "Stovetop & Oven",
+    "servings": "4",
+    "prepTime": "5 min",
+    "cookTime": "25 min (one skillet with lid)",
+    "ingredients": [
+      {
+        "group": "Protein",
+        "item": "Boneless, skinless chicken thighs",
+        "amount": "1.5–2 lb"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Cumin",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Chili powder",
+        "amount": "1 tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Salt",
+        "amount": "¾ tsp"
+      },
+      {
+        "group": "Seasoning",
+        "item": "Vegetable oil",
+        "amount": "1 Tbsp"
+      },
+      {
+        "group": "Sauce",
+        "item": "Jarred salsa verde",
+        "amount": "1 jar (16 oz)"
+      },
+      {
+        "group": "Sauce",
+        "item": "Black beans, drained & rinsed",
+        "amount": "1 can (15 oz)"
+      },
+      {
+        "group": "Cheese",
+        "item": "Pepper jack or Monterey Jack, shredded",
+        "amount": "1 cup"
+      },
+      {
+        "group": "Serving",
+        "item": "Warm tortillas or microwave rice pouches",
+        "amount": "for 4"
+      },
+      {
+        "group": "Serving",
+        "item": "Sour cream",
+        "amount": "½ cup"
+      },
+      {
+        "group": "Serving",
+        "item": "Fresh cilantro",
+        "amount": "handful"
+      },
+      {
+        "group": "Serving",
+        "item": "Lime, cut into wedges",
+        "amount": "1"
+      }
+    ],
+    "method": [
+      "**Season** – Pat the chicken dry and season both sides with the cumin, chili powder, and salt.",
+      "**Sear** – Heat the oil in a large skillet over medium-high. Sear the thighs 3–4 min per side until browned. They finish in the sauce, so don't worry about cooking them through.",
+      "**Simmer** – Pour the salsa verde and beans around the chicken. Bring to a simmer, then cover, drop to medium-low, and cook 10–12 min until the chicken reaches 165°F.",
+      "**Cheese** – Scatter the cheese over the top, cover, and let it melt 2 min.",
+      "**Serve** – Straight from the pan with tortillas or rice, sour cream, cilantro, and a squeeze of lime. For tacos, shred the chicken into the sauce with two forks."
     ]
   },
   {
