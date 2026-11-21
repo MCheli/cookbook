@@ -67,6 +67,14 @@ jobs:
           curl -fsS http://localhost:8080/health | grep -q healthy
           curl -fsS http://localhost:8080/ | grep -q '<html'
           curl -fsS http://localhost:8080/recipes.js | grep -q .
+          # Deploys must show up without waiting out the day-long asset cache: index.html is
+          # revalidated on every load and points at content-hashed asset URLs that serve.
+          curl -fsS -D - -o /dev/null http://localhost:8080/ | grep -qi '^cache-control: no-cache'
+          for asset in styles.css recipes.js app.js; do
+            ref=$(curl -fsS http://localhost:8080/ | grep -o "$asset?v=[0-9a-f]\{10\}" | head -n1)
+            test -n "$ref"
+            curl -fsS -o /dev/null "http://localhost:8080/$ref"
+          done
           # Home Screen web app: the manifest (with its JSON type) and every icon it names.
           curl -fsS -o /dev/null -w '%{content_type}' http://localhost:8080/manifest.webmanifest | grep -q '^application/manifest+json'
           for icon in apple-touch-icon.png icon-192.png icon-512.png icon-maskable-512.png; do
