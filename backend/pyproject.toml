@@ -1,0 +1,30 @@
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+ignore = [
+    "E501",  # let black handle line length
+    "B008",  # FastAPI's Depends() in defaults is the canonical pattern
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/conftest.py" = ["E402"]   # imports must follow os.environ.setdefault
+"tests/**/*.py" = ["F841"]       # tests sometimes assign for readability
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+extend-exclude = "alembic/versions"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "session"
+asyncio_default_test_loop_scope = "session"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+addopts = "-ra"

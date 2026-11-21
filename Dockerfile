@@ -1,55 +1,47 @@
-# Multi-stage build for cookbook static website
-# Stage 1: Build the site (generate recipes.js from markdown)
-FROM node:24.22.3-alpine3.24 AS builder
+# syntax=docker/dockerfile:1.7
 
-WORKDIR /build
+# ---- Stage 1: Build the Vue frontend ----
+FROM node:24.22.3-alpine AS frontend-build
+WORKDIR /app/frontend
+COPY frontend/package.json frontend/package-lock.json ./
+RUN npm ci --include=dev --no-audit --no-fund
+COPY frontend/ ./
+RUN npm run build
 
-# Copy recipe source files and build script
-COPY recipes/ ./recipes/
-COPY scripts/build-website.js ./scripts/
-COPY website/ ./website/
+# ---- Stage 2: Python deps (build toolchain lives here only) ----
+FROM python:3.11.18-slim AS python-deps
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 PIP_NO_CACHE_DIR=1
+RUN apt-get update && apt-get install -y --no-install-recommends build-essential libpq-dev \
+    && rm -rf /var/lib/apt/lists/*
+# requirements.txt is the pinned lockfile, so a rebuild never pulls new library versions.
+COPY backend/requirements.txt /tmp/requirements.txt
+RUN python -m venv /opt/venv \
+    && /opt/venv/bin/pip install pip==26.3 setuptools==84.2.1 \
+    && /opt/venv/bin/pip install -r /tmp/requirements.txt
 
-# Run the build script to generate recipes.js
-RUN node scripts/build-website.js
-
-# Stage 2: Serve with nginx
-FROM nginx:1.31.9-alpine3.24
-
-# Take Alpine security fixes newer than the base tag (the weekly CI rebuild runs this fresh).
-# The nginx base ships curl, which nothing here uses: the homelab healthcheck is busybox wget.
-RUN apk upgrade --no-cache \
- && apk del --no-cache curl \
- && ! command -v curl
-
-# Copy the built static files
-COPY --from=builder /build/website/ /usr/share/nginx/html/
-
-# Custom nginx config for SPA-style routing
-RUN echo 'server { \
-    listen 80; \
-    server_name localhost; \
-    root /usr/share/nginx/html; \
-    index index.html; \
-    gzip on; \
-    gzip_types text/plain text/css application/json application/javascript text/xml application/xml; \
-    location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ { \
-        expires 1d; \
-        add_header Cache-Control "public, immutable"; \
-    } \
-    location = /manifest.webmanifest { \
-        types { } \
-        default_type application/manifest+json; \
-    } \
-    location / { \
-        try_files $uri $uri/ /index.html; \
-    } \
-    location /health { \
-        access_log off; \
-        return 200 "healthy\n"; \
-        add_header Content-Type text/plain; \
-    } \
-}' > /etc/nginx/conf.d/default.conf
-
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+# ---- Stage 3: Runtime (no compiler, no curl) ----
+FROM python:3.11.18-slim AS runtime
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PATH=/opt/venv/bin:$PATH
+# Pango/HarfBuzz are what WeasyPrint draws PDFs with; the fonts cover text and the recipe emoji.
+RUN apt-get update && apt-get upgrade -y && apt-get install -y --no-install-recommends \
+      libpq5 ca-certificates libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz0b libharfbuzz-subset0 \
+      fonts-dejavu-core fonts-noto-color-emoji \
+    && rm -rf /var/lib/apt/lists/* \
+    && pip install --no-cache-dir pip==26.3 setuptools==84.2.1 wheel==0.48.0
+COPY --from=python-deps /opt/venv /opt/venv
+RUN useradd --uid 1000 --create-home --shell /bin/bash app
+WORKDIR /app
+COPY backend/ ./backend/
+COPY --from=frontend-build /app/frontend/dist ./static/
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh && rm -f /app/backend/.env && chown -R app:app /app
+USER app
+WORKDIR /app/backend
+EXPOSE 8000
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=30s \
+  CMD ["python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/health', timeout=4).read()"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2", "--proxy-headers", "--forwarded-allow-ips", "*"]

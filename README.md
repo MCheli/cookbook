@@ -1,138 +1,60 @@
 # Cookbook
 
-A personal cookbook with recipes organized by cooking method. Includes a website for browsing and selecting recipes, with automatic grocery list generation and Amazon Whole Foods integration.
+Mark's recipes at [cookbook.markcheli.com](https://cookbook.markcheli.com), and a working kitchen
+app around them: pick dinners for the week, get one combined grocery list matched to the Whole
+Foods products you actually buy, fill the Whole Foods cart in one tap, print the recipes, and ask an
+assistant to change, scale or invent recipes on your own Anthropic key.
 
-## Features
+A read-only demo with a made-up cook runs at [cookbook-demo.markcheli.com](https://cookbook-demo.markcheli.com).
 
-- **38 recipes** organized by cooking method (Instant Pot, Crockpot, Stovetop & Oven)
-- **Website** for browsing recipes and generating grocery lists
-- **Amazon Whole Foods links** for easy shopping
-- **PDF generation** for printable versions
-- **Easy to extend** - just add a markdown file
+## What it does
 
-## Quick Start
+- **Public cookbook.** Anyone can browse, search and filter the recipes, open a recipe page (with
+  schema.org Recipe data for link previews), combine several into a grocery list with Whole Foods
+  search links, and print the cooking instructions one recipe per page, as the original site did.
+- **Your own space (Google sign-in, anyone).** Your recipes (private), saved and copied recipes,
+  this week's shopping list with amounts added up and scaled, "I have this" checks, a catalog of
+  your Whole Foods products matched to ingredients, weekly regulars, a cooking log and past lists.
+- **Whole Foods cart.** Amazon has no cart API for Whole Foods, so a bookmarklet ("Cookbook cart",
+  in Settings) adds the week's products from your own signed-in browser. Agents can read the same
+  list with an API key: `GET /api/lists/current/cart` (`X-API-Key`).
+- **Assistant (bring your own key).** Each person pastes their own Anthropic API key in Settings
+  (stored encrypted). It powers: changing a recipe ("I'm out of heavy cream", "Instant Pot
+  version", "serves 2") shown as a diff you can keep as a variant; writing recipes from a prompt or
+  brainstorm; importing from a photo or a page without recipe data; weekly suggestions; matching
+  list items to products; and a chat (typed or spoken) that can search recipes, save drafts and
+  edit the list. AI output is never published unreviewed.
+- **Formats.** Recipes are stored relationally (groups, items, amounts, steps) and export as the
+  original markdown, schema.org JSON-LD or PDF. The 38 recipes that used to be markdown files in
+  this repo are bundled in `backend/app/seed/recipes.json` and imported on a fresh database; a test
+  proves each one round-trips back to its original markdown.
+
+## Stack
+
+FastAPI + SQLAlchemy (async) + Postgres, Vue 3 + Vite + Tailwind, one Docker image
+(`ghcr.io/mcheli/cookbook`) published by CI from `main` and deployed by Watchtower on the
+83RR PowerEdge. Same layout and conventions as Tasks and Tallied.
+
+## Develop
 
 ```bash
-# Build website and start local server
-make serve
-
-# Open http://localhost:8080 in your browser
+# Postgres on :5433 with databases cookbook and cookbook_test, then:
+cd backend && python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+cat > .env <<'ENV'
+COOKBOOK_DATABASE_URL=postgresql+asyncpg://postgres:postgres@localhost:5433/cookbook
+COOKBOOK_OWNER_EMAILS=dev@cookbook.local
+COOKBOOK_TEST_USER_EMAIL=dev@cookbook.local
+COOKBOOK_TEST_USER_PASSWORD=dev-password
+ENV
+alembic upgrade head && uvicorn app.main:app --reload --port 8001
+cd ../frontend && npm install && npm run dev        # http://localhost:5173 (proxies /api to :8001)
 ```
 
-## Project Structure
+Tests: `cd backend && pytest` (Postgres at `COOKBOOK_TEST_DATABASE_URL`, default
+`postgresql+asyncpg://postgres:postgres@localhost:5433/cookbook_test`), `cd frontend && npm test`.
 
-```
-cookbook/
-├── recipes/                    # Recipe markdown files
-│   ├── instapot/              # Instant Pot recipes
-│   ├── crockpot/              # Crockpot recipes
-│   └── stovetop-oven/         # Stovetop & oven recipes
-├── website/                    # Generated website files
-│   ├── index.html
-│   ├── styles.css
-│   ├── app.js
-│   └── recipes.js             # Auto-generated from markdown
-├── pdf/                        # Generated PDF files
-├── scripts/                    # Build scripts
-│   ├── build-website.js       # Generates recipes.js
-│   ├── build-pdf.py           # Generates PDFs
-│   └── split-recipes.js       # Utility to split recipe files
-└── Makefile                    # Build automation
-```
-
-## Build Commands
-
-| Command | Description |
-|---------|-------------|
-| `make` | Build website and cookbook.pdf |
-| `make website` | Build website/recipes.js from recipe files |
-| `make pdf` | Build combined cookbook.pdf with all recipes |
-| `make pdf-categories` | Build separate PDFs per category |
-| `make pdf-individual` | Build individual recipe PDFs |
-| `make serve` | Build website and start local server |
-| `make clean` | Remove generated files |
-| `make help` | Show all available commands |
-
-## Adding a New Recipe
-
-1. Create a new `.md` file in the appropriate folder:
-   - `recipes/instapot/` - Instant Pot recipes
-   - `recipes/crockpot/` - Crockpot recipes
-   - `recipes/stovetop-oven/` - Stovetop & oven recipes
-
-2. Use this template:
-
-```markdown
-## Recipe Title
-
-**Servings:** 4 | **Prep:** 10 min | **Cook:** 20 min
-
-### Ingredients
-| Group | Item | Amount |
-|-------|------|--------|
-| **Protein** | Chicken breast | 1 lb |
-| **Vegetables** | Onion, diced | 1 medium |
-| | Garlic, minced | 2 cloves |
-| **Seasoning** | Salt & pepper | to taste |
-
-### Method
-1. First step of the recipe.
-2. Second step of the recipe.
-3. Continue with remaining steps.
-
-### Grocery List
-- **Protein**: 1 lb chicken breast
-- **Vegetables**: 1 onion, garlic
-- **Seasoning**: Salt, pepper
-```
-
-3. Rebuild:
-```bash
-make website  # Update the website
-make pdf      # Update PDFs
-```
-
-## Recipe Format Details
-
-### Ingredients Table
-
-The ingredients table uses three columns:
-- **Group**: Category like "Protein", "Vegetables", "Seasoning" (bold with `**`)
-- **Item**: The ingredient name
-- **Amount**: Quantity needed
-
-Leave the Group cell empty to continue the previous group:
-```markdown
-| **Vegetables** | Onion | 1 medium |
-| | Garlic | 2 cloves |
-| | Bell pepper | 1 |
-```
-
-### Method Steps
-
-Numbered steps with optional bold keywords:
-```markdown
-1. **Prep** - Dice the vegetables and set aside.
-2. **Cook** - Heat oil in a pan over medium heat.
-```
-
-## Requirements
-
-- **Node.js** - For building the website
-- **Python 3** - For generating PDFs
-- **WeasyPrint** - PDF generation library
-
-Install WeasyPrint:
-```bash
-pip install weasyprint markdown
-```
-
-## Using the Website
-
-1. **Browse recipes** - View all recipes or filter by category
-2. **Select recipes** - Click recipe cards to add them to your meal plan
-3. **Generate grocery list** - Click "Generate Grocery List" to see combined ingredients
-4. **Shop on Amazon** - Click "Whole Foods" buttons to search for items on Amazon Fresh
+More: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/DEPLOYING.md](docs/DEPLOYING.md) ·
+[docs/DECISIONS.md](docs/DECISIONS.md)
 
 ## License
 
