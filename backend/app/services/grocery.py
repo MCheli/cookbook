@@ -41,7 +41,8 @@ _ALWAYS_ON_HAND = {
 
 
 def ingredient_key(name: str) -> str:
-    key = name.lower()
+    key = name.lower().replace("*", "")
+    key = re.sub(r"^\s*optional\s*[–—:-]?\s*", "", key)
     key = re.sub(r"\s*\(.*?\)\s*", " ", key)
     key = re.sub(r",.*$", "", key)
     key = re.sub(r"\s+", " ", key)

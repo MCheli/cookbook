@@ -135,10 +135,18 @@ async def ensure_test_user(db: AsyncSession) -> None:
         user.hashed_password = hash_password(settings.TEST_USER_PASSWORD)
 
 
+SEED_LOCK_ID = 2026112101
+
+
 async def run_startup_seed() -> None:
+    """Runs in every worker's startup; a transaction-scoped advisory lock lets one worker seed
+    while the others wait and then find it done."""
+    from sqlalchemy import text
+
     from app.db.session import AsyncSessionLocal
 
     async with AsyncSessionLocal() as db:
+        await db.execute(text("SELECT pg_advisory_xact_lock(:id)"), {"id": SEED_LOCK_ID})
         await ensure_test_user(db)
         await seed_owner_recipes(db)
         await db.commit()

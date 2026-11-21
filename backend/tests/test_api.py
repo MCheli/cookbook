@@ -226,3 +226,23 @@ async def test_recipe_page_head_is_injected_for_public_recipes():
     head = await _recipe_head("pasta-with-sausage-cream-sauce")
     assert '"@type": "Recipe"' in head and "<title>Pasta with Sausage Cream Sauce" in head
     assert await _recipe_head("no-such-recipe") is None
+
+
+async def test_startup_seed_is_safe_with_several_workers():
+    """uvicorn --workers 2 runs startup twice at once; the second must find the work done."""
+    import asyncio
+
+    from sqlalchemy import func, select, text
+
+    from app.db.base import Base
+    from app.db.session import AsyncSessionLocal, engine
+    from app.models import Recipe
+    from app.services.seed import run_startup_seed
+
+    async with engine.begin() as conn:
+        await conn.execute(text("DROP SCHEMA public CASCADE"))
+        await conn.execute(text("CREATE SCHEMA public"))
+        await conn.run_sync(Base.metadata.create_all)
+    await asyncio.gather(run_startup_seed(), run_startup_seed(), run_startup_seed())
+    async with AsyncSessionLocal() as db:
+        assert await db.scalar(select(func.count()).select_from(Recipe)) == 38
