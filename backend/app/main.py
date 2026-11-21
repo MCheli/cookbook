@@ -122,13 +122,14 @@ _RECIPE_PATH = re.compile(r"^r/([a-z0-9-]{1,160})/?$")
 
 def static_file(static_dir: Path, full_path: str) -> Path | None:
     """The file under static_dir that full_path names, or None ('..%2f' must not escape)."""
-    root = static_dir.resolve()
+    root = os.path.realpath(static_dir)
     try:
-        candidate = (root / full_path).resolve()
+        candidate = os.path.realpath(os.path.join(root, full_path))
     except (OSError, ValueError):
         return None
-    if candidate.is_relative_to(root) and candidate.is_file():
-        return candidate
+    # realpath + prefix check: the containment test CodeQL's path-injection query recognises.
+    if candidate.startswith(root + os.sep) and os.path.isfile(candidate):
+        return Path(candidate)
     return None
 
 

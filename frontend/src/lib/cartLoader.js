@@ -38,6 +38,8 @@ function loader(SITE) {
   box.style.cssText = 'position:fixed;z-index:2147483647;top:12px;right:12px;width:320px;max-height:80vh;overflow:auto;background:#fff;border:3px solid #2d5a27;border-radius:12px;padding:14px;font:14px -apple-system,sans-serif;color:#333;box-shadow:0 8px 30px rgba(0,0,0,.25)'
   document.body.appendChild(box)
   const say = (html) => (box.innerHTML = '<b style="color:#2d5a27">Cookbook → Whole Foods</b><br>' + html)
+  // Product titles come from Amazon's pages: escape them before they go into the status box.
+  const esc = (t) => String(t).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c])
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
   const frame = document.createElement('iframe')
   frame.style.cssText = 'position:fixed;left:-9999px;width:1024px;height:900px'
@@ -58,7 +60,7 @@ function loader(SITE) {
         await sleep(1500)
         const doc = frame.contentDocument
         const btn = SELECTORS.map((s) => doc.querySelector(s)).find(Boolean)
-        const name = ((doc.querySelector('#productTitle') || {}).textContent || it.asin).trim().slice(0, 60)
+        const name = esc(((doc.querySelector('#productTitle') || {}).textContent || it.asin).trim().slice(0, 60))
         if (!btn) {
           failed.push(name + ' (no Whole Foods add button: out of stock or already in cart?)')
           continue
@@ -68,7 +70,7 @@ function loader(SITE) {
         done.push(name)
         if (it.qty > 1) adjust.push(`${name}: set to ${it.qty}`)
       } catch (e) {
-        failed.push(it.asin + ' (' + e.message + ')')
+        failed.push(it.asin + ' (' + esc(e.message) + ')')
       }
     }
     frame.remove()

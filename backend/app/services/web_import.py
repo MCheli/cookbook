@@ -28,20 +28,43 @@ class ImportError_(Exception):
     pass
 
 
-def _check_public(url: str) -> None:
+def _public_ip(host: str, port: int) -> str:
+    """The address to connect to for host, or an error if any of its addresses isn't public."""
+    try:
+        infos = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
+    except (socket.gaierror, UnicodeError) as exc:
+        raise ImportError_("That site's address couldn't be found.") from exc
+    addrs = []
+    for info in infos:
+        ip = ipaddress.ip_address(info[4][0].split("%", 1)[0])
+        if isinstance(ip, ipaddress.IPv6Address) and ip.ipv4_mapped:
+            ip = ip.ipv4_mapped  # ::ffff:127.0.0.1 is loopback, whatever is_global says
+        if not ip.is_global or ip.is_multicast:
+            raise ImportError_("That address isn't on the public internet.")
+        addrs.append(ip)
+    if not addrs:
+        raise ImportError_("That site's address couldn't be found.")
+    return str(addrs[0])
+
+
+def _pinned(url: str) -> tuple[str, dict, dict]:
+    """Rewrite url to connect to the address that was checked, so a second DNS answer can't
+    point the request somewhere private (DNS rebinding). The Host header and TLS name stay the
+    site's, so virtual hosting and certificate checks work as normal."""
     parsed = urlparse(url)
     if parsed.scheme not in ("http", "https") or not parsed.hostname:
         raise ImportError_("Only http(s) links can be imported.")
+    host = parsed.hostname
     try:
-        infos = socket.getaddrinfo(
-            parsed.hostname, parsed.port or (443 if parsed.scheme == "https" else 80)
-        )
-    except socket.gaierror as exc:
-        raise ImportError_("That site's address couldn't be found.") from exc
-    for info in infos:
-        ip = ipaddress.ip_address(info[4][0])
-        if not ip.is_global:
-            raise ImportError_("That address isn't on the public internet.")
+        port = parsed.port or (443 if parsed.scheme == "https" else 80)
+    except ValueError as exc:
+        raise ImportError_("That link's port isn't valid.") from exc
+    ip = _public_ip(host, port)
+    netloc = f"[{ip}]:{port}" if ":" in ip else f"{ip}:{port}"
+    target = parsed._replace(netloc=netloc, fragment="").geturl()
+    host_header = host if parsed.port is None else f"{host}:{parsed.port}"
+    extensions = {"sni_hostname": host} if parsed.scheme == "https" else {}
+    return target, {"Host": host_header}, extensions
 
 
 async def fetch_page(url: str) -> str:
@@ -50,8 +73,8 @@ async def fetch_page(url: str) -> str:
         timeout=15, follow_redirects=False, headers={"User-Agent": USER_AGENT}
     ) as client:
         for _ in range(5):
-            _check_public(current)
-            async with client.stream("GET", current) as resp:
+            target, headers, extensions = _pinned(current)
+            async with client.stream("GET", target, headers=headers, extensions=extensions) as resp:
                 if resp.is_redirect and resp.headers.get("location"):
                     current = urljoin(current, resp.headers["location"])
                     continue

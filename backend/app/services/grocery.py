@@ -40,13 +40,17 @@ _ALWAYS_ON_HAND = {
 }
 
 
+# Ingredient names are short; capping them keeps the parenthesis scan below cheap however
+# long a pasted or imported name is (CodeQL py/polynomial-redos).
+_KEY_SOURCE_MAX = 300
+
+
 def ingredient_key(name: str) -> str:
-    key = name.lower().replace("*", "")
+    key = name[:_KEY_SOURCE_MAX].lower().replace("*", "")
     key = re.sub(r"^\s*optional\s*[–—:-]?\s*", "", key)
-    key = re.sub(r"\s*\(.*?\)\s*", " ", key)
-    key = re.sub(r",.*$", "", key)
-    key = re.sub(r"\s+", " ", key)
-    return key.strip()
+    key = re.sub(r"\([^()]*\)", " ", key)
+    key = key.split(",", 1)[0]
+    return " ".join(key.split())
 
 
 def search_term(name: str) -> str:
