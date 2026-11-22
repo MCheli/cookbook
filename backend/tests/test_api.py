@@ -105,6 +105,8 @@ async def test_shopping_list_rebuild_keeps_choices_and_builds_the_cart():
         lst = (await c.post("/api/lists/current/recipes", json={"recipe_id": pasta["id"]})).json()
         items = {i["key"]: i for a in lst["aisles"] for i in a["items"]}
         assert items["italian sausage links"]["product"]["asin"] == "B0TESTSAUS"
+        search = items["italian sausage links"]["product"]["search_url"]
+        assert search.endswith("&i=wholefoods") and "Italian%20Sausage%20Links" in search
         assert items["reserved"]["have"] is True  # pasta water
         garlic = items["garlic"]
         lst = (

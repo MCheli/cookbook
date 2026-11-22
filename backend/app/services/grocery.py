@@ -54,9 +54,24 @@ def ingredient_key(name: str) -> str:
 
 
 def search_term(name: str) -> str:
-    term = re.sub(r"\s*\(.*?\)\s*", " ", name)
-    term = re.sub(r",.*$", "", term)
-    return re.sub(r"\s+", " ", term).strip()
+    term = re.sub(r"\([^()]*\)", " ", name[:_KEY_SOURCE_MAX])
+    term = term.split(",", 1)[0]
+    return " ".join(term.split())
+
+
+def product_search_term(title: str) -> str:
+    """A saved product's title as a Whole Foods search, for when its old listing is gone:
+    '365 by Whole Foods Market, Vegetable Oil, 32 Fl Oz' -> '365 Vegetable Oil 32 Fl Oz'."""
+    term = re.sub(r"365 by Whole Foods Market\b", "365", title[:_KEY_SOURCE_MAX], flags=re.I)
+    term = re.sub(r"\([^()]*\)", " ", term)
+    term = re.sub(r"[,;|/]+", " ", term)
+    return " ".join(term.split()[:12])
+
+
+def whole_foods_search_url_for_product(title: str) -> str:
+    from urllib.parse import quote
+
+    return f"https://www.amazon.com/s?k={quote(product_search_term(title))}&i=wholefoods"
 
 
 def whole_foods_search_url(name: str) -> str:
