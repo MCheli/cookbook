@@ -2,7 +2,7 @@
 
 Mark's recipes at [cookbook.markcheli.com](https://cookbook.markcheli.com), and a working kitchen
 app around them: pick dinners for the week, get one combined grocery list matched to the Whole
-Foods products you actually buy, fill the Whole Foods cart in one tap, print the recipes, and ask an
+Foods products you actually buy, add them to your Whole Foods cart, print the recipes, and ask an
 assistant to change, scale or invent recipes on your own Anthropic key.
 
 A read-only demo with a made-up cook runs at [cookbook-demo.markcheli.com](https://cookbook-demo.markcheli.com).
@@ -15,9 +15,11 @@ A read-only demo with a made-up cook runs at [cookbook-demo.markcheli.com](https
 - **Your own space (Google sign-in, anyone).** Your recipes (private), saved and copied recipes,
   this week's shopping list with amounts added up and scaled, "I have this" checks, a catalog of
   your Whole Foods products matched to ingredients, weekly regulars, a cooking log and past lists.
-- **Whole Foods cart.** Amazon has no cart API for Whole Foods, so a bookmarklet ("Cookbook cart",
-  in Settings) adds the week's products from your own signed-in browser. Agents can read the same
-  list with an API key: `GET /api/lists/current/cart` (`X-API-Key`).
+- **Whole Foods cart.** Amazon has no cart API for Whole Foods. Each item on the list has an
+  **Add** button that opens its Whole Foods product (or a search) and ticks the item as in your
+  cart, so it works on a phone with nothing to install. On a computer, an optional bookmarklet
+  ("Cookbook cart", in Settings) adds everything not yet added and sets quantities. Agents read
+  what's left with an API key: `GET /api/lists/current/cart` (`X-API-Key`).
 - **Assistant (bring your own key).** Each person pastes their own Anthropic API key in Settings
   (stored encrypted). It powers: changing a recipe ("I'm out of heavy cream", "Instant Pot
   version", "serves 2") shown as a diff you can keep as a variant; writing recipes from a prompt or

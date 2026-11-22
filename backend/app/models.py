@@ -270,7 +270,8 @@ class ShoppingListRecipe(Base):
 
 class ShoppingListItem(Base):
     """One line of a list. Recipe lines are rebuilt from the recipes; the user's choices
-    (have it, product, quantity) survive the rebuild because they are keyed by `key`."""
+    (have it, product, quantity, in the cart) survive the rebuild because they are keyed by `key`.
+    """
 
     __tablename__ = "shopping_list_items"
     __table_args__ = (UniqueConstraint("list_id", "key", name="uq_list_item_key"),)
@@ -298,6 +299,10 @@ class ShoppingListItem(Base):
     )
     quantity: Mapped[int] = mapped_column(Integer, nullable=False, default=1)
     position: Mapped[int] = mapped_column(Integer, nullable=False, default=0)
+    # Ticked once the cook has put it in the Whole Foods cart (the Add button on the list).
+    in_cart: Mapped[bool] = mapped_column(
+        Boolean, nullable=False, default=False, server_default="false"
+    )
 
 
 class CookLog(Base):

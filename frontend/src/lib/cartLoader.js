@@ -3,8 +3,9 @@
  * session. Amazon has no API for the Whole Foods cart, so this does what a person would do: open
  * each product's Whole Foods page (in a hidden frame on amazon.com) and press its add button.
  *
- * - On the cart page opened by "Send to Whole Foods cart", it reads the ASINs from the URL
- *   fragment (#cookbook-cart=ASIN*qty,...), which never leaves the browser, and adds them.
+ * - On the cart page opened by "add all at once", it reads the ASINs from the URL fragment
+ *   (#cookbook-cart=ASIN*qty,...), which never leaves the browser. It skips what's already in the
+ *   cart, adds the rest, then presses the cart's + button until each quantity is right.
  * - On a product page, it opens the cookbook's "save product" form for that ASIN instead.
  *
  * It only ever adds to the cart. Checkout stays with the cook.
@@ -26,7 +27,7 @@ function loader(SITE) {
     return
   }
   if (!hash) {
-    alert('Use "Send to Whole Foods cart" on your cookbook list first; it opens this page with the items.')
+    alert('On your Cookbook list, click "add all at once" first; it opens this page with the items.')
     return
   }
   const items = decodeURIComponent(hash[1])
@@ -34,6 +35,7 @@ function loader(SITE) {
     .map((p) => p.split('*'))
     .filter((p) => /^[A-Z0-9]{10}$/.test(p[0]))
     .map((p) => ({ asin: p[0], qty: Math.max(1, Math.min(20, parseInt(p[1], 10) || 1)) }))
+  const CART = '/cart/localmarket?almBrandId=' + BRAND
   const box = document.createElement('div')
   box.style.cssText = 'position:fixed;z-index:2147483647;top:12px;right:12px;width:320px;max-height:80vh;overflow:auto;background:#fff;border:3px solid #2d5a27;border-radius:12px;padding:14px;font:14px -apple-system,sans-serif;color:#333;box-shadow:0 8px 30px rgba(0,0,0,.25)'
   document.body.appendChild(box)
@@ -49,40 +51,76 @@ function loader(SITE) {
       frame.onload = () => resolve()
       frame.src = url
     })
+  // The Whole Foods cart page: one row per product, its quantity in data-quantity, a + button.
+  const row = (doc, asin) => doc.querySelector('.sc-list-item[data-itemtype="active"][data-asin="' + asin + '"]')
+  const qtyIn = (doc, asin) => {
+    const r = row(doc, asin)
+    return r ? parseInt(r.getAttribute('data-quantity'), 10) || 1 : 0
+  }
   const SELECTORS = ['#freshAddToCartButton input', '#freshAddToCartButton button', '#freshAddToCartButton [type=submit]', 'input[name="submit.add-to-cart-ubb"]', '[data-action="fresh-add-to-cart"] input', '[data-action="fresh-add-to-cart"] button']
-  const done = [], failed = [], adjust = []
+  const names = {}, added = [], already = [], failed = [], short = [], missing = new Set()
   ;(async () => {
+    say('Checking your cart…')
+    await load(CART)
+    await sleep(1200)
+    for (const it of items) it.before = qtyIn(frame.contentDocument, it.asin)
     for (let n = 0; n < items.length; n++) {
       const it = items[n]
+      if (it.before > 0) {
+        already.push(it.asin)
+        continue
+      }
       say(`Adding ${n + 1} of ${items.length}…<br><small>${it.asin}</small>`)
       try {
         await load('/dp/' + it.asin + '?fpw=alm&almBrandId=' + BRAND)
         await sleep(1500)
         const doc = frame.contentDocument
         const btn = SELECTORS.map((s) => doc.querySelector(s)).find(Boolean)
-        const name = esc(((doc.querySelector('#productTitle') || {}).textContent || it.asin).trim().slice(0, 60))
+        names[it.asin] = esc(((doc.querySelector('#productTitle') || {}).textContent || it.asin).trim().slice(0, 60))
         if (!btn) {
-          failed.push(name + ' (no Whole Foods add button: out of stock or already in cart?)')
+          missing.add(it.asin)
+          failed.push(names[it.asin] + ' (no Whole Foods add button: out of stock?)')
           continue
         }
         btn.click()
         await sleep(3000)
-        done.push(name)
-        if (it.qty > 1) adjust.push(`${name}: set to ${it.qty}`)
+        added.push(it.asin)
       } catch (e) {
+        missing.add(it.asin)
         failed.push(it.asin + ' (' + esc(e.message) + ')')
       }
     }
+    const needMore = items.filter((it) => it.qty > 1 && !missing.has(it.asin))
+    if (needMore.length) {
+      say('Setting quantities…')
+      await load(CART)
+      await sleep(1500)
+      for (const it of needMore) {
+        for (let tries = 0; tries < 20 && qtyIn(frame.contentDocument, it.asin) < it.qty; tries++) {
+          const r = row(frame.contentDocument, it.asin)
+          const plus = r && r.querySelector('[data-action="qs-widget-increment-decl"] input, [data-action="qs-widget-increment-decl"] button')
+          if (!plus) break
+          plus.click()
+          await sleep(2500)
+        }
+        const got = qtyIn(frame.contentDocument, it.asin)
+        if (got < it.qty) short.push(`${names[it.asin] || it.asin}: ${got} of ${it.qty}`)
+      }
+    }
     frame.remove()
+    const done = added.concat(already)
     say(
-      `Added ${done.length} of ${items.length}.` +
-        (adjust.length ? `<br><br><b>Set quantities in the cart:</b><br>${adjust.join('<br>')}` : '') +
+      `Added ${added.length}` + (already.length ? `, ${already.length} already in your cart` : '') + ` (${done.length} of ${items.length}).` +
+        (short.length ? `<br><br><b>Check these quantities:</b><br>${short.join('<br>')}` : '') +
         (failed.length ? `<br><br><b>Not added:</b><br>${failed.join('<br>')}` : '') +
-        `<br><br><button id="ckb-go" style="background:#2d5a27;color:#fff;border:0;border-radius:6px;padding:8px 12px">Open the cart</button>`,
+        `<br><br><button id="ckb-go" style="background:#2d5a27;color:#fff;border:0;border-radius:6px;padding:8px 12px">Show the cart</button>` +
+        (done.length ? ` <button id="ckb-back" style="background:#fff;color:#2d5a27;border:1px solid #2d5a27;border-radius:6px;padding:7px 11px">Tick them off in Cookbook</button>` : ''),
     )
     box.querySelector('#ckb-go').onclick = () => {
-      location.href = '/cart/localmarket?almBrandId=' + BRAND
+      location.href = CART
     }
+    const back = box.querySelector('#ckb-back')
+    if (back) back.onclick = () => window.open(SITE + '/list?in_cart=' + done.join(','), '_blank')
   })()
 }
 

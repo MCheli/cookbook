@@ -126,6 +126,44 @@ async def test_shopping_list_rebuild_keeps_choices_and_builds_the_cart():
         assert "italian sausage links" not in keys and "garlic" in keys
 
 
+async def test_items_ticked_in_cart_leave_the_cart_manifest_and_survive_rebuilds():
+    user = await make_user("cook@test.local")
+    async with client_for(user) as c:
+        pasta = (await c.get("/api/recipes/pasta-with-sausage-cream-sauce")).json()
+        shrimp = (await c.get("/api/recipes/garlic-butter-shrimp")).json()
+        await c.post(
+            "/api/products",
+            json={
+                "asin": "B0TESTSAUS",
+                "title": "Sausage links",
+                "match_keys": ["Italian sausage links"],
+            },
+        )
+        lst = (await c.post("/api/lists/current/recipes", json={"recipe_id": pasta["id"]})).json()
+        sausage = next(
+            i for a in lst["aisles"] for i in a["items"] if i["key"] == "italian sausage links"
+        )
+        assert sausage["in_cart"] is False and lst["counts"]["in_cart"] == 0
+        assert [i["asin"] for i in lst["cart"]["items"]] == ["B0TESTSAUS"]
+
+        lst = (
+            await c.patch(f"/api/lists/current/items/{sausage['id']}", json={"in_cart": True})
+        ).json()
+        assert lst["counts"]["in_cart"] == 1 and lst["cart"]["items"] == []
+        # Adding another recipe rebuilds the list; the tick stays.
+        lst = (await c.post("/api/lists/current/recipes", json={"recipe_id": shrimp["id"]})).json()
+        again = next(
+            i for a in lst["aisles"] for i in a["items"] if i["key"] == "italian sausage links"
+        )
+        assert again["in_cart"] is True
+        assert (await c.get("/api/lists/current/cart")).json()["items"] == []
+
+        lst = (
+            await c.patch(f"/api/lists/current/items/{sausage['id']}", json={"in_cart": False})
+        ).json()
+        assert [i["asin"] for i in lst["cart"]["items"]] == ["B0TESTSAUS"]
+
+
 async def test_choosing_a_product_remembers_the_match():
     user = await make_user("cook@test.local")
     async with client_for(user) as c:

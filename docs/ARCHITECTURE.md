@@ -52,7 +52,7 @@ metadata, verbatim source markdown) · `recipe_ingredients` (group, item, amount
 Views: Home (grid, filters, selection) · Recipe (scale, print, PDF, list, save/copy, edit,
 assistant, cook log) · Grocery preview (public) · This week (list, regulars, cart, AI suggestions
 and matching) · Products · New recipe (describe/brainstorm, link, photo, markdown, blank) · Edit ·
-Chat · History · Settings (key, food profile, cart bookmarklet, API keys) · Login (hero, Google,
+Chat · History · Settings (key, food profile, optional cart bookmarklet, API keys) · Login (hero, Google,
 demo card).
 
 `lib/print.js` prints from the page into `#print-area` (no pop-ups, for the iPhone Home Screen

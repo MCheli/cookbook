@@ -23,6 +23,16 @@ Agents read the manifest via `GET /api/lists/current/cart`.
 (Creators API) is catalog data for affiliates. The manifest travels in the URL fragment, which is
 never sent to Amazon's servers. Checkout always stays with the person.
 
+## 2026-11-22 — Per-item Add buttons first; the bookmarklet becomes optional
+**Decision:** Each list item gets an Add button (matched product page, or a Whole Foods search)
+that also ticks the item `in_cart`; the card shows "n of m in your cart". The bookmarklet moves to
+Settings as a computer-only extra: it reads the cart first, adds only what's missing, presses the
+cart's + button until quantities match, and offers "Tick them off in Cookbook"
+(`/list?in_cart=ASIN,…`). The cart manifest leaves out items already in the cart.
+**Why:** Tried for real on 2026-11-22: "Send to Whole Foods cart" only opened Amazon and looked
+broken unless the bookmark was installed, and on iPhone it couldn't run at all (Home Screen app
+and Amazon app can't run bookmarks). Tapping through ~10–15 items works everywhere.
+
 ## 2026-11-21 — Public cookbook, owner-only publishing
 **Decision:** Public pages show public, published recipes. Only `COOKBOOK_OWNER_EMAILS` can make a
 recipe public; everyone else's recipes are private to them (they can save or copy public ones).
