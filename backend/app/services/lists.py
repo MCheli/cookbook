@@ -16,7 +16,13 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models import Product, Recipe, ShoppingList, ShoppingListItem, User
-from app.services.grocery import aisle_sort_key, combine, ingredient_key, whole_foods_search_url
+from app.services.grocery import (
+    aisle_sort_key,
+    combine,
+    ingredient_key,
+    whole_foods_search_url,
+    whole_foods_search_url_for_product,
+)
 
 WHOLE_FOODS_BRAND = "VUZHIFdob2xlIEZvb2Rz"
 CART_URL = f"https://www.amazon.com/cart/localmarket?almBrandId={WHOLE_FOODS_BRAND}"
@@ -146,6 +152,8 @@ def _product_out(p: Product | None) -> dict | None:
         "sold_by_weight": p.sold_by_weight,
         "notes": p.notes,
         "url": product_url(p.asin),
+        # For when the old listing is gone (Whole Foods relists things under new ASINs).
+        "search_url": whole_foods_search_url_for_product(p.title),
     }
 
 

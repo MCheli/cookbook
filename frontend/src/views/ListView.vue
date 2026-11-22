@@ -321,7 +321,7 @@ async function done() {
           </div>
         </div>
         <p class="mt-2 text-xs text-gray-500">
-          Add opens that product on Whole Foods (on a phone, often in the Amazon app); add it to your cart there and come back. Checkout stays with you.
+          Add opens the product you bought before; Search looks it up on Whole Foods, for when that listing is gone. Either way, add it to your cart there and come back. Checkout stays with you.
           <template v-if="list.cart.items.length > 1">
             On a computer with the <RouterLink
               to="/settings#cart-button"
@@ -452,6 +452,15 @@ async function done() {
                 >
                   change
                 </button>
+                <a
+                  v-demo-lock
+                  :href="session.demo ? undefined : i.product.search_url"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-sm border border-amazon-500 bg-white text-amazon-600 hover:bg-amazon-500/10"
+                  title="Searches Whole Foods for this product, for when its old listing is gone"
+                  @click="addedToCart(i)"
+                >Search</a>
                 <a
                   v-demo-lock
                   :href="session.demo ? undefined : i.product.url"

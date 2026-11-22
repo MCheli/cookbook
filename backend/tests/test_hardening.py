@@ -104,3 +104,19 @@ def test_fetch_refuses_odd_links(monkeypatch, url):
     _resolves_to(monkeypatch, "93.184.215.14")
     with pytest.raises(web_import.ImportError_):
         web_import._pinned(url)
+
+
+def test_product_search_term_drops_the_house_brand_boilerplate():
+    from app.services.grocery import product_search_term, search_term
+
+    assert (
+        product_search_term("365 by Whole Foods Market, Vegetable Oil, 32 Fl Oz")
+        == "365 Vegetable Oil 32 Fl Oz"
+    )
+    assert (
+        product_search_term("Calise Bakery Sub Rolls (6 ct), 18 Oz")
+        == "Calise Bakery Sub Rolls 18 Oz"
+    )
+    assert search_term("Chicken thighs (boneless), cubed") == "Chicken thighs"
+    _fast(product_search_term, "(" * 50_000)
+    _fast(search_term, "(" * 50_000)
