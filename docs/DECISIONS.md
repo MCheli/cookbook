@@ -23,6 +23,17 @@ Agents read the manifest via `GET /api/lists/current/cart`.
 (Creators API) is catalog data for affiliates. The manifest travels in the URL fragment, which is
 never sent to Amazon's servers. Checkout always stays with the person.
 
+## 2026-11-22 — Every recipe prints on one page
+**Decision:** Both print paths fit each recipe to a single Letter page. They try the normal layout
+a little smaller first, then a compact one: ingredients folded into two Item | Amount column pairs,
+without the category column, and narrower margins in the PDF. Only then do they step the text down,
+with a floor (7pt in the PDF, 9px in the browser) below which a recipe prints on two pages instead.
+The server PDF (`services/pdf.py`) renders each recipe on its own with WeasyPrint and checks the page
+count. The Print button (`lib/print.js`) measures each page off-screen at the printed width before
+calling `window.print()`.
+**Why:** Mark asked that recipes always fit on one page. All 38 current recipes already fit at full
+size, but long, imported or AI-written ones didn't.
+
 ## 2026-11-22 — Per-item Add buttons first; the bookmarklet becomes optional
 **Decision:** Each list item gets an Add button (matched product page, or a Whole Foods search)
 that also ticks the item `in_cart`; the card shows "n of m in your cart". The bookmarklet moves to

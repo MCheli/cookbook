@@ -24,5 +24,6 @@ weasyprint>=66.0,<80.0
 # Dev / test
 pytest>=9.2.0,<10.0
 pytest-asyncio>=1.5.0,<2.0
+pypdf>=6.0,<7.0
 ruff>=0.17.5,<1.0
 black>=26.10.1,<27.0
