@@ -208,6 +208,8 @@ async def patch_list_item(
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Item not found")
     if payload.have is not None:
         item.have = payload.have
+    if payload.in_cart is not None:
+        item.in_cart = payload.in_cart
     if payload.quantity is not None:
         item.quantity = payload.quantity
     if payload.clear_product:

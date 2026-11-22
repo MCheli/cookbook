@@ -177,6 +177,7 @@ async def serialize(db: AsyncSession, lst: ShoppingList, user: User) -> dict:
                 "recipe_titles": item.recipe_titles,
                 "source": item.source,
                 "have": item.have,
+                "in_cart": item.in_cart,
                 "quantity": item.quantity,
                 "product": _product_out(products.get(item.product_id)),
                 "search_url": whole_foods_search_url(item.name),
@@ -205,17 +206,19 @@ async def serialize(db: AsyncSession, lst: ShoppingList, user: User) -> dict:
             "total": len(lst.items),
             "need": len(need),
             "matched": sum(1 for i in need if i.product_id),
+            "in_cart": sum(1 for i in need if i.in_cart),
         },
         "cart": cart_manifest(lst, products),
     }
 
 
 def cart_manifest(lst: ShoppingList, products: dict[UUID, Product]) -> dict:
-    """What goes into the Whole Foods cart: matched lines the user still needs."""
+    """What goes into the Whole Foods cart: matched lines the user still needs and hasn't
+    already added (ticked in cart on the list)."""
     items, unmatched = [], []
     seen: dict[str, dict] = {}
     for i in lst.items:
-        if i.have:
+        if i.have or i.in_cart:
             continue
         p = products.get(i.product_id) if i.product_id else None
         if p is None:
@@ -233,7 +236,8 @@ def cart_manifest(lst: ShoppingList, products: dict[UUID, Product]) -> dict:
             continue
         entry = {
             "asin": p.asin,
-            "quantity": i.quantity,
+            # By-weight products go in at Amazon's default weight; the loader only steps counts.
+            "quantity": 1 if p.sold_by_weight else i.quantity,
             "title": p.title,
             "for": [i.name],
             "url": product_url(p.asin),

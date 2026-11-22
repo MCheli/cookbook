@@ -183,38 +183,31 @@ async function signOut() {
       class="card space-y-3"
     >
       <h3 class="font-semibold">
-        Whole Foods cart button
+        Add everything at once (computer, optional)
       </h3>
       <p class="text-sm text-gray-600">
-        Amazon doesn't let other sites fill a Whole Foods cart, so this is a bookmark you tap on Amazon, in your own signed-in browser.
-        It adds the products from <RouterLink
+        The <strong>Add</strong> buttons on <RouterLink
           to="/list"
           class="underline"
         >
           This week
-        </RouterLink> one by one; you check out yourself. Tapped on a Whole Foods product page, it saves that product to your list of products instead.
+        </RouterLink> work anywhere, phone included. On a computer you can skip the tapping with a bookmark: it runs on Amazon, in your own signed-in browser, adds everything you haven't added yet and sets the quantities. Amazon has no way for other sites to fill a Whole Foods cart, which is why it's a bookmark. It never checks out.
       </p>
       <ol class="list-decimal space-y-1 pl-5 text-sm text-gray-700">
         <li>
-          <strong>Computer:</strong> drag this to your bookmarks bar →
+          Drag this to your bookmarks bar, once →
           <a
             :href="bookmarklet"
             class="ml-1 inline-block rounded-md bg-amazon-500 px-3 py-1 font-medium text-white"
             @click.prevent="toast('Drag it to your bookmarks bar instead of clicking it.')"
           >Cookbook cart</a>
         </li>
-        <li>
-          <strong>iPhone/iPad (Safari):</strong> bookmark any page, then edit the bookmark, name it “Cookbook cart” and replace its address with
-          <button
-            class="text-herb-600 underline"
-            @click="copy(bookmarklet, 'Bookmark code')"
-          >
-            this code (copy)
-          </button>.
-          Open the cart link in Safari (not the Home Screen app) and pick the bookmark.
-        </li>
-        <li>Then on <em>This week</em>, press <strong>Send to Whole Foods cart</strong> and tap the bookmark on the page that opens.</li>
+        <li>On <em>This week</em>, click <strong>add all at once</strong>. Your Whole Foods cart opens on Amazon.</li>
+        <li>Click the <strong>Cookbook cart</strong> bookmark on that page and wait a minute or two. Then <strong>Tick them off in Cookbook</strong> marks them done on your list.</li>
       </ol>
+      <p class="text-xs text-gray-500">
+        Clicked on a Whole Foods product page instead, the bookmark saves that product to your products.
+      </p>
     </section>
 
     <section class="card space-y-3">

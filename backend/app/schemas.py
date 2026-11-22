@@ -107,6 +107,7 @@ class ListItemIn(BaseModel):
 
 class ListItemPatch(BaseModel):
     have: bool | None = None
+    in_cart: bool | None = None
     product_id: UUID | None = None
     clear_product: bool = False
     quantity: int | None = Field(default=None, ge=1, le=50)

@@ -39,7 +39,7 @@ async function enterDemo() {
   }
 }
 
-const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list', 'Whole Foods cart in one tap', 'AI remixes on your own key', 'Prints one recipe per page']
+const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list', 'Add to your Whole Foods cart', 'AI remixes on your own key', 'Prints one recipe per page']
 </script>
 
 <template>
@@ -62,7 +62,7 @@ const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list
       </h1>
       <p class="relative mt-4 max-w-xl text-white/80">
         Pick a few dinners and get one combined list, matched to the Whole Foods products you actually buy.
-        Fill the cart in one tap, print the recipes, and ask the assistant to swap, scale or invent; it runs on your own Anthropic key.
+        Add each item to your Whole Foods cart with a tap, print the recipes, and ask the assistant to swap, scale or invent; it runs on your own Anthropic key.
       </p>
       <div class="relative mt-10 hidden max-w-xl grid-cols-2 gap-4 md:grid">
         <div class="animate-[float_6s_ease-in-out_infinite] rounded-2xl border border-white/15 bg-white/10 p-4 backdrop-blur motion-reduce:animate-none">
@@ -85,7 +85,7 @@ const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list
             <span>Sausage links</span><span class="text-white/70">12 oz</span>
           </div>
           <div class="mt-2 rounded-md bg-[#ff9900] px-2 py-1 text-center text-xs font-semibold">
-            Send to Whole Foods cart
+            Add to Whole Foods cart
           </div>
         </div>
         <div class="col-span-2 animate-[float_8s_ease-in-out_infinite] rounded-2xl border border-violet-300/30 bg-violet-500/15 p-4 text-sm backdrop-blur motion-reduce:animate-none">

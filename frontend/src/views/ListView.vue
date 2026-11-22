@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import { api, errorMessage } from '@/api'
 import { useList } from '@/stores/list'
 import { useSession } from '@/stores/session'
@@ -17,8 +18,21 @@ const matches = ref(null)
 const aiBusy = ref('')
 const showHave = ref(false)
 
-onMounted(() => store.load())
+const route = useRoute()
+const router = useRouter()
+
+onMounted(async () => {
+  await store.load()
+  // Back from the cart bookmark ("Tick them off in Cookbook"): ?in_cart=ASIN,ASIN
+  const asins = new Set(String(route.query.in_cart || '').split(',').filter((a) => /^[A-Z0-9]{10}$/.test(a)))
+  if (!asins.size || session.demo) return
+  router.replace({ query: {} })
+  const items = (store.list?.aisles ?? []).flatMap((a) => a.items).filter((i) => i.product && asins.has(i.product.asin) && !i.in_cart && !i.have)
+  for (const i of items) await run(() => store.patchItem(i.id, { in_cart: true }))
+  if (items.length) toast(`Ticked off ${items.length} item${items.length > 1 ? 's' : ''} in your cart.`)
+})
 const list = computed(() => store.list)
+const allInCart = computed(() => !!list.value?.counts.need && list.value.counts.in_cart >= list.value.counts.need)
 const visibleAisles = computed(() => (list.value?.aisles ?? []).filter((a) => showHave.value || a.items.some((i) => !i.have)))
 
 async function run(fn, ok) {
@@ -41,6 +55,13 @@ function sendToCart() {
     return
   }
   window.open(list.value.cart.loader_url, '_blank', 'noopener')
+}
+
+// Add/Find open the product on Whole Foods in a new tab (or the Amazon app); the click itself
+// ticks the item as in the cart, with undo, so the list shows what's left.
+function addedToCart(item) {
+  if (session.demo) return
+  run(() => store.patchItem(item.id, { in_cart: true }))
 }
 
 async function pick(product) {
@@ -249,15 +270,37 @@ async function done() {
 
       <section class="card mb-5 border-2 border-amazon-500/40">
         <div class="flex flex-wrap items-center justify-between gap-3">
-          <div>
+          <div class="min-w-0 flex-1">
             <h3 class="font-semibold">
-              Whole Foods cart
+              Whole Foods
             </h3>
-            <p class="text-sm text-gray-600">
-              {{ list.cart.items.length }} products ready<template v-if="list.cart.unmatched.length">
-                · {{ list.cart.unmatched.length }} items still need a product
-              </template>
+            <p
+              v-if="!list.counts.need"
+              class="text-sm text-gray-600"
+            >
+              Nothing to buy yet.
             </p>
+            <p
+              v-else-if="allInCart"
+              class="text-sm font-medium text-herb-600"
+            >
+              Everything's in your cart. Check out on Amazon when you're ready.
+            </p>
+            <p
+              v-else
+              class="text-sm text-gray-600"
+            >
+              {{ list.counts.in_cart }} of {{ list.counts.need }} in your cart · tap <strong>Add</strong> on each item below
+            </p>
+            <div
+              v-if="list.counts.need"
+              class="mt-2 h-1.5 overflow-hidden rounded-full bg-gray-100"
+            >
+              <div
+                class="h-full rounded-full bg-amazon-500 transition-all"
+                :style="{ width: (100 * list.counts.in_cart) / list.counts.need + '%' }"
+              />
+            </div>
           </div>
           <div class="flex flex-wrap gap-2">
             <button
@@ -269,23 +312,29 @@ async function done() {
             >
               {{ aiBusy === 'match' ? 'Matching…' : '✨ Match products' }}
             </button>
-            <button
-              v-demo-lock
-              class="btn-amazon"
-              :disabled="!list.cart.items.length"
-              @click="sendToCart"
-            >
-              Send to Whole Foods cart
-            </button>
+            <a
+              :href="session.demo ? undefined : list.cart.cart_url"
+              target="_blank"
+              rel="noopener"
+              :class="allInCart ? 'btn-amazon' : 'btn-secondary btn-sm'"
+            >Open my cart</a>
           </div>
         </div>
         <p class="mt-2 text-xs text-gray-500">
-          Opens your Whole Foods cart on Amazon; tap your <RouterLink
-            to="/settings#cart-button"
-            class="underline"
-          >
-            Cookbook cart button
-          </RouterLink> there to add everything. You check out yourself.
+          Add opens that product on Whole Foods (on a phone, often in the Amazon app); add it to your cart there and come back. Checkout stays with you.
+          <template v-if="list.cart.items.length > 1">
+            On a computer with the <RouterLink
+              to="/settings#cart-button"
+              class="underline"
+            >Cookbook cart bookmark</RouterLink>, you can
+            <button
+              v-demo-lock
+              class="underline"
+              @click="sendToCart"
+            >
+              add all {{ list.cart.items.length }} at once
+            </button>.
+          </template>
         </p>
         <ul
           v-if="matches?.length"
@@ -339,7 +388,7 @@ async function done() {
               <input
                 v-demo-lock
                 type="checkbox"
-                class="mt-1 h-5 w-5 accent-herb-600"
+                class="mt-1 h-5 w-5 shrink-0 accent-herb-600"
                 :checked="i.have"
                 :title="i.have ? 'Need it after all' : 'I have this'"
                 @change="run(() => store.patchItem(i.id, { have: $event.target.checked }))"
@@ -347,7 +396,7 @@ async function done() {
               <span class="min-w-0">
                 <span
                   class="font-medium"
-                  :class="{ 'text-gray-400 line-through': i.have }"
+                  :class="{ 'text-gray-400 line-through': i.have, 'text-gray-500': i.in_cart && !i.have }"
                 >{{ i.name }}</span>
                 <span class="block text-[0.85rem] text-[#666]">
                   {{ i.amount_text }}
@@ -356,20 +405,31 @@ async function done() {
                     class="text-gray-400"
                   > · {{ i.recipe_titles.join(', ') }}</span>
                 </span>
+                <span
+                  v-if="i.product && !i.have"
+                  class="mt-0.5 block text-xs text-gray-500"
+                  :title="i.product.notes || undefined"
+                >
+                  {{ i.product.title }}<template v-if="i.product.size_text"> · {{ i.product.size_text }}</template>
+                  <template v-if="i.product.price_cents"> · {{ price(i.product.price_cents) }}</template>
+                </span>
               </span>
             </label>
             <div
               v-if="!i.have"
-              class="flex shrink-0 items-center gap-2 pl-8 sm:pl-0"
+              class="flex shrink-0 flex-wrap items-center gap-2 pl-8 sm:pl-0"
             >
-              <template v-if="i.product">
-                <a
-                  :href="session.demo ? undefined : i.product.url"
-                  target="_blank"
-                  rel="noopener"
-                  class="max-w-[14rem] truncate rounded-md bg-amazon-500/10 px-2 py-1 text-xs text-gray-800 hover:bg-amazon-500/20"
-                  :title="i.product.title + (i.product.notes ? ' — ' + i.product.notes : '')"
-                >{{ i.product.title }}<template v-if="i.product.size_text"> · {{ i.product.size_text }}</template> {{ price(i.product.price_cents) }}</a>
+              <template v-if="i.in_cart">
+                <span class="rounded-md bg-herb-100 px-2.5 py-1 text-sm font-medium text-herb-600">✓ In cart</span>
+                <button
+                  v-demo-lock
+                  class="text-xs text-gray-400 hover:text-gray-700"
+                  @click="run(() => store.patchItem(i.id, { in_cart: false }))"
+                >
+                  undo
+                </button>
+              </template>
+              <template v-else-if="i.product">
                 <select
                   v-demo-lock
                   class="input w-auto py-0.5 text-sm"
@@ -392,14 +452,17 @@ async function done() {
                 >
                   change
                 </button>
-              </template>
-              <template v-else>
                 <a
-                  :href="i.search_url"
+                  v-demo-lock
+                  :href="session.demo ? undefined : i.product.url"
                   target="_blank"
                   rel="noopener"
-                  class="btn-amazon btn-sm"
-                >Whole Foods</a>
+                  class="btn-amazon btn-sm min-w-[4.5rem] justify-center"
+                  :title="'Opens it on Whole Foods; add it to your cart there'"
+                  @click="addedToCart(i)"
+                >Add<template v-if="i.quantity > 1"> ×{{ i.quantity }}</template></a>
+              </template>
+              <template v-else>
                 <button
                   v-demo-lock
                   class="btn-ghost btn-sm"
@@ -407,6 +470,15 @@ async function done() {
                 >
                   Choose product
                 </button>
+                <a
+                  v-demo-lock
+                  :href="session.demo ? undefined : i.search_url"
+                  target="_blank"
+                  rel="noopener"
+                  class="btn btn-sm min-w-[4.5rem] border border-amazon-500 bg-white text-amazon-600 hover:bg-amazon-500/10"
+                  title="Searches Whole Foods for it; add one to your cart there"
+                  @click="addedToCart(i)"
+                >Find</a>
               </template>
               <button
                 v-if="i.source !== 'recipe'"
