@@ -105,36 +105,78 @@
 }
 
 /* Printing: while #print-area has content, print only it, one recipe per page
-   (the original site's printCookingInstructions layout). */
+   (the original site's printCookingInstructions layout). Every size is in em, so
+   lib/print.js can shrink a long recipe to fit its page by changing one font-size. */
 #print-area {
   display: none;
 }
 #print-area .recipe-page {
   max-width: 800px;
   margin: 0 auto;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #333;
 }
 #print-area h1 {
-  font-size: 1.75rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.75em;
+  line-height: 1.2;
+  margin-bottom: 0.3em;
   color: #2d5a27;
   font-weight: 700;
 }
 #print-area h2 {
-  font-size: 1.25rem;
-  margin: 1.5rem 0 1rem;
+  font-size: 1.25em;
+  margin: 1em 0 0.5em;
   color: #2d5a27;
   font-weight: 600;
 }
 #print-area .meta {
   color: #666;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
+  margin-bottom: 0.6em;
+  font-size: 0.9em;
+}
+#print-area .ingredients-table {
+  margin-bottom: 0.5em;
+  font-size: 0.95em;
 }
 #print-area .ingredients-table th,
 #print-area .ingredients-table td {
+  padding: 0.3em 0.5em;
   border-bottom: 1px solid #ddd;
 }
+#print-area .ing-compact,
+#print-area .recipe-page.compact .ing-normal {
+  display: none;
+}
+#print-area .recipe-page.compact .ing-compact {
+  display: table;
+}
+#print-area .ing-compact .pair {
+  border-left: 2px solid #bbb;
+}
+#print-area .method-steps {
+  padding-left: 1.4em;
+}
+#print-area .method-steps li {
+  margin-bottom: 0.45em;
+}
+/* lib/print.js lays the pages out off-screen at the printed width to measure them. */
+#print-area.measuring {
+  display: block;
+  position: absolute;
+  left: -10000px;
+  top: 0;
+  width: 7.5in;
+  visibility: hidden;
+}
+#print-area.measuring .recipe-page {
+  max-width: none;
+}
 @media print {
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
   body:has(#print-area:not(:empty)) {
     background: white;
     color: #333;
@@ -144,6 +186,10 @@
   }
   #print-area:not(:empty) {
     display: block;
+  }
+  #print-area .recipe-page {
+    max-width: none;
+    break-inside: avoid;
   }
   #print-area .page-break {
     break-after: page;

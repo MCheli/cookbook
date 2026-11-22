@@ -132,6 +132,8 @@ pygments==2.21.0
     # via pytest
 pyjwt==2.15.1
     # via -r requirements.in
+pypdf==6.21.4
+    # via -r requirements.in
 pyphen==0.18.1
     # via weasyprint
 pytest==9.2.0
