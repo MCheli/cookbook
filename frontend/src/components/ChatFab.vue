@@ -15,7 +15,7 @@ watch(recipeSlug, () => (threadId.value = null))
 <template>
   <button
     v-if="!open"
-    class="fixed bottom-5 right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-2xl text-white shadow-lg hover:bg-violet-700 print:hidden"
+    class="chat-fab fixed bottom-5 right-5 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-violet-600 text-2xl text-white shadow-lg hover:bg-violet-700 print:hidden"
     aria-label="Open the cooking assistant"
     title="Cooking assistant"
     @click="open = true"

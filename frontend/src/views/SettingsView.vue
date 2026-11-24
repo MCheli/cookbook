@@ -189,9 +189,7 @@ async function signOut() {
         A bookmark that, clicked on a Whole Foods product page on amazon.com, saves that product to your <RouterLink
           to="/products"
           class="underline"
-        >
-          Products
-        </RouterLink>, so your orders link straight to it. Drag it to your bookmarks bar once →
+        >Products</RouterLink>, so your orders link straight to it. Drag it to your bookmarks bar once →
         <a
           :href="bookmarklet"
           class="ml-1 inline-block rounded-md bg-amazon-500 px-3 py-1 font-medium text-white"
@@ -202,9 +200,7 @@ async function signOut() {
         On a phone, use the <strong>Whole Foods ↗</strong> button on each item of your <RouterLink
           to="/list"
           class="underline"
-        >
-          order
-        </RouterLink> instead.
+        >order</RouterLink> instead.
       </p>
     </section>
 

@@ -96,9 +96,7 @@ async function run() {
       <RouterLink
         to="/settings"
         class="font-medium text-herb-600 underline"
-      >
-        Add your key in Settings
-      </RouterLink>
+      >Add your key in Settings</RouterLink>
       to change recipes, brainstorm new ones and chat while you cook.
     </p>
   </section>

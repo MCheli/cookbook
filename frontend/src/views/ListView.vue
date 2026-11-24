@@ -153,7 +153,7 @@ async function reopen() {
 </script>
 
 <template>
-  <main class="mx-auto max-w-4xl px-4 py-6 sm:px-6">
+  <main class="mx-auto max-w-4xl px-4 pb-24 pt-6 sm:px-6">
     <div
       v-if="!list"
       class="py-12 text-center text-gray-500"
@@ -261,9 +261,7 @@ async function reopen() {
             Reopen it if you marked it placed by mistake. Every past order is in <RouterLink
               to="/history"
               class="underline"
-            >
-              History
-            </RouterLink>.
+            >History</RouterLink>.
           </p>
         </div>
       </section>
@@ -318,7 +316,7 @@ async function reopen() {
               <div class="flex shrink-0 items-center gap-1">
                 <select
                   v-demo-lock
-                  class="input w-auto py-1 text-sm"
+                  class="input min-h-9 w-auto py-1 text-sm"
                   :value="r.servings_factor"
                   aria-label="Amount"
                   @change="run(() => store.setFactor(r.recipe_id, +$event.target.value))"
@@ -487,7 +485,7 @@ async function reopen() {
             Shopping list
             <span class="text-sm font-normal text-gray-500">({{ list.counts.need }} to buy)</span>
           </h3>
-          <label class="flex items-center gap-2 text-sm text-gray-600">
+          <label class="flex min-h-9 items-center gap-2 text-sm text-gray-600">
             <input
               v-model="showHave"
               type="checkbox"
@@ -617,14 +615,14 @@ async function reopen() {
                     :href="session.demo ? undefined : i.product.search_url"
                     target="_blank"
                     rel="noopener"
-                    class="px-1.5 py-1 text-xs text-gray-500 underline"
+                    class="link-xs"
                     title="Searches Whole Foods for this product, for when its old listing is gone"
                     @click="openedPage(i)"
                   >search</a>
                   <button
                     v-if="!i.in_cart"
                     v-demo-lock
-                    class="px-1.5 py-1 text-xs text-gray-500 underline"
+                    class="link-xs"
                     @click="picking = i"
                   >
                     {{ i.product ? 'change' : 'choose product' }}
@@ -632,7 +630,7 @@ async function reopen() {
                   <button
                     v-if="!i.in_cart"
                     v-demo-lock
-                    class="px-1.5 py-1 text-xs text-gray-500 underline"
+                    class="link-xs"
                     data-test="have-it"
                     @click="run(() => store.patchItem(i.id, { have: true }))"
                   >
@@ -645,13 +643,14 @@ async function reopen() {
         </section>
       </template>
 
+      <!-- On a phone the item name takes its own line, so the hints aren't cut off. -->
       <form
         class="card mb-5 flex flex-wrap gap-2"
         @submit.prevent="addItem"
       >
         <input
           v-model="newItem.name"
-          class="input min-w-[10rem] flex-[2]"
+          class="input basis-full sm:flex-[2]"
           placeholder="Add an item (paper towels, bananas…)"
           aria-label="Item"
         >

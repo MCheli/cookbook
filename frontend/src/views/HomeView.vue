@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref, watch } from 'vue'
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { api, errorMessage, methods } from '@/api'
 import { useSession } from '@/stores/session'
@@ -43,6 +43,9 @@ async function load() {
 onMounted(load)
 watch(scope, load)
 watch(selected, (s) => sessionStorage.setItem('cookbook-selected', JSON.stringify([...s])), { deep: true })
+// While the bottom bar is up on a phone, the assistant button (App-level) moves above it.
+watch(() => selected.value.size > 0, (open) => document.documentElement.classList.toggle('selection-bar-open', open), { immediate: true })
+onUnmounted(() => document.documentElement.classList.remove('selection-bar-open'))
 
 const tags = computed(() => {
   const counts = {}
@@ -230,7 +233,7 @@ async function addToOrder() {
     <!-- On a phone the buttons above scroll away: keep the next step at the bottom of the screen. -->
     <div
       v-if="selected.size"
-      class="fixed inset-x-0 bottom-0 z-20 border-t bg-white/95 px-4 py-3 pr-24 shadow-[0_-2px_8px_rgba(0,0,0,0.08)] backdrop-blur safe-bottom md:hidden print:hidden"
+      class="fixed inset-x-0 bottom-0 z-20 border-t bg-white/95 px-4 py-3 shadow-[0_-2px_8px_rgba(0,0,0,0.08)] backdrop-blur safe-bottom md:hidden print:hidden"
       data-test="selection-bar"
     >
       <div class="flex items-center gap-2">

@@ -16,16 +16,22 @@ onMounted(async () => {
 })
 
 async function load(l) {
+  // null while loading (the button shows it's getting ready); older orders load on a tap.
+  printable.value = { ...printable.value, [l.id]: null }
+  // Fetch first, merge after: the loads run side by side, and a spread taken before the await
+  // would hold a stale copy that drops the orders finished in the meantime.
+  let recipes
   try {
-    printable.value = { ...printable.value, [l.id]: (await api.get(`/lists/${l.id}/print`)).data }
+    recipes = (await api.get(`/lists/${l.id}/print`)).data
   } catch {
-    printable.value = { ...printable.value, [l.id]: [] }
+    recipes = []
   }
+  printable.value = { ...printable.value, [l.id]: recipes }
 }
 </script>
 
 <template>
-  <main class="mx-auto grid max-w-5xl gap-6 px-4 py-6 sm:px-6 md:grid-cols-2">
+  <main class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 pt-6 sm:px-6 md:grid-cols-2">
     <section>
       <h2 class="mb-3 text-xl font-semibold text-herb-600">
         Cooked
@@ -115,12 +121,12 @@ async function load(l) {
             class="mt-2"
           >
             <button
-              v-if="printable[l.id]"
+              v-if="printable[l.id] !== undefined"
               class="btn-secondary btn-sm"
-              :disabled="!printable[l.id].length"
+              :disabled="!printable[l.id]?.length"
               @click="printRecipes(printable[l.id])"
             >
-              Print recipes
+              {{ printable[l.id] ? 'Print recipes' : 'Getting recipes ready…' }}
             </button>
             <button
               v-else
