@@ -44,7 +44,7 @@ watch(
   printKey,
   async (key) => {
     printable.value = null
-    if (!key || session.demo) return
+    if (!key) return
     try {
       const data = (await api.get('/lists/current/print')).data
       if (key === printKey.value) printable.value = data
@@ -58,7 +58,7 @@ watch(
   () => (empty.value ? lastOrder.value?.id : null),
   async (id) => {
     lastPrintable.value = null
-    if (!id || session.demo) return
+    if (!id) return
     try {
       lastPrintable.value = (await api.get(`/lists/${id}/print`)).data
     } catch {

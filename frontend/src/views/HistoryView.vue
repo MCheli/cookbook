@@ -32,7 +32,7 @@ async function load(l) {
 
 <template>
   <main class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 pt-6 sm:px-6 md:grid-cols-2">
-    <section>
+    <section class="order-2 md:order-1">
       <h2 class="mb-3 text-xl font-semibold text-herb-600">
         Cooked
       </h2>
@@ -70,7 +70,7 @@ async function load(l) {
         </li>
       </ul>
     </section>
-    <section>
+    <section class="order-1 md:order-2">
       <h2 class="mb-3 text-xl font-semibold text-herb-600">
         Past orders
       </h2>

@@ -428,7 +428,7 @@ async function publish(visibility) {
           </span>
           <input
             v-model="logForm.notes"
-            class="input flex-1"
+            class="input min-w-0 basis-full sm:basis-auto sm:flex-1"
             placeholder="Notes for next time (optional)"
           >
           <button
