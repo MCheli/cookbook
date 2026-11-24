@@ -5,7 +5,11 @@ import { methods } from '@/api'
  * Print cooking instructions from this page, not a pop-up: an iPhone Home Screen web app has no
  * pop-up windows. The layout is the original site's: title, meta line, ingredients table,
  * numbered steps, one recipe per page. Each recipe is fitted to its page first (fitToPages).
- * #print-area is emptied once the print dialog closes.
+ *
+ * Call it straight from the tap, with the recipes already loaded: iOS ignores window.print()
+ * once the page has waited on the network after the tap. iOS also returns from print() and may
+ * fire afterprint before its print sheet has drawn the page, so #print-area is left filled (it is
+ * hidden on screen) and emptied on the next navigation instead (clearPrintArea).
  */
 export function printRecipes(recipes) {
   const area = document.getElementById('print-area')
@@ -47,12 +51,13 @@ export function printRecipes(recipes) {
     })
     .join('')
   fitToPages(area)
-  const clear = () => {
-    area.innerHTML = ''
-    window.removeEventListener('afterprint', clear)
-  }
-  window.addEventListener('afterprint', clear)
   window.print()
+}
+
+/** Empty #print-area, so a later print from the browser's own menu prints the page shown. */
+export function clearPrintArea() {
+  const area = document.getElementById('print-area')
+  if (area) area.innerHTML = ''
 }
 
 // The printable area of a US Letter page with the 0.5in margins in main.css, in CSS px (96/in).

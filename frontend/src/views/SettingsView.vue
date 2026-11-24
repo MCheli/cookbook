@@ -183,30 +183,28 @@ async function signOut() {
       class="card space-y-3"
     >
       <h3 class="font-semibold">
-        Add everything at once (computer, optional)
+        Save products from Whole Foods (computer, optional)
       </h3>
       <p class="text-sm text-gray-600">
-        The <strong>Add</strong> buttons on <RouterLink
+        A bookmark that, clicked on a Whole Foods product page on amazon.com, saves that product to your <RouterLink
+          to="/products"
+          class="underline"
+        >
+          Products
+        </RouterLink>, so your orders link straight to it. Drag it to your bookmarks bar once →
+        <a
+          :href="bookmarklet"
+          class="ml-1 inline-block rounded-md bg-amazon-500 px-3 py-1 font-medium text-white"
+          @click.prevent="toast('Drag it to your bookmarks bar instead of clicking it.')"
+        >Save to Cookbook</a>
+      </p>
+      <p class="text-xs text-gray-500">
+        On a phone, use the <strong>Whole Foods ↗</strong> button on each item of your <RouterLink
           to="/list"
           class="underline"
         >
-          This week
-        </RouterLink> work anywhere, phone included. On a computer you can skip the tapping with a bookmark: it runs on Amazon, in your own signed-in browser, adds everything you haven't added yet and sets the quantities. Amazon has no way for other sites to fill a Whole Foods cart, which is why it's a bookmark. It never checks out.
-      </p>
-      <ol class="list-decimal space-y-1 pl-5 text-sm text-gray-700">
-        <li>
-          Drag this to your bookmarks bar, once →
-          <a
-            :href="bookmarklet"
-            class="ml-1 inline-block rounded-md bg-amazon-500 px-3 py-1 font-medium text-white"
-            @click.prevent="toast('Drag it to your bookmarks bar instead of clicking it.')"
-          >Cookbook cart</a>
-        </li>
-        <li>On <em>This week</em>, click <strong>add all at once</strong>. Your Whole Foods cart opens on Amazon.</li>
-        <li>Click the <strong>Cookbook cart</strong> bookmark on that page and wait a minute or two. Then <strong>Tick them off in Cookbook</strong> marks them done on your list.</li>
-      </ol>
-      <p class="text-xs text-gray-500">
-        Clicked on a Whole Foods product page instead, the bookmark saves that product to your products.
+          order
+        </RouterLink> instead.
       </p>
     </section>
 
@@ -215,7 +213,7 @@ async function signOut() {
         API keys for agents
       </h3>
       <p class="text-sm text-gray-600">
-        Let an agent (like a Claude session) read this week's cart or record purchases, with the <code>X-API-Key</code> header.
+        Let an agent (like a Claude session) read the current order's cart or record purchases, with the <code>X-API-Key</code> header.
       </p>
       <ul
         v-if="apiKeys.length"

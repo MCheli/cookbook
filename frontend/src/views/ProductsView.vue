@@ -86,7 +86,7 @@ async function remove(p) {
           Your Whole Foods products
         </h2>
         <p class="text-sm text-gray-600">
-          What you usually buy for each ingredient. Lists match these automatically; regulars are the extras you add every week.
+          What you usually buy for each ingredient. Orders match these automatically; regulars are the extras you add to most orders.
         </p>
       </div>
       <button
@@ -148,7 +148,7 @@ async function remove(p) {
           v-model="adding.is_regular"
           type="checkbox"
           class="accent-herb-600"
-        > A weekly regular
+        > A regular
       </label>
       <div class="flex gap-2">
         <button
@@ -216,7 +216,7 @@ async function remove(p) {
               v-model="editing.is_regular"
               type="checkbox"
               class="accent-herb-600"
-            > Weekly regular</label>
+            > Regular</label>
             <label
               v-if="editing.is_regular"
               class="flex items-center gap-1.5 text-sm"

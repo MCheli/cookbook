@@ -58,7 +58,7 @@ const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list
         > Cookbook
       </RouterLink>
       <h1 class="relative mt-8 max-w-xl text-3xl font-bold leading-tight md:mt-14 md:text-4xl">
-        Your recipes, this week's groceries, and a sous-chef that knows both.
+        Your recipes, your grocery orders, and a sous-chef that knows both.
       </h1>
       <p class="relative mt-4 max-w-xl text-white/80">
         Pick a few dinners and get one combined list, matched to the Whole Foods products you actually buy.

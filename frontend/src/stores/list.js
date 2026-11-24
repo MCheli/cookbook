@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { api } from '@/api'
 
-/** This week's shopping list (signed in), shared by the header badge and the list page. */
+/** The current order (signed in), shared by the header badge and the order page. */
 export const useList = defineStore('list', {
   state: () => ({ list: null, loading: false }),
   getters: {
@@ -40,6 +40,9 @@ export const useList = defineStore('list', {
     },
     async complete() {
       this.list = (await api.post('/lists/current/complete')).data
+    },
+    async reopen(listId) {
+      this.list = (await api.post(`/lists/${listId}/reopen`)).data
     },
     async clear() {
       this.list = (await api.post('/lists/current/clear')).data

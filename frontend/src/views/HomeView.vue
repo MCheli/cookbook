@@ -77,7 +77,7 @@ function groceryList() {
   router.push({ name: 'grocery', query: { r: [...selected.value].join(',') } })
 }
 
-async function addToWeek() {
+async function addToOrder() {
   busy.value = true
   try {
     for (const slug of selected.value) {
@@ -119,9 +119,9 @@ async function addToWeek() {
             v-demo-lock
             class="btn-primary flex-1 sm:flex-none"
             :disabled="!selected.size || busy"
-            @click="addToWeek"
+            @click="addToOrder"
           >
-            Add to this week ({{ selected.size }})
+            Add to order ({{ selected.size }})
           </button>
           <button
             class="flex-1 sm:flex-none"
@@ -222,6 +222,41 @@ async function addToWeek() {
           @toggle="toggle"
         />
       </div>
+      <div
+        v-if="selected.size"
+        class="h-20 md:hidden"
+      />
     </main>
+    <!-- On a phone the buttons above scroll away: keep the next step at the bottom of the screen. -->
+    <div
+      v-if="selected.size"
+      class="fixed inset-x-0 bottom-0 z-20 border-t bg-white/95 px-4 py-3 pr-24 shadow-[0_-2px_8px_rgba(0,0,0,0.08)] backdrop-blur safe-bottom md:hidden print:hidden"
+      data-test="selection-bar"
+    >
+      <div class="flex items-center gap-2">
+        <button
+          class="btn-secondary btn-sm"
+          @click="clear"
+        >
+          Clear
+        </button>
+        <button
+          v-if="session.signedIn"
+          v-demo-lock
+          class="btn-primary flex-1"
+          :disabled="busy"
+          @click="addToOrder"
+        >
+          Add to order ({{ selected.size }})
+        </button>
+        <button
+          v-else
+          class="btn-primary flex-1"
+          @click="groceryList"
+        >
+          Grocery list ({{ selected.size }})
+        </button>
+      </div>
+    </div>
   </div>
 </template>

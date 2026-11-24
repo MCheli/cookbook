@@ -246,12 +246,34 @@ async def delete_list_item(
 
 @router.post("/lists/current/complete")
 async def complete_list(db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)):
-    """Mark this week's list as ordered and start a fresh one."""
+    """The order was placed: move it to history and start a fresh, empty one."""
     lst = await lists_svc.current_list(db, user)
+    if lists_svc.is_empty(lst):
+        raise HTTPException(status.HTTP_409_CONFLICT, "This order is empty.")
     lst.status, lst.ordered_at = "ordered", datetime.now(UTC)
     await db.flush()
     fresh = await lists_svc.current_list(db, user)
     return await lists_svc.serialize(db, fresh, user)
+
+
+@router.post("/lists/{list_id}/reopen")
+async def reopen_list(
+    list_id: UUID, db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)
+):
+    """Undo "I placed this order": make a past order current again, if the new one is still empty."""
+    old = await db.get(ShoppingList, list_id)
+    if old is None or old.user_id != user.id or old.status != "ordered":
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Order not found")
+    current = await lists_svc.current_list(db, user)
+    if not lists_svc.is_empty(current):
+        raise HTTPException(
+            status.HTTP_409_CONFLICT,
+            "Your current order already has things in it, so this one can't be reopened.",
+        )
+    await db.delete(current)
+    old.status, old.ordered_at = "active", None
+    await db.flush()
+    return await _list_response(db, old, user)
 
 
 @router.post("/lists/current/clear")
@@ -262,26 +284,58 @@ async def clear_list(db: AsyncSession = Depends(get_db), user: User = Depends(ge
     return await _list_response(db, lst, user)
 
 
+@router.get("/lists/{list_id}/print")
+async def list_print(
+    list_id: str, db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)
+):
+    """Every recipe of an order (current or past) in full, scaled factor included, so the page can
+    print them straight from the tap (an iPhone won't print after waiting on the network)."""
+    if list_id == "current":
+        lst = await lists_svc.current_list(db, user)
+    else:
+        try:
+            lst = await db.get(ShoppingList, UUID(list_id))
+        except ValueError:
+            lst = None
+        if lst is None or lst.user_id != user.id:
+            raise HTTPException(status.HTTP_404_NOT_FOUND, "Order not found")
+    ids = [r.recipe_id for r in lst.recipes]
+    found = (
+        {r.id: r for r in await db.scalars(select(Recipe).where(Recipe.id.in_(ids)))} if ids else {}
+    )
+    out = []
+    for r in lst.recipes:
+        recipe = found.get(r.recipe_id)
+        if recipe is None or not recipes_svc.can_view(recipe, user):
+            continue
+        data = recipes_svc.detail(
+            recipe, user, owner_name=None, parent=None, variants=[], saved=False
+        )
+        data["factor"] = r.servings_factor
+        out.append(data)
+    return out
+
+
 @router.get("/lists/history")
 async def list_history(db: AsyncSession = Depends(get_db), user: User = Depends(get_current_user)):
     rows = await db.scalars(
         select(ShoppingList)
         .where(ShoppingList.user_id == user.id, ShoppingList.status == "ordered")
-        .order_by(ShoppingList.ordered_at.desc())
+        .order_by(ShoppingList.ordered_at.desc().nulls_last())
         .limit(30)
     )
     out = []
     for lst in rows:
-        ids = [r.recipe_id for r in lst.recipes]
-        titles = (
-            list(await db.scalars(select(Recipe.title).where(Recipe.id.in_(ids)))) if ids else []
-        )
+        recipes = await lists_svc.order_recipes(db, lst)
         out.append(
             {
                 "id": str(lst.id),
                 "title": lst.title,
+                "created_at": lst.created_at.isoformat() if lst.created_at else None,
                 "ordered_at": lst.ordered_at.isoformat() if lst.ordered_at else None,
-                "recipes": titles,
+                # Titles kept for older clients and agents; recipe_list has slugs and factors.
+                "recipes": [r["title"] for r in recipes],
+                "recipe_list": recipes,
                 "items": len(lst.items),
             }
         )

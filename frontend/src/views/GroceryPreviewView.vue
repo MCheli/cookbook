@@ -120,7 +120,7 @@ async function print() {
           >
             Sign in
           </RouterLink>
-          to keep a weekly list, remember your usual Whole Foods products and fill your cart in one go.
+          to keep a running grocery order, remember your usual Whole Foods products and fill your cart in one go.
         </p>
       </template>
     </div>

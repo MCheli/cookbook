@@ -56,6 +56,11 @@ async def test_pdf_renders():
             "/api/recipes/pdf?slugs=pasta-with-sausage-cream-sauce,garlic-butter-shrimp"
         )
         assert r.status_code == 200 and r.content[:4] == b"%PDF"
+        both = "slugs=pasta-with-sausage-cream-sauce,garlic-butter-shrimp"
+        r = await c.get(f"/api/recipes/pdf?{both}&factors=2,1")
+        assert r.status_code == 200 and r.content[:4] == b"%PDF"
+        assert (await c.get(f"/api/recipes/pdf?{both}&factors=2")).status_code == 400
+        assert (await c.get(f"/api/recipes/pdf?{both}&factors=2,x")).status_code == 400
 
 
 async def test_only_owners_publish_and_private_recipes_stay_private():
@@ -309,3 +314,62 @@ async def test_lines_pick_up_products_learned_later():
         lst = (await c.get("/api/lists/current")).json()
         cream = next(i for a in lst["aisles"] for i in a["items"] if i["key"] == "heavy cream")
         assert cream["product"]["asin"] == "B0BKM1W82J"
+
+
+async def test_orders_close_when_placed_and_a_second_order_starts_fresh():
+    user = await make_user("cook@test.local")
+    async with client_for(user) as c:
+        pasta = (await c.get("/api/recipes/pasta-with-sausage-cream-sauce")).json()
+        shrimp = (await c.get("/api/recipes/garlic-butter-shrimp")).json()
+        first = (await c.get("/api/lists/current")).json()
+        assert first["title"].startswith("Order started") and first["last_order"] is None
+        # Nothing to place yet.
+        assert (await c.post("/api/lists/current/complete")).status_code == 409
+
+        await c.post(
+            "/api/lists/current/recipes", json={"recipe_id": pasta["id"], "servings_factor": 2}
+        )
+        printable = (await c.get("/api/lists/current/print")).json()
+        assert [p["slug"] for p in printable] == [pasta["slug"]] and printable[0]["factor"] == 2
+        assert printable[0]["ingredients"] and printable[0]["steps"]
+
+        fresh = (await c.post("/api/lists/current/complete")).json()
+        assert (
+            fresh["id"] != first["id"] and fresh["recipes"] == [] and fresh["counts"]["total"] == 0
+        )
+        assert fresh["last_order"]["id"] == first["id"]
+        assert fresh["last_order"]["recipes"][0]["slug"] == pasta["slug"]
+        # The placed order still prints from history.
+        old = (await c.get(f"/api/lists/{first['id']}/print")).json()
+        assert old[0]["factor"] == 2
+
+        # Undo while the new order is still empty.
+        back = (await c.post(f"/api/lists/{first['id']}/reopen")).json()
+        assert back["id"] == first["id"] and back["status"] == "active"
+        assert (await c.get("/api/lists/history")).json() == []
+
+        # Place it again, then a second order the same day.
+        await c.post("/api/lists/current/complete")
+        await c.post("/api/lists/current/recipes", json={"recipe_id": shrimp["id"]})
+        second = (await c.get("/api/lists/current")).json()
+        assert [r["slug"] for r in second["recipes"]] == [shrimp["slug"]]
+        # A past order can't be reopened over one that has things in it.
+        assert (await c.post(f"/api/lists/{first['id']}/reopen")).status_code == 409
+        await c.post("/api/lists/current/complete")
+        history = (await c.get("/api/lists/history")).json()
+        assert [h["recipe_list"][0]["slug"] for h in history] == [shrimp["slug"], pasta["slug"]]
+        assert history[1]["recipes"] == [pasta["title"]]
+
+
+async def test_orders_belong_to_their_cook():
+    cook = await make_user("cook@test.local")
+    other = await make_user("other@test.local")
+    async with client_for(cook) as c:
+        pasta = (await c.get("/api/recipes/pasta-with-sausage-cream-sauce")).json()
+        await c.post("/api/lists/current/recipes", json={"recipe_id": pasta["id"]})
+        lst = (await c.get("/api/lists/current")).json()
+        await c.post("/api/lists/current/complete")
+    async with client_for(other) as c:
+        assert (await c.get(f"/api/lists/{lst['id']}/print")).status_code == 404
+        assert (await c.post(f"/api/lists/{lst['id']}/reopen")).status_code == 404
+        assert (await c.get("/api/lists/not-a-uuid/print")).status_code == 404
