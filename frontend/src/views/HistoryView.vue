@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { api } from '@/api'
 import { shortDate } from '@/lib/format'
 import { printRecipes } from '@/lib/print'
+import { pdfUrlFor, preparePdf } from '@/lib/pdfShare'
 
 const lists = ref([])
 const cooked = ref([])
@@ -23,6 +24,7 @@ async function load(l) {
   let recipes
   try {
     recipes = (await api.get(`/lists/${l.id}/print`)).data
+    preparePdf(pdfUrlFor(recipes)) // the Home Screen app shares this PDF instead of printing
   } catch {
     recipes = []
   }

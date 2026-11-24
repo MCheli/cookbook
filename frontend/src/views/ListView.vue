@@ -6,6 +6,7 @@ import { useSession } from '@/stores/session'
 import ProductPicker from '@/components/ProductPicker.vue'
 import { FACTORS, price, shortDate } from '@/lib/format'
 import { printRecipes } from '@/lib/print'
+import { inHomeScreenApp, pdfUrlFor, preparePdf } from '@/lib/pdfShare'
 import { toast } from '@/lib/toast'
 
 const store = useList()
@@ -33,11 +34,9 @@ const empty = computed(() => !!list.value && !list.value.recipes.length && !list
 const lastOrder = computed(() => list.value?.last_order ?? null)
 const allInCart = computed(() => !!list.value?.counts.need && list.value.counts.in_cart >= list.value.counts.need)
 const visibleAisles = computed(() => (list.value?.aisles ?? []).filter((a) => showHave.value || a.items.some((i) => !i.have)))
-const pdfUrl = computed(() => {
-  const rs = list.value?.recipes ?? []
-  if (!rs.length) return null
-  return `/api/recipes/pdf?slugs=${rs.map((r) => r.slug).join(',')}&factors=${rs.map((r) => r.servings_factor).join(',')}`
-})
+const pdfUrl = computed(() => pdfUrlFor(list.value?.recipes))
+// In the iPhone Home Screen app, Print shares the PDF (Print, Save to Files), so one button does both.
+const homeScreen = inHomeScreenApp()
 
 const printKey = computed(() => (list.value?.recipes ?? []).map((r) => `${r.slug}*${r.servings_factor}`).join(','))
 watch(
@@ -45,6 +44,7 @@ watch(
   async (key) => {
     printable.value = null
     if (!key) return
+    preparePdf(pdfUrl.value)
     try {
       const data = (await api.get('/lists/current/print')).data
       if (key === printKey.value) printable.value = data
@@ -59,6 +59,7 @@ watch(
   async (id) => {
     lastPrintable.value = null
     if (!id) return
+    preparePdf(pdfUrlFor(lastOrder.value?.recipes))
     try {
       lastPrintable.value = (await api.get(`/lists/${id}/print`)).data
     } catch {
@@ -350,10 +351,10 @@ async function reopen() {
               :disabled="!printable?.length"
               @click="print"
             >
-              {{ printable ? 'Print recipes' : 'Getting recipes ready…' }}
+              {{ printable ? (homeScreen ? 'Print or save' : 'Print recipes') : 'Getting recipes ready…' }}
             </button>
             <a
-              v-if="pdfUrl"
+              v-if="pdfUrl && !homeScreen"
               :href="pdfUrl"
               target="_blank"
               rel="noopener"
