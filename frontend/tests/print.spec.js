@@ -46,3 +46,16 @@ describe('printing', () => {
     expect(area.classList.contains('measuring')).toBe(false)
   })
 })
+
+describe('print area', () => {
+  it('stays filled after print() and empties on clearPrintArea', async () => {
+    const { clearPrintArea } = await import('../src/lib/print')
+    document.body.innerHTML = '<div id="print-area"></div>'
+    window.print = vi.fn()
+    printRecipes([recipe(3)])
+    window.dispatchEvent(new Event('afterprint'))
+    expect(document.querySelectorAll('#print-area .recipe-page')).toHaveLength(1)
+    clearPrintArea()
+    expect(document.getElementById('print-area').innerHTML).toBe('')
+  })
+})

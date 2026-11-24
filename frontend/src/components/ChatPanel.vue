@@ -71,7 +71,7 @@ async function send(message) {
     >
       <template v-if="!thread?.messages?.length">
         <p class="text-sm text-gray-600">
-          Ask about a recipe, plan the week, or have it write something new. It can search your cookbook, save drafts and update this week's list.
+          Ask about a recipe, plan the week, or have it write something new. It can search your cookbook, save drafts and update your current order.
           <span v-if="recipeSlug"> It can see the recipe you're on.</span>
         </p>
         <div class="flex flex-wrap gap-1.5">

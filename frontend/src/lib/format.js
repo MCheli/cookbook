@@ -59,3 +59,12 @@ export function price(cents) {
 }
 
 export const FACTORS = [0.5, 1, 1.5, 2, 3]
+
+/** '2026-11-22T…' → 'Nov 22' (adds the year when it isn't this year). */
+export function shortDate(iso) {
+  if (!iso) return ''
+  const d = new Date(iso)
+  const opts = { month: 'short', day: 'numeric' }
+  if (d.getFullYear() !== new Date().getFullYear()) opts.year = 'numeric'
+  return d.toLocaleDateString('en-US', opts)
+}

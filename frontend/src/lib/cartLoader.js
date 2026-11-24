@@ -3,7 +3,8 @@
  * session. Amazon has no API for the Whole Foods cart, so this does what a person would do: open
  * each product's Whole Foods page (in a hidden frame on amazon.com) and press its add button.
  *
- * - On the cart page opened by "add all at once", it reads the ASINs from the URL fragment
+ * - On the cart page opened at the cart manifest's loader_url (no longer linked from the app; agents
+ *   may still use it), it reads the ASINs from the URL fragment
  *   (#cookbook-cart=ASIN*qty,...), which never leaves the browser. It skips what's already in the
  *   cart, adds the rest, then presses the cart's + button until each quantity is right.
  * - On a product page, it opens the cookbook's "save product" form for that ASIN instead.
@@ -14,7 +15,7 @@
 function loader(SITE) {
   const BRAND = 'VUZHIFdob2xlIEZvb2Rz'
   if (!/(^|\.)amazon\.com$/.test(location.hostname)) {
-    alert('Open this on amazon.com (the Whole Foods cart page your cookbook sends you to).')
+    alert('Open this on a Whole Foods product page on amazon.com to save it to your Cookbook products.')
     return
   }
   const hash = location.hash.match(/cookbook-cart=([^&]+)/)
@@ -27,7 +28,7 @@ function loader(SITE) {
     return
   }
   if (!hash) {
-    alert('On your Cookbook list, click "add all at once" first; it opens this page with the items.')
+    alert('Open this on a Whole Foods product page to save it to your Cookbook products.')
     return
   }
   const items = decodeURIComponent(hash[1])

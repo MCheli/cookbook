@@ -1,4 +1,7 @@
-"""The shopping list: recipes for the week, combined lines, products, and the Whole Foods cart.
+"""The current order: its recipes, combined lines, products, and the Whole Foods cart.
+
+One order is active at a time. Marking it placed (complete) moves it to history and the next
+request starts a fresh, empty one, however soon that is; an order isn't tied to a week.
 
 Recipe lines are rebuilt from the list's recipes whenever they change. What the user decided about
 a line (have it, which product, how many) is stored on the line and keyed by the ingredient key,
@@ -40,7 +43,9 @@ async def current_list(db: AsyncSession, user: User) -> ShoppingList:
     )
     if lst is None:
         lst = ShoppingList(
-            user_id=user.id, title=f"Week of {date.today():%b} {date.today().day}", status="active"
+            user_id=user.id,
+            title=f"Order started {date.today():%b} {date.today().day}",
+            status="active",
         )
         db.add(lst)
         await db.flush()
@@ -196,6 +201,9 @@ async def serialize(db: AsyncSession, lst: ShoppingList, user: User) -> dict:
         "id": str(lst.id),
         "title": lst.title,
         "status": lst.status,
+        "created_at": lst.created_at.isoformat() if lst.created_at else None,
+        "ordered_at": lst.ordered_at.isoformat() if lst.ordered_at else None,
+        "last_order": await last_order(db, user) if lst.status == "active" else None,
         "recipes": [
             {
                 "recipe_id": str(r.recipe_id),
@@ -218,6 +226,47 @@ async def serialize(db: AsyncSession, lst: ShoppingList, user: User) -> dict:
         },
         "cart": cart_manifest(lst, products),
     }
+
+
+async def order_recipes(db: AsyncSession, lst: ShoppingList) -> list[dict]:
+    """The order's recipes, in order, with their scale factors (for history and printing)."""
+    ids = [r.recipe_id for r in lst.recipes]
+    found = (
+        {r.id: r for r in await db.scalars(select(Recipe).where(Recipe.id.in_(ids)))} if ids else {}
+    )
+    return [
+        {
+            "recipe_id": str(r.recipe_id),
+            "slug": found[r.recipe_id].slug,
+            "title": found[r.recipe_id].title,
+            "emoji": found[r.recipe_id].emoji,
+            "servings_factor": r.servings_factor,
+        }
+        for r in lst.recipes
+        if r.recipe_id in found
+    ]
+
+
+async def last_order(db: AsyncSession, user: User) -> dict | None:
+    """The most recently placed order, so a fresh order can still print what's being cooked."""
+    lst = await db.scalar(
+        select(ShoppingList)
+        .where(ShoppingList.user_id == user.id, ShoppingList.status == "ordered")
+        .order_by(ShoppingList.ordered_at.desc().nulls_last())
+        .limit(1)
+    )
+    if lst is None:
+        return None
+    return {
+        "id": str(lst.id),
+        "ordered_at": lst.ordered_at.isoformat() if lst.ordered_at else None,
+        "recipes": await order_recipes(db, lst),
+        "items": len(lst.items),
+    }
+
+
+def is_empty(lst: ShoppingList) -> bool:
+    return not lst.recipes and not lst.items
 
 
 def cart_manifest(lst: ShoppingList, products: dict[UUID, Product]) -> dict:

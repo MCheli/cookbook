@@ -11,7 +11,7 @@ const open = ref(false)
 
 const links = [
   { to: '/', label: 'Recipes', name: 'home' },
-  { to: '/list', label: 'This week', name: 'list', badge: true },
+  { to: '/list', label: 'Order', name: 'list', badge: true },
   { to: '/new', label: 'New recipe', name: 'new' },
   { to: '/chat', label: 'Chat', name: 'chat' },
   { to: '/products', label: 'Products', name: 'products' },

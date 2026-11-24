@@ -1,19 +1,38 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { api } from '@/api'
+import { shortDate } from '@/lib/format'
+import { printRecipes } from '@/lib/print'
 
 const lists = ref([])
 const cooked = ref([])
+// Each order's full recipes, loaded ahead of the tap: an iPhone only prints straight from it.
+const printable = ref({})
 onMounted(async () => {
   const [a, b] = await Promise.all([api.get('/lists/history'), api.get('/cooklog')])
   lists.value = a.data
   cooked.value = b.data
+  for (const l of lists.value.filter((x) => x.recipe_list.length).slice(0, 10)) load(l)
 })
+
+async function load(l) {
+  // null while loading (the button shows it's getting ready); older orders load on a tap.
+  printable.value = { ...printable.value, [l.id]: null }
+  // Fetch first, merge after: the loads run side by side, and a spread taken before the await
+  // would hold a stale copy that drops the orders finished in the meantime.
+  let recipes
+  try {
+    recipes = (await api.get(`/lists/${l.id}/print`)).data
+  } catch {
+    recipes = []
+  }
+  printable.value = { ...printable.value, [l.id]: recipes }
+}
 </script>
 
 <template>
-  <main class="mx-auto grid max-w-5xl gap-6 px-4 py-6 sm:px-6 md:grid-cols-2">
-    <section>
+  <main class="mx-auto grid max-w-5xl gap-6 px-4 pb-24 pt-6 sm:px-6 md:grid-cols-2">
+    <section class="order-2 md:order-1">
       <h2 class="mb-3 text-xl font-semibold text-herb-600">
         Cooked
       </h2>
@@ -51,15 +70,15 @@ onMounted(async () => {
         </li>
       </ul>
     </section>
-    <section>
+    <section class="order-1 md:order-2">
       <h2 class="mb-3 text-xl font-semibold text-herb-600">
-        Past lists
+        Past orders
       </h2>
       <p
         v-if="!lists.length"
         class="card text-sm text-gray-600"
       >
-        Lists you finish with “Done shopping” show up here.
+        Orders you mark placed (“I placed this order”) show up here, with their recipes ready to print.
       </p>
       <ul
         v-else
@@ -68,14 +87,54 @@ onMounted(async () => {
         <li
           v-for="l in lists"
           :key="l.id"
-          class="py-2"
+          class="py-3"
+          data-test="past-order"
         >
-          <div class="flex items-center justify-between">
-            <span class="font-medium">{{ l.title }}</span>
+          <div class="flex items-center justify-between gap-2">
+            <span class="font-medium">Placed {{ shortDate(l.ordered_at) }}</span>
             <span class="text-sm text-gray-500">{{ l.items }} items</span>
           </div>
           <div class="text-sm text-gray-600">
-            {{ l.recipes.join(' · ') || 'No recipes' }}
+            <template v-if="l.recipe_list.length">
+              <template
+                v-for="(r, n) in l.recipe_list"
+                :key="r.recipe_id"
+              >
+                <RouterLink
+                  :to="`/r/${r.slug}`"
+                  class="hover:underline"
+                >
+                  {{ r.emoji }} {{ r.title }}<template v-if="r.servings_factor !== 1">
+                    (×{{ r.servings_factor }})
+                  </template>
+                </RouterLink><template v-if="n < l.recipe_list.length - 1">
+                  ·
+                </template>
+              </template>
+            </template>
+            <template v-else>
+              No recipes
+            </template>
+          </div>
+          <div
+            v-if="l.recipe_list.length"
+            class="mt-2"
+          >
+            <button
+              v-if="printable[l.id] !== undefined"
+              class="btn-secondary btn-sm"
+              :disabled="!printable[l.id]?.length"
+              @click="printRecipes(printable[l.id])"
+            >
+              {{ printable[l.id] ? 'Print recipes' : 'Getting recipes ready…' }}
+            </button>
+            <button
+              v-else
+              class="btn-ghost btn-sm"
+              @click="load(l)"
+            >
+              Get recipes ready to print
+            </button>
           </div>
         </li>
       </ul>

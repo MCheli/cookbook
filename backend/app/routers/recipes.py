@@ -121,14 +121,28 @@ async def list_tags(
 async def recipes_pdf(
     slugs: str,
     factor: float = Query(1.0, ge=0.25, le=8),
+    factors: str | None = None,
     db: AsyncSession = Depends(get_db),
     viewer: User | None = Depends(get_optional_user),
 ) -> Response:
-    """One PDF, one recipe per page: what the grocery skill prints for the week."""
+    """One PDF, one recipe per page: what the grocery skill prints for an order. `factors`
+    (comma-separated, one per slug) scales each recipe on its own; `factor` scales them all."""
     wanted = [s for s in slugs.split(",") if s][:20]
     if not wanted:
         raise HTTPException(status.HTTP_400_BAD_REQUEST, "No recipes named")
-    markdowns = [_scaled_markdown(await svc.get_visible(db, s, viewer), factor) for s in wanted]
+    each = [factor] * len(wanted)
+    if factors:
+        try:
+            given = [float(f) for f in factors.split(",")]
+        except ValueError:
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, "Bad factors") from None
+        if len(given) != len(wanted) or not all(0.25 <= f <= 8 for f in given):
+            raise HTTPException(status.HTTP_400_BAD_REQUEST, "Bad factors")
+        each = given
+    markdowns = [
+        _scaled_markdown(await svc.get_visible(db, s, viewer), f)
+        for s, f in zip(wanted, each, strict=True)
+    ]
     return Response(
         render_pdf(markdowns),
         media_type="application/pdf",

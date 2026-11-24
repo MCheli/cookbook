@@ -38,7 +38,12 @@
     @apply btn bg-amazon-500 text-white hover:bg-amazon-600;
   }
   .btn-sm {
-    @apply px-2.5 py-1 text-sm;
+    /* Small to look at, but still a finger-sized tap target. */
+    @apply min-h-9 px-2.5 py-1 text-sm;
+  }
+  /* The tiny underlined actions on a shopping-list row (search, change, have it). */
+  .link-xs {
+    @apply inline-flex min-h-9 items-center px-1.5 text-xs text-gray-500 underline;
   }
   .card {
     @apply rounded-xl bg-white p-5 shadow-[0_2px_8px_rgba(0,0,0,0.1)];
@@ -199,4 +204,12 @@
 
 .safe-bottom {
   padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* On a phone, the recipes page's "Add to order" bar sits at the bottom of the screen: the
+   assistant button moves up so it doesn't cover the bar's corner. */
+@media (max-width: 767px) {
+  html.selection-bar-open .chat-fab {
+    bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
 }

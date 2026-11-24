@@ -46,7 +46,7 @@ async function toggleList() {
     if (onList.value) await list.removeRecipe(recipe.value.id)
     else {
       await list.addRecipe(recipe.value.id, factor.value)
-      toast(`Added to this week${factor.value !== 1 ? ` (×${factor.value})` : ''}`)
+      toast(`Added to your order${factor.value !== 1 ? ` (×${factor.value})` : ''}`)
     }
   } catch (e) {
     toast(errorMessage(e), 'error')
@@ -242,7 +242,7 @@ async function publish(visibility) {
           :disabled="busy"
           @click="toggleList"
         >
-          {{ onList ? '✓ On this week\'s list' : 'Add to this week' }}
+          {{ onList ? '✓ In your order' : 'Add to order' }}
         </button>
         <button
           class="btn-secondary"
@@ -428,7 +428,7 @@ async function publish(visibility) {
           </span>
           <input
             v-model="logForm.notes"
-            class="input flex-1"
+            class="input min-w-0 basis-full sm:basis-auto sm:flex-1"
             placeholder="Notes for next time (optional)"
           >
           <button
