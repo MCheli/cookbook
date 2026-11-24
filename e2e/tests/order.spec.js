@@ -225,3 +225,55 @@ test('every signed-in page fits the screen', async ({ page }, testInfo) => {
     await shot(page, testInfo, 'menu')
   }
 })
+
+// The iPhone Home Screen app: print() does nothing there and a PDF opens in a bare viewer, so
+// Print hands the recipes' PDF to the share sheet (Print, Save to Files), from the tap.
+test('in the Home Screen app, Print opens the share sheet with the PDF', async ({ page, context }, testInfo) => {
+  test.skip(testInfo.project.name !== 'iphone', 'Home Screen apps are an iPhone thing')
+  await context.addInitScript(() => {
+    Object.defineProperty(navigator, 'standalone', { value: true, configurable: true })
+    window.__shares = []
+    navigator.canShare = (data) => !!data?.files?.length
+    navigator.share = (data) => {
+      const f = data.files[0]
+      window.__shares.push({ inClick: window.__inClick, name: f.name, type: f.type, size: f.size })
+      return Promise.resolve()
+    }
+  })
+  const shares = () => page.evaluate(() => window.__shares)
+  const pasta = await addToOrder(page, PASTA, 2)
+  await addToOrder(page, SHRIMP)
+
+  await page.goto('/list')
+  const printBtn = page.getByTestId('print')
+  await expect(printBtn).toHaveText('Print or save')
+  await expect(page.getByRole('link', { name: 'PDF' })).toHaveCount(0)
+  // The PDF is fetched ahead of the tap; wait for it rather than for a fixed time.
+  await page.waitForResponse((r) => r.url().includes('/api/recipes/pdf') && r.ok())
+  await page.waitForTimeout(200)
+  await printBtn.click()
+  let s = await shares()
+  expect(s).toHaveLength(1)
+  expect(s[0]).toMatchObject({ inClick: true, name: 'recipes.pdf', type: 'application/pdf' })
+  expect(s[0].size).toBeGreaterThan(1000)
+  expect(await prints(page)).toHaveLength(0)
+  await shot(page, testInfo, 'homescreen-order')
+
+  await page.goto(`/r/${PASTA}`)
+  await page.waitForResponse((r) => r.url().includes(`/api/recipes/${PASTA}/pdf`) && r.ok())
+  await page.waitForTimeout(200)
+  await page.getByRole('button', { name: 'Print or save' }).click()
+  s = await shares()
+  expect(s.at(-1)).toMatchObject({ inClick: true, type: 'application/pdf' })
+
+  await page.request.post('/api/lists/current/complete')
+  await page.goto('/history')
+  const first = page.getByTestId('past-order').first()
+  await expect(first).toContainText(pasta.title)
+  await page.waitForResponse((r) => r.url().includes('/api/recipes/pdf') && r.ok())
+  await page.waitForTimeout(200)
+  await first.getByRole('button', { name: 'Print recipes' }).click()
+  s = await shares()
+  expect(s.at(-1)).toMatchObject({ inClick: true, type: 'application/pdf' })
+  expect(await prints(page)).toHaveLength(0)
+})

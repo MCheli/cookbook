@@ -1,5 +1,6 @@
 import { inlineMd, scaleAmount } from './format'
 import { methods } from '@/api'
+import { pdfUrlFor, sharePdf } from './pdfShare'
 
 /**
  * Print cooking instructions from this page, not a pop-up: an iPhone Home Screen web app has no
@@ -10,10 +11,16 @@ import { methods } from '@/api'
  * once the page has waited on the network after the tap. iOS also returns from print() and may
  * fire afterprint before its print sheet has drawn the page, so #print-area is left filled (it is
  * hidden on screen) and emptied on the next navigation instead (clearPrintArea).
+ *
+ * In the iPhone Home Screen app print() does nothing, so there the recipes' PDF goes to the share
+ * sheet instead (pdfShare.js). pdfUrl names that PDF when the recipes alone can't (a recipe page
+ * showing another version); it is worked out from their slugs and factors otherwise.
  */
-export function printRecipes(recipes) {
+export function printRecipes(recipes, pdfUrl = null) {
+  if (!recipes?.length) return
+  if (sharePdf(pdfUrl || pdfUrlFor(recipes))) return
   const area = document.getElementById('print-area')
-  if (!area || !recipes.length) return
+  if (!area) return
   area.innerHTML = recipes
     .map((r, index) => {
       const factor = r.factor ?? 1

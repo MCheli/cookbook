@@ -8,6 +8,7 @@ import RecipeBody from '@/components/RecipeBody.vue'
 import AssistBox from '@/components/AssistBox.vue'
 import { FACTORS } from '@/lib/format'
 import { printRecipes } from '@/lib/print'
+import { inHomeScreenApp, preparePdf } from '@/lib/pdfShare'
 import { toast } from '@/lib/toast'
 
 const props = defineProps({ slug: { type: String, required: true } })
@@ -55,8 +56,20 @@ async function toggleList() {
   }
 }
 
+// In the iPhone Home Screen app Print shares this PDF (Print, Save to Files), so it's fetched ahead.
+const homeScreen = inHomeScreenApp()
+const pdfHref = computed(() =>
+  recipe.value ? `/api/recipes/${recipe.value.slug}/pdf${factor.value !== 1 && !useVersion.value ? `?factor=${factor.value}` : ''}` : null,
+)
+watch(pdfHref, (url) => preparePdf(url), { immediate: true })
+
 function print() {
-  printRecipes([{ ...shown.value, factor: useVersion.value ? 1 : factor.value }])
+  if (homeScreen && useVersion.value) {
+    // The PDF is made from the saved recipe; this version only exists on this screen.
+    toast('Save this version first to print it from the Home Screen app, or print it from Safari.', 'error', 6000)
+    return
+  }
+  printRecipes([{ ...shown.value, factor: useVersion.value ? 1 : factor.value }], pdfHref.value)
 }
 
 async function toggleSave() {
@@ -248,11 +261,12 @@ async function publish(visibility) {
           class="btn-secondary"
           @click="print"
         >
-          Print
+          {{ homeScreen ? 'Print or save' : 'Print' }}
         </button>
         <a
+          v-if="!homeScreen"
           class="btn-secondary"
-          :href="`/api/recipes/${recipe.slug}/pdf${factor !== 1 && !useVersion ? `?factor=${factor}` : ''}`"
+          :href="pdfHref"
           target="_blank"
         >PDF</a>
         <template v-if="session.signedIn && !recipe.can_edit">

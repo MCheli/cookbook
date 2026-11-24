@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { api, errorMessage } from '@/api'
 import { useSession } from '@/stores/session'
 import { printRecipes } from '@/lib/print'
+import { pdfUrlFor, preparePdf } from '@/lib/pdfShare'
 import { toast } from '@/lib/toast'
 
 // The original site's flow, for anyone: pick recipes, get one combined list with Whole Foods
@@ -11,20 +12,23 @@ import { toast } from '@/lib/toast'
 const route = useRoute()
 const session = useSession()
 const data = ref(null)
+// The full recipes, loaded ahead of the tap: an iPhone only prints straight from it.
+const full = ref(null)
 const slugs = computed(() => String(route.query.r || '').split(',').filter(Boolean))
 
 onMounted(async () => {
   if (!slugs.value.length) return
   try {
     data.value = (await api.post('/grocery/preview', { recipe_slugs: slugs.value })).data
+    full.value = await Promise.all(slugs.value.map((s) => api.get(`/recipes/${s}`).then((r) => r.data)))
+    preparePdf(pdfUrlFor(full.value))
   } catch (e) {
     toast(errorMessage(e), 'error')
   }
 })
 
-async function print() {
-  const full = await Promise.all(slugs.value.map((s) => api.get(`/recipes/${s}`).then((r) => r.data)))
-  printRecipes(full)
+function print() {
+  if (full.value?.length) printRecipes(full.value)
 }
 </script>
 
@@ -38,7 +42,7 @@ async function print() {
         <div class="flex w-full gap-2 sm:w-auto">
           <button
             class="btn-primary flex-1 sm:flex-none"
-            :disabled="!data"
+            :disabled="!full"
             @click="print"
           >
             Print Cooking Instructions
