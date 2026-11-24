@@ -80,7 +80,7 @@ test('Whole Foods buttons open the store and never tick an item by themselves', 
   const row = page.getByTestId('item-italian sausage links')
   await expect(row).toBeVisible()
   const progress = page.getByTestId('cart-progress')
-  await expect(progress).toContainText(/^0 of \d+ in your cart$/)
+  await expect(progress).toContainText(/^0 of \d+ in your cart\s*$/)
 
   const [store] = await Promise.all([context.waitForEvent('page'), row.getByTestId('open-wf').click()])
   await store.close()
@@ -193,6 +193,7 @@ test('placing an order, undoing a mistaken one, and a second order the same day'
   await expect(page.getByText(pasta.title)).toHaveCount(0)
   await page.getByTestId('placed').click()
   await page.getByTestId('confirm-placed').click()
+  await expect(page.getByTestId('empty-order')).toBeVisible() // placed for sure before leaving
 
   await page.goto('/history')
   const orders = page.getByTestId('past-order')

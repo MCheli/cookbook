@@ -11,6 +11,8 @@ export default defineConfig({
   reporter: [['list']],
   use: {
     baseURL: process.env.E2E_BASE_URL || 'http://localhost:5173',
+    // The app marks elements with data-test (Playwright's default is data-testid).
+    testIdAttribute: 'data-test',
     trace: 'retain-on-failure',
   },
   projects: [
