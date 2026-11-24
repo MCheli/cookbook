@@ -246,7 +246,8 @@ test('in the Home Screen app, Print opens the share sheet with the PDF', async (
 
   // The PDF is fetched ahead of the tap; wait for it (listening before the page loads).
   const pdfFor = (part) => page.waitForResponse((r) => r.url().includes(part) && r.ok())
-  let ready = pdfFor('/api/recipes/pdf')
+  const orderPdf = `/api/recipes/pdf?slugs=${PASTA},${SHRIMP}&factors=2,1`
+  let ready = pdfFor(orderPdf)
   await page.goto('/list')
   const printBtn = page.getByTestId('print')
   await expect(printBtn).toHaveText('Print or save')
@@ -270,7 +271,7 @@ test('in the Home Screen app, Print opens the share sheet with the PDF', async (
   expect(s.at(-1)).toMatchObject({ inClick: true, type: 'application/pdf' })
 
   await page.request.post('/api/lists/current/complete')
-  ready = pdfFor('/api/recipes/pdf')
+  ready = pdfFor(orderPdf)
   await page.goto('/history')
   const first = page.getByTestId('past-order').first()
   await expect(first).toContainText(pasta.title)
