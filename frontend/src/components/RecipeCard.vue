@@ -57,7 +57,7 @@ defineEmits(['toggle'])
     <div class="mt-auto pt-4">
       <RouterLink
         :to="`/r/${recipe.slug}`"
-        class="inline-block rounded-md bg-herb-600 px-4 py-2 text-[0.85rem] font-medium text-white hover:bg-herb-700"
+        class="tap inline-flex items-center rounded-md bg-herb-600 px-4 py-2 text-[0.85rem] font-medium text-white hover:bg-herb-700"
         @click.stop
       >
         View Recipe

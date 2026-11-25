@@ -53,7 +53,7 @@ async function addNew() {
     class="fixed inset-0 z-40 flex items-end justify-center bg-black/40 sm:items-center"
     @click.self="emit('close')"
   >
-    <div class="max-h-[85vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-5 sm:rounded-2xl">
+    <div class="max-h-[85dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-5 sm:rounded-2xl">
       <div class="mb-3 flex items-start justify-between gap-3">
         <div>
           <h3 class="font-semibold">
@@ -78,6 +78,8 @@ async function addNew() {
         v-model="q"
         class="input mb-3"
         placeholder="Search your products"
+        type="search"
+        enterkeyhint="search"
       >
       <ul class="mb-4 divide-y">
         <li
@@ -133,6 +135,10 @@ async function addNew() {
           v-model="form.link"
           class="input"
           placeholder="https://www.amazon.com/…/dp/B0…  or ASIN"
+          inputmode="url"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
         >
         <input
           v-model="form.title"

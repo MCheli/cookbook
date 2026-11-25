@@ -70,6 +70,7 @@ async function run() {
           v-model="instruction"
           class="input"
           placeholder="e.g. I'm out of heavy cream, or make it with chicken thighs"
+          enterkeyhint="go"
           :disabled="busy"
         >
         <MicButton @text="(t) => (instruction = (instruction ? instruction + ' ' : '') + t)" />

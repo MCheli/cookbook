@@ -42,6 +42,12 @@ watch(
   <DemoBanner v-if="session.demo && !bare" />
   <AppHeader v-if="!bare" />
   <RouterView />
-  <ChatFab v-if="session.signedIn && !bare && route.name !== 'chat'" />
+  <template v-if="session.signedIn && !bare && route.name !== 'chat'">
+    <div
+      class="chat-fab-spacer print:hidden"
+      aria-hidden="true"
+    />
+    <ChatFab />
+  </template>
   <ToastHost />
 </template>

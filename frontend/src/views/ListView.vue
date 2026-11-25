@@ -310,7 +310,7 @@ async function reopen() {
             >
               <RouterLink
                 :to="`/r/${r.slug}`"
-                class="min-w-0 truncate font-medium hover:underline"
+                class="min-w-0 truncate py-2.5 font-medium hover:underline"
               >
                 {{ r.emoji }} {{ r.title }}
               </RouterLink>
@@ -332,7 +332,7 @@ async function reopen() {
                 </select>
                 <button
                   v-demo-lock
-                  class="h-9 w-9 rounded-md text-gray-400 hover:bg-gray-100 hover:text-red-700"
+                  class="h-11 w-11 rounded-md text-gray-400 hover:bg-gray-100 hover:text-red-700"
                   :aria-label="`Remove ${r.title}`"
                   @click="run(() => store.removeRecipe(r.recipe_id))"
                 >
@@ -486,7 +486,7 @@ async function reopen() {
             Shopping list
             <span class="text-sm font-normal text-gray-500">({{ list.counts.need }} to buy)</span>
           </h3>
-          <label class="flex min-h-9 items-center gap-2 text-sm text-gray-600">
+          <label class="tap flex min-h-9 items-center gap-2 text-sm text-gray-600">
             <input
               v-model="showHave"
               type="checkbox"
@@ -536,7 +536,7 @@ async function reopen() {
                 <button
                   v-if="i.source !== 'recipe'"
                   v-demo-lock
-                  class="-mr-2 h-9 w-9 shrink-0 rounded-md text-gray-400 hover:bg-gray-100 hover:text-red-700"
+                  class="-mr-2 h-11 w-11 shrink-0 rounded-md text-gray-400 hover:bg-gray-100 hover:text-red-700"
                   :aria-label="`Remove ${i.name}`"
                   @click="run(() => store.deleteItem(i.id))"
                 >
@@ -654,6 +654,7 @@ async function reopen() {
           class="input basis-full sm:flex-[2]"
           placeholder="Add an item (paper towels, bananas…)"
           aria-label="Item"
+          enterkeyhint="done"
         >
         <input
           v-model="newItem.amount_text"

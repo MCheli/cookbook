@@ -20,3 +20,6 @@ app.use(createPinia())
 app.directive('demo-lock', vDemoLock)
 app.use(router)
 app.mount('#app')
+
+// iOS Safari only shows :active (the pressed state in main.css) once the page listens for touches.
+document.addEventListener('touchstart', () => {}, { passive: true })

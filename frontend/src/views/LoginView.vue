@@ -166,6 +166,9 @@ const chips = ['Instant Pot · Crockpot · Stovetop', 'One combined grocery list
               type="email"
               placeholder="Email"
               autocomplete="username"
+              autocapitalize="off"
+              autocorrect="off"
+              enterkeyhint="next"
             >
             <input
               v-model="password"

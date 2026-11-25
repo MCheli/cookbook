@@ -176,6 +176,7 @@ async function addToOrder() {
             type="search"
             class="input sm:w-56"
             placeholder="Search recipes or ingredients"
+            enterkeyhint="search"
           >
         </div>
       </div>
@@ -186,7 +187,7 @@ async function addToOrder() {
         <button
           v-for="t in tags"
           :key="t"
-          class="rounded-full px-2.5 py-0.5 text-xs"
+          class="min-h-9 rounded-full px-3 py-0.5 text-sm sm:min-h-0 sm:px-2.5 sm:text-xs"
           :class="tag === t ? 'bg-herb-600 text-white' : 'bg-white text-gray-600 ring-1 ring-gray-200 hover:ring-herb-400'"
           @click="tag = tag === t ? null : t"
         >

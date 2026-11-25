@@ -10,11 +10,14 @@ import { FACTORS } from '@/lib/format'
 import { printRecipes } from '@/lib/print'
 import { inHomeScreenApp, preparePdf } from '@/lib/pdfShare'
 import { toast } from '@/lib/toast'
+import { useWakeLock } from '@/lib/wakeLock'
 
 const props = defineProps({ slug: { type: String, required: true } })
 const session = useSession()
 const list = useList()
 const router = useRouter()
+// The screen stays on while a recipe is open, for cooking from it.
+useWakeLock()
 
 const recipe = ref(null)
 const notFound = ref(false)
@@ -434,7 +437,7 @@ async function publish(visibility) {
               v-for="n in 5"
               :key="n"
               type="button"
-              class="px-0.5 text-xl"
+              class="h-11 w-10 text-2xl"
               :class="n <= logForm.rating ? 'text-amber-500' : 'text-gray-300'"
               :aria-label="`${n} stars`"
               @click="logForm.rating = n"
