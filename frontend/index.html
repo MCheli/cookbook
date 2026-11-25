@@ -2,11 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <!-- maximum-scale stops iOS zooming into a field on focus; Safari still allows pinch zoom. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- Home Screen web app (iPhone: Share > Add to Home Screen). -->
+    <!-- Home Screen web app (iPhone: Share > Add to Home Screen). The green header runs up under
+         the status bar (black-translucent); main.css pads the page by the safe area. -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Cookbook" />
     <meta name="theme-color" content="#2d5a27" />
     <title>Cookbook</title>

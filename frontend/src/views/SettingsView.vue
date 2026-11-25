@@ -114,6 +114,9 @@ async function signOut() {
           v-model="keyInput"
           type="password"
           autocomplete="off"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
           class="input font-mono"
           :placeholder="session.hasAiKey ? 'Replace with a new key' : 'sk-ant-…'"
         >
@@ -251,6 +254,8 @@ async function signOut() {
           v-model="newKeyName"
           class="input"
           placeholder="Name, e.g. mac-mini-agent"
+          autocapitalize="off"
+          autocorrect="off"
         >
         <button
           v-demo-lock

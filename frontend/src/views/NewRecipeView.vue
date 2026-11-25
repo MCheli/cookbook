@@ -215,6 +215,9 @@ const TABS = [
           v-model="url"
           type="url"
           class="input"
+          autocapitalize="off"
+          autocorrect="off"
+          enterkeyhint="go"
           placeholder="https://…"
           required
         >

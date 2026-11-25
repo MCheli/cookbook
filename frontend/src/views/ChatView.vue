@@ -28,7 +28,7 @@ async function remove(id) {
 </script>
 
 <template>
-  <main class="mx-auto flex h-[calc(100vh-4rem)] max-w-6xl gap-4 px-4 py-4 sm:px-6">
+  <main class="chat-page mx-auto flex max-w-6xl gap-4 px-4 py-4 sm:px-6">
     <aside class="hidden w-64 shrink-0 flex-col overflow-y-auto rounded-xl bg-white p-3 shadow md:flex">
       <button
         class="btn-primary btn-sm mb-3"

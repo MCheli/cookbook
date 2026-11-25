@@ -103,8 +103,9 @@ async function remove(p) {
         type="search"
         class="input"
         placeholder="Search products or ingredients"
+        enterkeyhint="search"
       >
-      <label class="flex shrink-0 items-center gap-2 text-sm text-gray-700">
+      <label class="tap flex shrink-0 items-center gap-2 text-sm text-gray-700">
         <input
           v-model="onlyRegulars"
           type="checkbox"
@@ -125,6 +126,10 @@ async function remove(p) {
         v-model="adding.asin"
         class="input"
         placeholder="Amazon product link or ASIN"
+        inputmode="url"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
       >
       <input
         v-model="adding.title"
@@ -143,7 +148,7 @@ async function remove(p) {
           placeholder="Ingredients it's for (comma separated)"
         >
       </div>
-      <label class="flex items-center gap-2 text-sm">
+      <label class="tap flex items-center gap-2 text-sm">
         <input
           v-model="adding.is_regular"
           type="checkbox"
@@ -225,6 +230,7 @@ async function remove(p) {
               type="number"
               min="1"
               max="50"
+              inputmode="numeric"
               class="input w-16 py-1"
             ></label>
             <button
@@ -288,7 +294,7 @@ async function remove(p) {
             </button>
             <button
               v-demo-lock
-              class="btn-ghost btn-sm text-red-700"
+              class="btn-ghost btn-sm min-w-11 text-red-700"
               @click="remove(p)"
             >
               ✕

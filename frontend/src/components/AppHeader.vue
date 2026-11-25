@@ -58,14 +58,14 @@ const links = [
       >
         <RouterLink
           :to="{ name: 'login', query: { next: route.fullPath } }"
-          class="rounded-md bg-white/15 px-3 py-1.5 text-sm font-medium hover:bg-white/25"
+          class="tap inline-flex items-center rounded-md bg-white/15 px-3 py-1.5 text-sm font-medium hover:bg-white/25"
         >
           Sign in
         </RouterLink>
       </div>
       <button
         v-if="session.signedIn"
-        class="ml-auto rounded-md p-2 hover:bg-white/10 md:hidden"
+        class="-mr-2 ml-auto flex h-11 w-11 items-center justify-center rounded-md hover:bg-white/10 md:hidden"
         aria-label="Menu"
         @click="open = !open"
       >
@@ -88,7 +88,7 @@ const links = [
         v-for="l in links"
         :key="l.to"
         :to="l.to"
-        class="block rounded-md px-3 py-2 text-base font-medium hover:bg-white/10"
+        class="block rounded-md px-3 py-2.5 text-base font-medium hover:bg-white/10"
         :class="{ 'bg-white/15': route.name === l.name }"
       >
         {{ l.label }}
